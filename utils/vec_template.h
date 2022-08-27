@@ -36,6 +36,14 @@ public:
         std::copy(data, data + sz, d);
     }
 
+    // Defaulting copy and move constructor
+    vec_t(vec_t &) = default;
+    vec_t(const vec_t &) = default;
+    vec_t(vec_t &&) = default;
+    vec_t & operator=(vec_t &) = default;
+    vec_t & operator=(const vec_t &) = default;
+    vec_t & operator=(vec_t &&) = default;
+
     template <typename ... Targs>
     vec_t(Targs && ... args)
     {
@@ -104,6 +112,12 @@ public:
     {
         static_assert(std::is_floating_point<T>::value, "No Euclidean norm for this type");
         return sqrt(this->norm_squared());
+    }
+
+    T unit() const
+    {
+        static_assert(std::is_floating_point<T>::value, "No Euclidean norm for this type");
+        return (*this) / norm_squared();
     }
 
 };
