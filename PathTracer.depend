@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1661581962 source:d:\pathtracer\main.cpp
+	<iostream>
+	"utils/vec3d.h"
+
+1661583170 d:\pathtracer\utils\vec3d.h
+	"vec_template.h"
+
+1661582792 d:\pathtracer\utils\vec_template.h
+	<algorithm>
+	<cmath>
+
