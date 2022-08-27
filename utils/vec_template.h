@@ -112,7 +112,7 @@ public:
     T norm() const
     {
         static_assert(std::is_floating_point<T>::value, "No Euclidean norm for this type");
-        return sqrt(this->norm_squared());
+        return std::sqrt(this->norm_squared());
     }
 
     vec_t unit() const
@@ -167,10 +167,26 @@ inline vec_t<T, sz> operator * (const U & lhs, const vec_t<T, sz> & rhs)
     return rhs * lhs;
 }
 
-template <typename T, size_t sz, typename U>
+template <typename T, size_t sz, typename U,
+    std::enable_if_t<std::is_floating_point<U>::value, bool> = true
+>
 inline vec_t<T, sz> operator / (const vec_t<T, sz> & lhs, const U & rhs)
 {
-    U inverse = 1 / rhs;
+    U inverse = 1.0 / rhs;
+    vec_t <T, sz> ret;
+    for(size_t i = 0; i < sz; i++)
+        ret[i] = lhs[i] * inverse;
+    return ret;
+}
+
+template <typename T, size_t sz, typename U,
+    std::enable_if_t<!std::is_floating_point<U>::value, bool> = true
+>
+inline vec_t<T, sz> operator / (const vec_t<T, sz> & lhs, const U & rhs)
+{
+    // Use T instead of U to avoid integral truncation
+    // If T is also integral, then performs C-like integral operation
+    T inverse = 1.0 / rhs;
     vec_t <T, sz> ret;
     for(size_t i = 0; i < sz; i++)
         ret[i] = lhs[i] * inverse;
@@ -180,11 +196,11 @@ inline vec_t<T, sz> operator / (const vec_t<T, sz> & lhs, const U & rhs)
 // Vector operations
 // Interior product
 template <typename T, size_t sz>
-inline vec_t<T, sz> operator * (const vec_t<T, sz> & lhs, const vec_t<T, sz> & rhs)
+inline T operator * (const vec_t<T, sz> & lhs, const vec_t<T, sz> & rhs)
 {
-    vec_t <T, sz> ret;
+    T ret;
     for(size_t i = 0; i < sz; i++)
-        ret[i] = lhs[i] * rhs[i];
+        ret += lhs[i] * rhs[i];
     return ret;
 }
 
