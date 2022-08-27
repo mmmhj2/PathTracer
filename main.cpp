@@ -5,6 +5,7 @@
 #include "ray/skybox_base.h"
 #include "objects/sphere.h"
 #include "objects/objlist_naive.h"
+#include "ray/camera.h"
 using namespace std;
 
 int main()
@@ -16,9 +17,7 @@ int main()
     world.push_back(std::make_shared<sphere>(point3(0, 0, -1), 0.5));
     world.push_back(std::make_shared<sphere>(point3(0, -100.5, -1), 100));
 
-    cout << "Lower left : " << constants::lower_left << endl ;
-    cout << "Horizontal : " << constants::horizontal << endl ;
-    cout << "Vertical : " << constants::vertical << endl ;
+    camera cam;
 
     for(int j = constants::image_height - 1; j >= 0; j--)
     {
@@ -27,11 +26,7 @@ int main()
             double u, v;
             u = i * 1.0 / (constants::image_width - 1);
             v = j * 1.0 / (constants::image_height - 1);
-            ray r(constants::origin,
-                  constants::lower_left +
-                  u * constants::horizontal +
-                  v * constants::vertical
-                  );
+            ray r = cam.get_ray(u, v);
             //cout << "Origin:" << r.orig << " Direction:" << r.dir << endl ;
 
             color ray_color;
