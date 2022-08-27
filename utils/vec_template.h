@@ -151,32 +151,6 @@ inline vec_t<T, sz> operator - (const vec_t<T, sz> & lhs, const vec_t<T, sz> & r
 }
 
 // Scalar operations
-// NOTE : rhs will be converted to T before multiplying, causing unexpected result if T is integral
-// TODO : introducing std::common_type to mitigate the problem
-template <typename T, size_t sz>
-inline vec_t<T, sz> operator * (const vec_t<T, sz> & lhs, const T & rhs)
-{
-    vec_t <T, sz> ret;
-    for(size_t i = 0; i < sz; i++)
-        ret[i] = lhs[i] * rhs;
-    return ret;
-}
-
-template <typename T, size_t sz>
-inline vec_t<T, sz> operator * (const T & lhs, const vec_t<T, sz> & rhs)
-{
-    return rhs * lhs;
-}
-
-template <typename T, size_t sz>
-inline vec_t<T, sz> operator / (const vec_t<T, sz> & lhs, const T & rhs)
-{
-    T inverse = 1 / rhs;
-    vec_t <T, sz> ret;
-    for(size_t i = 0; i < sz; i++)
-        ret[i] = lhs[i] * inverse;
-    return ret;
-}
 template <typename T, size_t sz, typename U>
 inline vec_t<T, sz> operator * (const vec_t<T, sz> & lhs, const U & rhs)
 {
