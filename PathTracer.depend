@@ -7,7 +7,8 @@
 1661583170 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
 
-1661585161 d:\pathtracer\utils\vec_template.h
+1661587397 d:\pathtracer\utils\vec_template.h
+	<ostream>
 	<algorithm>
 	<cmath>
 
@@ -22,4 +23,8 @@
 1661585664 d:\pathtracer\utils\color.h
 	"vec3d.h"
 	<tuple>
+
+1661587378 source:d:\pathtracer\vector_feature_test.cpp
+	"utils/vec3d.h"
+	<iostream>
 
