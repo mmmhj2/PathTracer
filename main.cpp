@@ -11,10 +11,7 @@ using namespace std;
 color ray_trace(const ray & r, const objlist_naive & world, const skybox_base & skybox, int depth)
 {
     if(depth <= 0)
-    {
-        //cerr << "Ray trace stack full" << endl ;
         return color(0, 0, 0);
-    }
 
     hit_record rec;
 
@@ -42,15 +39,20 @@ int main()
     {
         for(int i = 0; i < constants::image_width; i++)
         {
-            double u, v;
-            u = i * 1.0 / (constants::image_width - 1);
-            v = j * 1.0 / (constants::image_height - 1);
-            ray r = cam.get_ray(u, v);
-            //cout << "Origin:" << r.orig << " Direction:" << r.dir << endl ;
+            color result;
+            for(int k = 0; k < constants::sample_per_pixel; k++)
+            {
+                double u, v;
+                u = (i + tools::random_double()) / (constants::image_width - 1);
+                v = (j + tools::random_double()) / (constants::image_height - 1);
+                ray r = cam.get_ray(u, v);
+                result += ray_trace(r, world, sky, 50);
+            }
+            result /= constants::sample_per_pixel;
 
-            color ray_color = ray_trace(r, world, sky, 50);
-            pic.push_back(ray_color);
+            pic.push_back(result);
         }
+        cerr << "Completed " << constants::image_height - j << " scanlines" << endl;
     }
 
     ofstream fout;

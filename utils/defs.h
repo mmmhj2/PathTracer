@@ -14,6 +14,8 @@ constexpr int image_height = image_width / aspect_ratio;
 constexpr double viewport_height = 2.0;
 constexpr double viewport_width = viewport_height * aspect_ratio;
 constexpr double focal_length = 1.0;
+
+constexpr int sample_per_pixel = 100;
 /*
 const vec3 origin = point3 (0, 0, 0);
 const vec3 horizontal = vec3 (viewport_width, 0, 0);
