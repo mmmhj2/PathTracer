@@ -6,6 +6,9 @@
 #include "objects/sphere.h"
 #include "objects/objlist_naive.h"
 #include "ray/camera.h"
+
+#include <future>
+
 using namespace std;
 
 color ray_trace(const ray & r, const objlist_naive & world, const skybox_base & skybox, int depth)
@@ -39,15 +42,18 @@ int main()
     {
         for(int i = 0; i < constants::image_width; i++)
         {
-            color result;
+            std::vector <std::future<color>> async_tasks;
             for(int k = 0; k < constants::sample_per_pixel; k++)
             {
                 double u, v;
                 u = (i + tools::random_double()) / (constants::image_width - 1);
                 v = (j + tools::random_double()) / (constants::image_height - 1);
                 ray r = cam.get_ray(u, v);
-                result += ray_trace(r, world, sky, 50);
+                async_tasks.push_back(std::async(ray_trace, r, world, sky, 20));
             }
+            color result;
+            for(auto & future : async_tasks)
+                result += future.get();
             result /= constants::sample_per_pixel;
 
             pic.push_back(result);

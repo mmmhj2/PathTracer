@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1661611639 source:d:\pathtracer\main.cpp
+1661613443 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	"utils/defs.h"
@@ -8,6 +8,7 @@
 	"objects/sphere.h"
 	"objects/objlist_naive.h"
 	"ray/camera.h"
+	<future>
 
 1661600656 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
@@ -41,7 +42,7 @@
 	"../utils/color.h"
 	"ray.h"
 
-1661610445 d:\pathtracer\utils\defs.h
+1661613465 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 
