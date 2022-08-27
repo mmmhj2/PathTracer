@@ -8,7 +8,7 @@
 class ImageOutputBase
 {
 public:
-    virtual int WriteImage(size_t width, size_t height, std::ostream & output, const std::vector<color> & data) = 0;
+    virtual int operator()(size_t width, size_t height, std::ostream & output, const std::vector<color> & data) = 0;
 };
 
 #endif // IMAGEOUTPUTBASE_H_INCLUDED

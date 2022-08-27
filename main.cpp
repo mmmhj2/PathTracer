@@ -18,8 +18,7 @@ int main()
 
     ofstream fout;
     fout.open("result.ppm");
-    ImageOutputPPM ppm;
-    ppm.WriteImage(256, 256, fout, pic);
+    ImageOutputPPM()(256, 256, fout, pic);
     fout.close();
 
     return 0;

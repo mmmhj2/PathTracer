@@ -6,7 +6,7 @@
 class ImageOutputPPM : public ImageOutputBase
 {
 public:
-    int WriteImage(size_t width, size_t height, std::ostream & output, const std::vector<color> & data) override
+    int operator()(size_t width, size_t height, std::ostream & output, const std::vector<color> & data) override
     {
         output << "P3\n";
         output << width << " " << height << "\n";
