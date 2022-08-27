@@ -4,7 +4,7 @@
 #include "vec3d.h"
 #include <tuple>
 
-typedef vec3d color;
+typedef vec3 color;
 
 std::tuple<short, short, short> color_to_RGB(const color & pixel)
 {

@@ -17,10 +17,10 @@ private:
     }
 
     template <typename ... Targs>
-    void vec_t_init(size_t cnt, T && val, Targs && ... args)
+    void vec_t_init(size_t cnt, const T & val, Targs && ... args)
     {
         d[cnt] = val;
-        vec_t_init(cnt + 1, std::forward<T>(args)...);
+        vec_t_init(cnt + 1, std::forward<Targs>(args)...);
     }
 
 public:
@@ -49,7 +49,7 @@ public:
     vec_t(Targs && ... args)
     {
         static_assert(sz == sizeof...(Targs), "Wrong number of arguments");
-        vec_t_init(0, std::forward<T>(args)...);
+        vec_t_init(0, std::forward<Targs>(args)...);
     }
 
     // Operators
@@ -115,7 +115,7 @@ public:
         return sqrt(this->norm_squared());
     }
 
-    T unit() const
+    vec_t unit() const
     {
         static_assert(std::is_floating_point<T>::value, "No Euclidean norm for this type");
         return (*this) / norm_squared();
