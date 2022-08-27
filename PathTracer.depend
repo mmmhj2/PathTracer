@@ -1,30 +1,43 @@
 # depslib dependency file v1.0
-1661585109 source:d:\pathtracer\main.cpp
+1661597772 source:d:\pathtracer\main.cpp
 	<fstream>
-	"utils/vec3d.h"
+	<iostream>
+	"utils/defs.h"
 	"image/ImageOutputPPM.h"
+	"ray/ray.h"
+	"ray/skybox_base.h"
 
-1661583170 d:\pathtracer\utils\vec3d.h
+1661588721 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
 
-1661587397 d:\pathtracer\utils\vec_template.h
+1661596907 d:\pathtracer\utils\vec_template.h
 	<ostream>
 	<algorithm>
 	<cmath>
 
-1661585672 d:\pathtracer\image\imageoutputppm.h
+1661588466 d:\pathtracer\image\imageoutputppm.h
 	"ImageOutputBase.h"
 
-1661585224 d:\pathtracer\image\imageoutputbase.h
+1661588457 d:\pathtracer\image\imageoutputbase.h
 	<ostream>
 	<vector>
 	"../utils/color.h"
 
-1661585664 d:\pathtracer\utils\color.h
+1661589146 d:\pathtracer\utils\color.h
 	"vec3d.h"
 	<tuple>
 
 1661587378 source:d:\pathtracer\vector_feature_test.cpp
 	"utils/vec3d.h"
 	<iostream>
+
+1661597810 d:\pathtracer\ray\ray.h
+	"../utils/vec3d.h"
+
+1661589262 d:\pathtracer\ray\skybox_base.h
+	"../utils/color.h"
+	"ray.h"
+
+1661597221 d:\pathtracer\utils\defs.h
+	"vec3d.h"
 
