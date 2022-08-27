@@ -11,7 +11,7 @@ public:
 
 public:
     sphere() {};
-    sphere(point3 c, double r) : center(c), radius(r)
+    sphere(const point3 & c, double r) : center(c), radius(r)
     {};
 
     bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;

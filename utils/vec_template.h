@@ -13,7 +13,7 @@ template <
 class vec_t
 {
 private:
-    void vec_t_init(size_t cnt)
+    void vec_t_init([[maybe_unused]] size_t cnt)
     {
     }
 
@@ -39,10 +39,8 @@ public:
     }
 
     // Defaulting copy and move constructor
-    vec_t(vec_t &) = default;
     vec_t(const vec_t &) = default;
     vec_t(vec_t &&) = default;
-    vec_t & operator=(vec_t &) = default;
     vec_t & operator=(const vec_t &) = default;
     vec_t & operator=(vec_t &&) = default;
 
@@ -126,7 +124,7 @@ public:
     inline static vec_t random(const T & min, const T & max)
     {
         static std::mt19937 generator;
-        std::uniform_real_distribution dist(min, max);
+        std::uniform_real_distribution <double> dist(min, max);
         vec_t ret;
         for(size_t i = 0; i < sz; i++)
             ret[i] = dist(generator);
@@ -221,7 +219,7 @@ inline vec_t<T, sz> operator / (const vec_t<T, sz> & lhs, const U & rhs)
 template <typename T, size_t sz>
 inline T operator * (const vec_t<T, sz> & lhs, const vec_t<T, sz> & rhs)
 {
-    T ret;
+    T ret = 0;
     for(size_t i = 0; i < sz; i++)
         ret += lhs[i] * rhs[i];
     return ret;
