@@ -1,6 +1,7 @@
 #ifndef VEC_TEMPLATE_H_INCLUDED
 #define VEC_TEMPLATE_H_INCLUDED
 
+#include <ostream>
 #include <algorithm>
 #include <cmath>
 
@@ -171,6 +172,31 @@ template <typename T, size_t sz>
 inline vec_t<T, sz> operator / (const vec_t<T, sz> & lhs, const T & rhs)
 {
     T inverse = 1 / rhs;
+    vec_t <T, sz> ret;
+    for(size_t i = 0; i < sz; i++)
+        ret[i] = lhs[i] * inverse;
+    return ret;
+}
+template <typename T, size_t sz, typename U>
+inline vec_t<T, sz> operator * (const vec_t<T, sz> & lhs, const U & rhs)
+{
+
+    vec_t <T, sz> ret;
+    for(size_t i = 0; i < sz; i++)
+        ret[i] = lhs[i] * rhs;
+    return ret;
+}
+
+template <typename T, size_t sz, typename U>
+inline vec_t<T, sz> operator * (const U & lhs, const vec_t<T, sz> & rhs)
+{
+    return rhs * lhs;
+}
+
+template <typename T, size_t sz, typename U>
+inline vec_t<T, sz> operator / (const vec_t<T, sz> & lhs, const U & rhs)
+{
+    U inverse = 1 / rhs;
     vec_t <T, sz> ret;
     for(size_t i = 0; i < sz; i++)
         ret[i] = lhs[i] * inverse;
