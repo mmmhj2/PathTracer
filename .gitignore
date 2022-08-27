@@ -1,2 +1,8 @@
 /bin/*
 /obj/*
+
+# Renderer results
+*.ppm
+*.jpg
+*.png
+*.bmp
