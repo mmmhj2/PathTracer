@@ -8,6 +8,25 @@
 #include "ray/camera.h"
 using namespace std;
 
+color ray_trace(const ray & r, const objlist_naive & world, const skybox_base & skybox, int depth)
+{
+    if(depth <= 0)
+    {
+        //cerr << "Ray trace stack full" << endl ;
+        return color(0, 0, 0);
+    }
+
+    hit_record rec;
+
+    if(world.hit(r, 0, constants::dinf, rec))
+    {
+        point3 target = rec.p + rec.normal + vec3::random_in_sphere() ;
+        return 0.5 * ray_trace(ray(rec.p, target - rec.p), world, skybox, depth-1);
+    }
+
+    return skybox(r);
+}
+
 int main()
 {
     skybox_base sky;
@@ -29,17 +48,8 @@ int main()
             ray r = cam.get_ray(u, v);
             //cout << "Origin:" << r.orig << " Direction:" << r.dir << endl ;
 
-            color ray_color;
-            hit_record rec;
-            if(world.hit(r, 0, constants::dinf, rec))
-            {
-                pic.push_back(0.5 * (rec.normal + color(1,1,1)));
-            }
-            else
-            {
-                pic.push_back(sky(r));
-            }
-
+            color ray_color = ray_trace(r, world, sky, 50);
+            pic.push_back(ray_color);
         }
     }
 

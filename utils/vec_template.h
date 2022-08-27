@@ -4,6 +4,7 @@
 #include <ostream>
 #include <algorithm>
 #include <cmath>
+#include <random>
 
 template <
     typename T, size_t sz,
@@ -119,6 +120,28 @@ public:
     {
         static_assert(std::is_floating_point<T>::value, "No Euclidean norm for this type");
         return (*this) / norm_squared();
+    }
+
+    // Random vector generator
+    inline static vec_t random(const T & min, const T & max)
+    {
+        static std::mt19937 generator;
+        std::uniform_real_distribution dist(min, max);
+        vec_t ret;
+        for(size_t i = 0; i < sz; i++)
+            ret[i] = dist(generator);
+        return ret;
+    }
+
+    inline static vec_t random_in_sphere(const T & radius = 1)
+    {
+        while(true)
+        {
+            auto p = vec_t::random(-radius, radius);
+            if(p.norm_squared() >= radius * radius)
+                continue;
+            return p;
+        }
     }
 
 };

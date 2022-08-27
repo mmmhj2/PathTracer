@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1661606542 source:d:\pathtracer\main.cpp
+1661611639 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	"utils/defs.h"
@@ -7,14 +7,16 @@
 	"ray/skybox_base.h"
 	"objects/sphere.h"
 	"objects/objlist_naive.h"
+	"ray/camera.h"
 
 1661600656 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
 
-1661605518 d:\pathtracer\utils\vec_template.h
+1661611576 d:\pathtracer\utils\vec_template.h
 	<ostream>
 	<algorithm>
 	<cmath>
+	<random>
 
 1661588466 d:\pathtracer\image\imageoutputppm.h
 	"ImageOutputBase.h"
@@ -35,12 +37,13 @@
 1661597826 d:\pathtracer\ray\ray.h
 	"../utils/vec3d.h"
 
-1661589262 d:\pathtracer\ray\skybox_base.h
+1661611555 d:\pathtracer\ray\skybox_base.h
 	"../utils/color.h"
 	"ray.h"
 
-1661605681 d:\pathtracer\utils\defs.h
+1661610445 d:\pathtracer\utils\defs.h
 	"vec3d.h"
+	<random>
 
 1661606803 d:\pathtracer\objects\sphere.h
 	"object_base.h"
@@ -52,4 +55,8 @@
 	<list>
 	<memory>
 	"object_base.h"
+
+1661609715 d:\pathtracer\ray\camera.h
+	"../utils/defs.h"
+	"ray.h"
 

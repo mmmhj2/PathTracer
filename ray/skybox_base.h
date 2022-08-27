@@ -7,7 +7,7 @@
 class skybox_base
 {
 public:
-    virtual color operator () (const ray & r)
+    virtual color operator () (const ray & r) const
     {
         auto unit = r.dir.unit();
         auto t = 0.5 * (unit[1] + 1.0);
