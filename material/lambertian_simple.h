@@ -23,6 +23,10 @@ bool lambertian::evaluateScatter(const ray& incident, const hit_record& rec, col
     // PDF of random_unit() is cos(theta) / PI
     // Where theta is the angle between normal and scattered ray
     auto scatter_dir = rec.normal + vec3::random_unit();
+
+    if(tools::is_near_zero(scatter_dir))
+        scatter_dir = rec.normal;
+
     scattered = ray(rec.p, scatter_dir);
     attenuation = k_L;
     return true;
