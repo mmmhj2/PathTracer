@@ -7,17 +7,31 @@
 class camera
 {
 public:
-    camera()
+    camera(point3 from,
+           point3 at,
+           vec3 up,
+           double vfov = constants::pi / 2,
+           double aspect_radio = constants::aspect_ratio
+           )
     {
-        origin = point3(0, 0, 0);
-        horizontal = vec3(constants::viewport_width, 0, 0);
-        vertical = vec3(0, constants::viewport_height, 0);
-        lower_left = origin - horizontal / 2.0 - vertical / 2.0 - vec3(0, 0, constants::focal_length);
+        auto h = std::tan(vfov / 2);
+        double viewport_height = 2.0 * h;
+        double viewport_width = aspect_radio * viewport_height;
+
+        vec3 w, u, v;
+        w = (from - at).unit();
+        u = (up ^ w).unit();
+        v = w ^ u;
+
+        origin = from;
+        horizontal = viewport_width * u;
+        vertical = viewport_height * v;
+        lower_left = origin - horizontal / 2.0 - vertical / 2.0 - w;
     }
 
-    ray get_ray(double u, double v) const
+    ray get_ray(double s, double t) const
     {
-        return ray(origin, lower_left + u * horizontal + v * vertical - origin);
+        return ray(origin, lower_left + s * horizontal + t * vertical - origin);
     }
 
 private:

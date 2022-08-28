@@ -74,6 +74,9 @@
 		<Unit filename="material/blinn_phong.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="material/dielectric.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="material/lambertian_simple.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

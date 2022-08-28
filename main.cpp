@@ -18,7 +18,7 @@ using namespace std;
 
 int main()
 {
-    camera cam;
+    camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), constants::pi / 9);
     skybox_base sky;
     objlist_naive world;
 
@@ -30,8 +30,8 @@ int main()
     world.add_object(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
     world.add_object(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
     world.add_object(make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, material_left));
+    world.add_object(make_shared<sphere>(point3(-1.0,    0.0, -1.0), -0.45, material_left));
     world.add_object(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right));
-
 
     std::vector <concurrent::block_info> infos(constants::blocks);
     int scanline_per_blocks = constants::image_height / constants::blocks + 1;
