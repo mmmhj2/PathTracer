@@ -42,20 +42,16 @@ int main()
     {
         for(int i = 0; i < constants::image_width; i++)
         {
-            std::vector <std::future<color>> async_tasks;
+            color result;
             for(int k = 0; k < constants::sample_per_pixel; k++)
             {
                 double u, v;
                 u = (i + tools::random_double()) / (constants::image_width - 1);
                 v = (j + tools::random_double()) / (constants::image_height - 1);
                 ray r = cam.get_ray(u, v);
-                async_tasks.push_back(std::async(ray_trace, r, world, sky, 20));
+                result += ray_trace(r, world, sky, 20);
             }
-            color result;
-            for(auto & future : async_tasks)
-                result += future.get();
             result /= constants::sample_per_pixel;
-
             pic.push_back(result);
         }
         cerr << "Completed " << constants::image_height - j << " scanlines" << endl;
