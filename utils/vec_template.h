@@ -123,7 +123,7 @@ public:
     // Random vector generator
     inline static vec_t random(const T & min, const T & max)
     {
-        static std::mt19937 generator;
+        thread_local static std::mt19937 generator;
         std::uniform_real_distribution <double> dist(min, max);
         vec_t ret;
         for(size_t i = 0; i < sz; i++)

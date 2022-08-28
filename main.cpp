@@ -14,17 +14,27 @@ using namespace std;
 color ray_trace(const ray & r, const objlist_naive & world, const skybox_base & skybox, int depth)
 {
     if(depth <= 0)
+    {
+        //cout << "Out of depth" << endl ;
         return color(0, 0, 0);
+    }
 
     hit_record rec;
 
     if(world.hit(r, 0, constants::dinf, rec))
     {
+        //cout << "Hit : " << rec.p << endl ;
         point3 target = rec.p + rec.normal + vec3::random_in_sphere() ;
         return 0.5 * ray_trace(ray(rec.p, target - rec.p), world, skybox, depth-1);
     }
 
+    //cout << "Not hit" << endl ;
     return skybox(r);
+}
+
+void thread_wrapper(color & result, const ray & r, const objlist_naive & world, const skybox_base & skybox)
+{
+    result = ray_trace(r, world, skybox, 20);
 }
 
 int main()
@@ -42,18 +52,27 @@ int main()
     {
         for(int i = 0; i < constants::image_width; i++)
         {
-            std::vector <std::future<color>> async_tasks;
-            for(int k = 0; k < constants::sample_per_pixel; k++)
-            {
-                double u, v;
-                u = (i + tools::random_double()) / (constants::image_width - 1);
-                v = (j + tools::random_double()) / (constants::image_height - 1);
-                ray r = cam.get_ray(u, v);
-                async_tasks.push_back(std::async(ray_trace, r, world, sky, 20));
-            }
             color result;
-            for(auto & future : async_tasks)
-                result += future.get();
+            for(int batch = 0; batch < constants::batch_per_pixel; ++batch)
+            {
+                std::vector <std::thread> threads;
+                std::vector <color> thd_result(constants::sample_per_batch);
+                for(int sample = 0; sample < constants::sample_per_batch; ++sample)
+                {
+                    double u, v;
+                    u = (i + tools::random_double()) / (constants::image_width - 1);
+                    v = (j + tools::random_double()) / (constants::image_height - 1);
+                    ray r = cam.get_ray(u, v);
+                    threads.emplace_back(thread_wrapper, std::ref(thd_result[sample]), std::cref(r), std::cref(world), std::cref(sky));
+                }
+
+                for(int thdcnt = 0; thdcnt < constants::sample_per_batch; ++thdcnt)
+                {
+                    threads[thdcnt].join();
+                    result += thd_result[thdcnt];
+                }
+
+            }
             result /= constants::sample_per_pixel;
 
             pic.push_back(result);
