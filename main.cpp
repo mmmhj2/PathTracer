@@ -11,7 +11,7 @@
 #include "ray/camera.h"
 #include "utils/concurrent_trace.h"
 #include "material/lambertian_simple.h"
-#include "material/blinn_phong.h"
+#include "material/dielectric.h"
 #include "material/metallic.h"
 
 using namespace std;
@@ -23,8 +23,8 @@ int main()
     objlist_naive world;
 
     auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
-    auto material_center = make_shared<blinn_phong_naive>(color(0.7, 0.3, 0.3), color(1.0, 1.0, 1.0), 1);
-    auto material_left   = make_shared<metallic>(color(0.8, 0.8, 0.8));
+    auto material_center = make_shared<lambertian>(color(0.1, 0.2, 0.5));
+    auto material_left   = make_shared<dielectric>(1.5);
     auto material_right  = make_shared<metallic>(color(0.8, 0.6, 0.2));
 
     world.add_object(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));

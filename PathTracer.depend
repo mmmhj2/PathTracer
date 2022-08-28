@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1661692456 source:d:\pathtracer\main.cpp
+1661695038 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	<future>
@@ -12,7 +12,7 @@
 	"ray/camera.h"
 	"utils/concurrent_trace.h"
 	"material/lambertian_simple.h"
-	"material/blinn_phong.h"
+	"material/dielectric.h"
 	"material/metallic.h"
 
 1661600656 d:\pathtracer\utils\vec3d.h
@@ -89,9 +89,12 @@
 	"../ray/ray.h"
 	"../utils/color.h"
 
-1661692657 d:\pathtracer\material\blinn_phong.h
+1661693873 d:\pathtracer\material\blinn_phong.h
 	"material_base.h"
 
 1661687881 d:\pathtracer\material\metallic.h
+	"material_base.h"
+
+1661695245 d:\pathtracer\material\dielectric.h
 	"material_base.h"
 
