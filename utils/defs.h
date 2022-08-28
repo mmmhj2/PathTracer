@@ -9,7 +9,7 @@ namespace constants
 {
 
 constexpr double aspect_ratio = 16.0 / 9.0;
-constexpr int image_width = 400;
+constexpr int image_width = 800;
 constexpr int image_height = image_width / aspect_ratio;
 
 constexpr double viewport_height = 2.0;

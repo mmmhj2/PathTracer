@@ -2,6 +2,7 @@
 #define CONCURRENT_TRACE_H_INCLUDED
 
 #include <vector>
+#include <atomic>
 #include "vec3d.h"
 #include "defs.h"
 #include "../ray/ray.h"
@@ -18,6 +19,8 @@ struct block_info
     camera * cam;
     objlist_naive * world;
     skybox_base * skybox;
+
+    mutable std::atomic_int progress;
 };
 
 color ray_trace(const ray & r, const objlist_naive & world, const skybox_base & skybox, int depth)
@@ -43,6 +46,7 @@ std::vector <color> trace_block(const block_info & info)
 {
     std::vector <color> ret;
     for(int j = info.scanline_max - 1; j >= info.scanline_min; j--)
+    {
         for(int i = 0; i < constants::image_width; i++)
         {
             color result;
@@ -57,6 +61,9 @@ std::vector <color> trace_block(const block_info & info)
             result /= constants::sample_per_pixel;
             ret.push_back(result);
         }
+        info.progress++;
+    }
+
     return ret;
 }
 
