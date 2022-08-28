@@ -8,10 +8,12 @@ class sphere : public hittable_object
 public:
     point3 center;
     double radius;
+    std::shared_ptr <material> material_ptr;
 
 public:
     sphere() {};
-    sphere(const point3 & c, double r) : center(c), radius(r)
+    sphere(point3 c, double r, std::shared_ptr <material> mat)
+        : center(std::move(c)), radius(r), material_ptr(mat)
     {};
 
     bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
@@ -40,6 +42,7 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) cons
     rec.t = root;
     rec.p = r.at(root);
     //rec.normal = (rec.p - center) / radius;
+    rec.mat = material_ptr;
     rec.set_normal(r, (rec.p - center) / radius);
     //std::cout << "ray : " << r.direction() << " intersect at : " << rec.p << " normal : " << rec.normal << std::endl ;
     return true;

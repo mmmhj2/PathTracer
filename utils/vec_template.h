@@ -234,5 +234,15 @@ inline vec_t<T, 3> operator ^ (const vec_t<T, 3> & lhs, const vec_t<T, 3> & rhs)
                        lhs[0] * rhs[1] - lhs[1] * rhs[0]);
 }
 
+// Element-wise product
+template <typename T, size_t sz>
+inline vec_t<T, sz> elem_product (const vec_t<T, sz> & lhs, const vec_t<T, sz> & rhs)
+{
+    vec_t<T, sz> ret;
+    for(size_t i = 0 ;i < sz; i++)
+        ret[i] = lhs[i] * rhs[i];
+    return ret;
+}
+
 
 #endif // VEC_TEMPLATE_H_INCLUDED

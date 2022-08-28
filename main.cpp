@@ -7,6 +7,7 @@
 #include "objects/objlist_naive.h"
 #include "ray/camera.h"
 #include "utils/concurrent_trace.h"
+#include "material/lambertian_simple.h"
 #include <future>
 using namespace std;
 
@@ -15,8 +16,12 @@ int main()
     camera cam;
     skybox_base sky;
     objlist_naive world;
-    world.add_object(std::make_shared<sphere>(point3(0, 0, -1), 0.5));
-    world.add_object(std::make_shared<sphere>(point3(0, -100.5, -1), 100));
+
+    auto lambertian_red = std::make_shared<lambertian> (color(1, 0, 0));
+    auto lambertian_green = std::make_shared<lambertian> (color(0, 1, 0));
+
+    world.add_object(std::make_shared<sphere>(point3(0, 0, -1), 0.5, lambertian_red));
+    world.add_object(std::make_shared<sphere>(point3(0, -100.5, -1), 100, lambertian_green));
 
     std::vector <concurrent::block_info> infos(constants::blocks);
     int scanline_per_blocks = constants::image_height / constants::blocks + 1;

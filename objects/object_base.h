@@ -2,12 +2,16 @@
 #define OBJECT_BASE_H_INCLUDED
 
 #include "../ray/ray.h"
+#include <memory>
+
+class material;
 
 struct hit_record
 {
     point3 p;
     vec3 normal;
     double t;
+    std::weak_ptr <material> mat;
     bool is_front;
 
     void set_normal(const ray & incident, const vec3 & normal_out)

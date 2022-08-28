@@ -6,6 +6,7 @@
 #include "defs.h"
 #include "../ray/ray.h"
 #include "../objects/objlist_naive.h"
+#include "../material/material_base.h"
 
 namespace concurrent
 {
@@ -26,10 +27,13 @@ color ray_trace(const ray & r, const objlist_naive & world, const skybox_base & 
 
     hit_record rec;
 
-    if(world.hit(r, 0, constants::dinf, rec))
+    if(world.hit(r, 0.001, constants::dinf, rec))
     {
-        point3 target = rec.p + rec.normal + vec3::random_in_sphere() ;
-        return 0.5 * ray_trace(ray(rec.p, target - rec.p), world, skybox, depth-1);
+        ray scattered;
+        color attenu;
+        if(rec.mat.lock()->evaluateScatter(r, rec, attenu, scattered))
+            return elem_product(attenu ,ray_trace(scattered, world, skybox, depth - 1));
+        return color(0, 0, 0);
     }
 
     return skybox(r);
