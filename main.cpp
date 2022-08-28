@@ -22,12 +22,16 @@ int main()
     skybox_base sky;
     objlist_naive world;
 
-    auto lambertian_red = std::make_shared<lambertian> (color(0.7, 0, 0));
-    auto lambertian_green = std::make_shared<lambertian> (color(0, 1, 0));
-    auto metal_bright = std::make_shared<metallic>(color(0.8, 0.8, 0.8));
+    auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
+    auto material_center = make_shared<blinn_phong_naive>(color(0.7, 0.3, 0.3), color(1.0, 1.0, 1.0), 1);
+    auto material_left   = make_shared<metallic>(color(0.8, 0.8, 0.8));
+    auto material_right  = make_shared<metallic>(color(0.8, 0.6, 0.2));
 
-    world.add_object(std::make_shared<sphere>(point3(0, 0, -1), 0.5, metal_bright));
-    world.add_object(std::make_shared<sphere>(point3(0, -100.5, -1), 100, lambertian_green));
+    world.add_object(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
+    world.add_object(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
+    world.add_object(make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, material_left));
+    world.add_object(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right));
+
 
     std::vector <concurrent::block_info> infos(constants::blocks);
     int scanline_per_blocks = constants::image_height / constants::blocks + 1;
