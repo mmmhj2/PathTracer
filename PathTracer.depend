@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1661663713 source:d:\pathtracer\main.cpp
+1661664420 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	"utils/defs.h"
@@ -51,13 +51,14 @@
 1661625342 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
-1661603044 d:\pathtracer\objects\object_base.h
+1661664313 d:\pathtracer\objects\object_base.h
 	"../ray/ray.h"
 
-1661603774 d:\pathtracer\objects\objlist_naive.h
+1661664496 d:\pathtracer\objects\objlist_naive.h
 	<list>
 	<memory>
 	"object_base.h"
+	"objlist_base.h"
 
 1661609715 d:\pathtracer\ray\camera.h
 	"../utils/defs.h"
@@ -69,4 +70,8 @@
 	"defs.h"
 	"../ray/ray.h"
 	"../objects/objlist_naive.h"
+
+1661664507 d:\pathtracer\objects\objlist_base.h
+	"../ray/ray.h"
+	"object_base.h"
 

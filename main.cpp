@@ -15,8 +15,8 @@ int main()
     camera cam;
     skybox_base sky;
     objlist_naive world;
-    world.push_back(std::make_shared<sphere>(point3(0, 0, -1), 0.5));
-    world.push_back(std::make_shared<sphere>(point3(0, -100.5, -1), 100));
+    world.add_object(std::make_shared<sphere>(point3(0, 0, -1), 0.5));
+    world.add_object(std::make_shared<sphere>(point3(0, -100.5, -1), 100));
 
     std::vector <concurrent::block_info> infos(constants::blocks);
     int scanline_per_blocks = constants::image_height / constants::blocks + 1;
