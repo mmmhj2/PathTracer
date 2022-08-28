@@ -18,7 +18,7 @@ private:
     color k_L;
 };
 
-bool lambertian::evaluateScatter(const ray& incident, const hit_record& rec, color& attenuation, ray& scattered) const
+bool lambertian::evaluateScatter([[maybe_unused]] const ray& incident, const hit_record& rec, color& attenuation, ray& scattered) const
 {
     // PDF of random_unit() is cos(theta) / PI
     // Where theta is the angle between normal and scattered ray
