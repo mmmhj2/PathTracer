@@ -10,7 +10,7 @@ public:
     virtual bool evaluateScatter(const ray & incident,
                                  const hit_record & rec,
                                  color & attenuation,
-                                 ray & scattered) = 0;
+                                 ray & scattered) const = 0;
 };
 
 #endif // MATERIAL_BASE_H_INCLUDED

@@ -13,14 +13,16 @@ public:
     virtual bool evaluateScatter(const ray & incident,
                                  const hit_record & rec,
                                  color & attenuation,
-                                 ray & scattered);
+                                 ray & scattered) const override;
 private:
     color k_L;
 };
 
-bool lambertian::evaluateScatter(const ray& incident, const hit_record& rec, color& attenuation, ray& scattered)
+bool lambertian::evaluateScatter(const ray& incident, const hit_record& rec, color& attenuation, ray& scattered) const
 {
-    auto scatter_dir = rec.normal + vec3::random_in_sphere();
+    // PDF of random_unit() is cos(theta) / PI
+    // Where theta is the angle between normal and scattered ray
+    auto scatter_dir = rec.normal + vec3::random_unit();
     scattered = ray(rec.p, scatter_dir);
     attenuation = k_L;
     return true;

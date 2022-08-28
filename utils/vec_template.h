@@ -117,7 +117,7 @@ public:
     vec_t unit() const
     {
         static_assert(std::is_floating_point<T>::value, "No Euclidean norm for this type");
-        return (*this) / norm_squared();
+        return (*this) / norm();
     }
 
     // Random vector generator
@@ -140,6 +140,11 @@ public:
                 continue;
             return p;
         }
+    }
+
+    inline static vec_t random_unit()
+    {
+        return vec_t::random_in_sphere().unit();
     }
 
 };
