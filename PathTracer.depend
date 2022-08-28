@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1661613443 source:d:\pathtracer\main.cpp
+1661663713 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	"utils/defs.h"
@@ -8,12 +8,13 @@
 	"objects/sphere.h"
 	"objects/objlist_naive.h"
 	"ray/camera.h"
+	"utils/concurrent_trace.h"
 	<future>
 
 1661600656 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
 
-1661611576 d:\pathtracer\utils\vec_template.h
+1661658634 d:\pathtracer\utils\vec_template.h
 	<ostream>
 	<algorithm>
 	<cmath>
@@ -42,11 +43,12 @@
 	"../utils/color.h"
 	"ray.h"
 
-1661613465 d:\pathtracer\utils\defs.h
+1661663008 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
+	<thread>
 
-1661606803 d:\pathtracer\objects\sphere.h
+1661625342 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
 1661603044 d:\pathtracer\objects\object_base.h
@@ -60,4 +62,11 @@
 1661609715 d:\pathtracer\ray\camera.h
 	"../utils/defs.h"
 	"ray.h"
+
+1661663874 d:\pathtracer\utils\concurrent_trace.h
+	<vector>
+	"vec3d.h"
+	"defs.h"
+	"../ray/ray.h"
+	"../objects/objlist_naive.h"
 

@@ -3,6 +3,7 @@
 
 #include "vec3d.h"
 #include <random>
+#include <thread>
 
 namespace constants
 {
@@ -16,6 +17,8 @@ constexpr double viewport_width = viewport_height * aspect_ratio;
 constexpr double focal_length = 1.0;
 
 constexpr int sample_per_pixel = 100;
+
+const int blocks = std::thread::hardware_concurrency() - 1;
 /*
 const vec3 origin = point3 (0, 0, 0);
 const vec3 horizontal = vec3 (viewport_width, 0, 0);

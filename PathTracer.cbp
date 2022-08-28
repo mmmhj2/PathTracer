@@ -12,7 +12,11 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-pedantic" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
 					<Add option="-g" />
+					<Add option="-std=c++14" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -27,12 +31,79 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="vector_test">
+				<Option output="bin/vector_test/PathTracer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/vector_test/" />
+				<Option object_output="obj/vector_test/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Profile">
+				<Option output="bin/Debug/PathTracer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-pg" />
+					<Add option="-Og" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="image/ImageOutputBase.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="image/ImageOutputPPM.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="main.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Profile" />
+		</Unit>
+		<Unit filename="objects/object_base.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="objects/objlist_naive.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="objects/sphere.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="ray/camera.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="ray/ray.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="ray/skybox_base.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="utils/color.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="utils/defs.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="utils/vec3d.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="utils/vec_template.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="vector_feature_test.cpp">
+			<Option target="vector_test" />
+		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
