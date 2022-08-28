@@ -1,7 +1,9 @@
 # depslib dependency file v1.0
-1661666774 source:d:\pathtracer\main.cpp
+1661687918 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
+	<future>
+	<bitset>
 	"utils/defs.h"
 	"image/ImageOutputPPM.h"
 	"ray/skybox_base.h"
@@ -10,12 +12,13 @@
 	"ray/camera.h"
 	"utils/concurrent_trace.h"
 	"material/lambertian_simple.h"
-	<future>
+	"material/blinn_phong.h"
+	"material/metallic.h"
 
 1661600656 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
 
-1661667357 d:\pathtracer\utils\vec_template.h
+1661684714 d:\pathtracer\utils\vec_template.h
 	<ostream>
 	<algorithm>
 	<cmath>
@@ -37,14 +40,14 @@
 	"utils/vec3d.h"
 	<iostream>
 
-1661597826 d:\pathtracer\ray\ray.h
+1661687710 d:\pathtracer\ray\ray.h
 	"../utils/vec3d.h"
 
 1661611555 d:\pathtracer\ray\skybox_base.h
 	"../utils/color.h"
 	"ray.h"
 
-1661663008 d:\pathtracer\utils\defs.h
+1661671641 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
@@ -66,8 +69,9 @@
 	"../utils/defs.h"
 	"ray.h"
 
-1661667377 d:\pathtracer\utils\concurrent_trace.h
+1661668364 d:\pathtracer\utils\concurrent_trace.h
 	<vector>
+	<atomic>
 	"vec3d.h"
 	"defs.h"
 	"../ray/ray.h"
@@ -78,10 +82,16 @@
 	"../ray/ray.h"
 	"object_base.h"
 
-1661666665 d:\pathtracer\material\lambertian_simple.h
+1661687859 d:\pathtracer\material\lambertian_simple.h
 	"material_base.h"
 
-1661665973 d:\pathtracer\material\material_base.h
+1661687845 d:\pathtracer\material\material_base.h
 	"../ray/ray.h"
 	"../utils/color.h"
+
+1661687867 d:\pathtracer\material\blinn_phong.h
+	"material_base.h"
+
+1661687881 d:\pathtracer\material\metallic.h
+	"material_base.h"
 

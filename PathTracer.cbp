@@ -71,7 +71,22 @@
 			<Option target="Release" />
 			<Option target="Profile" />
 		</Unit>
+		<Unit filename="material/blinn_phong.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="material/lambertian_simple.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="material/material_base.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="material/metallic.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="objects/object_base.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="objects/objlist_base.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="objects/objlist_naive.h">
@@ -90,6 +105,9 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="utils/color.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="utils/concurrent_trace.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="utils/defs.h">

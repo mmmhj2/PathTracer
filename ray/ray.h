@@ -31,4 +31,12 @@ public:
     }
 };
 
+namespace tools
+{
+vec3 reflect(const vec3 & v, const vec3 & n)
+{
+    return v - 2 * (v * n) * n;
+}
+}
+
 #endif // RAY_H_INCLUDED
