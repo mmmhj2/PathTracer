@@ -13,6 +13,7 @@ template <
 class vec_t
 {
 private:
+
     void vec_t_init([[maybe_unused]] size_t cnt)
     {
     }
@@ -45,10 +46,23 @@ public:
     vec_t & operator=(vec_t &&) = default;
 
     template <typename ... Targs>
-    vec_t(Targs && ... args)
+    vec_t(const T & arg, Targs && ... args)
     {
-        static_assert(sz == sizeof...(Targs), "Wrong number of arguments");
-        vec_t_init(0, std::forward<Targs>(args)...);
+        static_assert(sz == sizeof...(Targs) + 1, "Wrong number of arguments");
+        vec_t_init(0, std::cref(arg), std::forward<Targs>(args)...);
+    }
+
+    template <typename ... Targs>
+    vec_t(T && arg, Targs && ... args)
+    {
+        static_assert(sz == sizeof...(Targs) + 1, "Wrong number of arguments");
+        vec_t_init(0, std::move(arg), std::forward<Targs>(args)...);
+    }
+
+
+    vec_t(std::initializer_list<T> init_list)
+    {
+
     }
 
     // Operators
