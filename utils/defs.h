@@ -54,6 +54,12 @@ inline double random_double(double min, double max)
     return std::uniform_real_distribution<double>(min, max)(generator);
 }
 
+constexpr double EPS = 1e-6;
+
+vec3 reflect(const vec3 & v, const vec3 & n);
+vec3 refract(const vec3 &uv, const vec3 & n, double etai_etat);
+bool is_near_zero(const vec3 & v);
+
 };
 
 #endif // DEFS_H_INCLUDED
