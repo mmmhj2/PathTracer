@@ -18,7 +18,7 @@ private:
 
 public:
     dielectric(double index_of_refraction, color alb = color(1.0, 1.0, 1.0))
-    : ior(index_of_refraction), albedo(std::move(alb)) {};
+    : ior(index_of_refraction), albedo(alb) {};
     virtual bool evaluateScatter(const ray & incident,
                                  const hit_record & rec,
                                  color & attenuation,

@@ -11,7 +11,7 @@ private:
 
 public:
     blinn_phong_naive(color _k_L, color _k_G, double _s)
-    : k_L(std::move(_k_L)), k_G(std::move(_k_G)), s(_s)
+    : k_L(_k_L), k_G(_k_G), s(_s)
     {
     }
 

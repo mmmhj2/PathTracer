@@ -9,7 +9,7 @@ private:
     color albedo;
 
 public:
-    metallic(color alb) : albedo(std::move(alb))
+    metallic(color alb) : albedo(alb)
     {
     }
 
@@ -18,7 +18,6 @@ public:
 
 bool metallic::evaluateScatter(const ray& incident, const hit_record& rec, color& attenuation, ray& scattered) const
 {
-    // PDF = 1
     vec3 reflected = tools::reflect(incident.direction().unit(), rec.normal);
     scattered = ray(rec.p, reflected);
     attenuation = albedo;

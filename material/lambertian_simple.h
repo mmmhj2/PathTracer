@@ -6,7 +6,7 @@
 class lambertian : public material
 {
 public:
-    lambertian(color clr) : k_L(std::move(clr))
+    lambertian(color clr) : k_L(clr)
     {
     }
 
