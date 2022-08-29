@@ -1,7 +1,7 @@
 #ifndef RAY_H_INCLUDED
 #define RAY_H_INCLUDED
 
-#include "../utils/vec3d.h"
+#include "utils/vec3d.h"
 
 class ray
 {

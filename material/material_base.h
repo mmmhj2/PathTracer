@@ -1,8 +1,8 @@
 #ifndef MATERIAL_BASE_H_INCLUDED
 #define MATERIAL_BASE_H_INCLUDED
 
-#include "../ray/ray.h"
-#include "../utils/color.h"
+#include "ray/ray.h"
+#include "utils/color.h"
 
 class material
 {

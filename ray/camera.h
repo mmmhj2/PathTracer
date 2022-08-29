@@ -1,7 +1,7 @@
 #ifndef CAMERA_H_INCLUDED
 #define CAMERA_H_INCLUDED
 
-#include "../utils/defs.h"
+#include "utils/defs.h"
 #include "ray.h"
 
 class camera

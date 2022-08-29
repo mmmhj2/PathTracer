@@ -1,7 +1,7 @@
 #ifndef OBJECT_BASE_H_INCLUDED
 #define OBJECT_BASE_H_INCLUDED
 
-#include "../ray/ray.h"
+#include "ray/ray.h"
 #include <memory>
 
 class material;

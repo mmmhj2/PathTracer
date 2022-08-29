@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1661701060 source:d:\pathtracer\main.cpp
+1661701145 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	<future>
@@ -27,10 +27,10 @@
 1661588466 d:\pathtracer\image\imageoutputppm.h
 	"ImageOutputBase.h"
 
-1661588457 d:\pathtracer\image\imageoutputbase.h
+1661768059 d:\pathtracer\image\imageoutputbase.h
 	<ostream>
 	<vector>
-	"../utils/color.h"
+	"utils/color.h"
 
 1661613706 d:\pathtracer\utils\color.h
 	"vec3d.h"
@@ -40,11 +40,11 @@
 	"utils/vec3d.h"
 	<iostream>
 
-1661693115 d:\pathtracer\ray\ray.h
-	"../utils/vec3d.h"
+1661768106 d:\pathtracer\ray\ray.h
+	"utils/vec3d.h"
 
-1661611555 d:\pathtracer\ray\skybox_base.h
-	"../utils/color.h"
+1661768106 d:\pathtracer\ray\skybox_base.h
+	"utils/color.h"
 	"ray.h"
 
 1661700861 d:\pathtracer\utils\defs.h
@@ -56,8 +56,8 @@
 1661666592 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
-1661666438 d:\pathtracer\objects\object_base.h
-	"../ray/ray.h"
+1661768106 d:\pathtracer\objects\object_base.h
+	"ray/ray.h"
 	<memory>
 
 1661664496 d:\pathtracer\objects\objlist_naive.h
@@ -66,29 +66,29 @@
 	"object_base.h"
 	"objlist_base.h"
 
-1661701039 d:\pathtracer\ray\camera.h
-	"../utils/defs.h"
+1661768106 d:\pathtracer\ray\camera.h
+	"utils/defs.h"
 	"ray.h"
 
-1661668364 d:\pathtracer\utils\concurrent_trace.h
+1661768106 d:\pathtracer\utils\concurrent_trace.h
 	<vector>
 	<atomic>
 	"vec3d.h"
 	"defs.h"
-	"../ray/ray.h"
-	"../objects/objlist_naive.h"
-	"../material/material_base.h"
+	"ray/ray.h"
+	"objects/objlist_naive.h"
+	"material/material_base.h"
 
-1661664507 d:\pathtracer\objects\objlist_base.h
-	"../ray/ray.h"
+1661768106 d:\pathtracer\objects\objlist_base.h
+	"ray/ray.h"
 	"object_base.h"
 
 1661701081 d:\pathtracer\material\lambertian_simple.h
 	"material_base.h"
 
-1661687845 d:\pathtracer\material\material_base.h
-	"../ray/ray.h"
-	"../utils/color.h"
+1661768106 d:\pathtracer\material\material_base.h
+	"ray/ray.h"
+	"utils/color.h"
 
 1661693873 d:\pathtracer\material\blinn_phong.h
 	"material_base.h"

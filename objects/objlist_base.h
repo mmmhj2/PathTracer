@@ -1,10 +1,10 @@
 #ifndef OBJLIST_BASE_H_INCLUDED
 #define OBJLIST_BASE_H_INCLUDED
 
-#include "../ray/ray.h"
+#include "ray/ray.h"
 #include "object_base.h"
 
-class objlist_base
+class objlist_base : public hittable_object
 {
 public:
 

@@ -1,7 +1,7 @@
 #ifndef SKYBOX_BASE_H_INCLUDED
 #define SKYBOX_BASE_H_INCLUDED
 
-#include "../utils/color.h"
+#include "utils/color.h"
 #include "ray.h"
 
 class skybox_base

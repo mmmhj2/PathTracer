@@ -5,9 +5,9 @@
 #include <atomic>
 #include "vec3d.h"
 #include "defs.h"
-#include "../ray/ray.h"
-#include "../objects/objlist_naive.h"
-#include "../material/material_base.h"
+#include "ray/ray.h"
+#include "objects/objlist_naive.h"
+#include "material/material_base.h"
 
 namespace concurrent
 {
