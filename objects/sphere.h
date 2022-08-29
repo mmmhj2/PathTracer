@@ -16,7 +16,8 @@ public:
         : center(std::move(c)), radius(r), material_ptr(mat)
     {};
 
-    bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
+    virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
+    virtual bool get_aabb(aabb & output) const;
 };
 
 bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) const
@@ -45,6 +46,12 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) cons
     rec.mat = material_ptr;
     rec.set_normal(r, (rec.p - center) / radius);
     //std::cout << "ray : " << r.direction() << " intersect at : " << rec.p << " normal : " << rec.normal << std::endl ;
+    return true;
+}
+
+bool sphere::get_aabb(aabb& output) const
+{
+    output = aabb(center - vec3(radius, radius, radius), center + vec3(radius, radius, radius));
     return true;
 }
 

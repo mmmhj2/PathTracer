@@ -9,8 +9,9 @@
 class objlist_naive : public objlist_base
 {
 public:
-    bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
-    void add_object(std::shared_ptr <hittable_object> obj) override;
+    virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
+    virtual void add_object(std::shared_ptr <hittable_object> obj) override;
+    virtual bool get_aabb(aabb & output) const override;
 private:
     std::list<std::shared_ptr<hittable_object>> objlist;
 };
@@ -37,6 +38,28 @@ bool objlist_naive::hit(const ray& r, double t_min, double t_max, hit_record& re
 void objlist_naive::add_object(std::shared_ptr<hittable_object>obj)
 {
     objlist.push_back(obj);
+}
+
+bool objlist_naive::get_aabb(aabb& output) const
+{
+    if(objlist.empty())
+        return false;
+
+    aabb temp_box;
+    bool is_first_box = true;
+
+    for(const auto & obj : objlist)
+    {
+        if(!obj->get_aabb(temp_box))
+            return false;
+
+        if(is_first_box)
+            output = temp_box, is_first_box = false;
+        else
+            output = aabb::surrounding_box(output, temp_box);
+    }
+
+    return true;
 }
 
 

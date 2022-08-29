@@ -59,6 +59,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="../PathTracer" />
 		</Compiler>
 		<Unit filename="image/ImageOutputBase.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -93,6 +94,12 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="objects/objlist_naive.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="objects/spatial_structure/aabb.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="objects/sphere.h">

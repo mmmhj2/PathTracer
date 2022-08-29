@@ -53,14 +53,15 @@
 	<thread>
 	<cmath>
 
-1661666592 d:\pathtracer\objects\sphere.h
+1661779257 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
-1661768106 d:\pathtracer\objects\object_base.h
+1661779257 d:\pathtracer\objects\object_base.h
+	"spatial_structure/aabb.h"
 	"ray/ray.h"
 	<memory>
 
-1661664496 d:\pathtracer\objects\objlist_naive.h
+1661779849 d:\pathtracer\objects\objlist_naive.h
 	<list>
 	<memory>
 	"object_base.h"
@@ -79,7 +80,7 @@
 	"objects/objlist_naive.h"
 	"material/material_base.h"
 
-1661768106 d:\pathtracer\objects\objlist_base.h
+1661779279 d:\pathtracer\objects\objlist_base.h
 	"ray/ray.h"
 	"object_base.h"
 
@@ -98,4 +99,7 @@
 
 1661695245 d:\pathtracer\material\dielectric.h
 	"material_base.h"
+
+1661779835 d:\pathtracer\objects\spatial_structure\aabb.h
+	"utils/vec3d.h"
 
