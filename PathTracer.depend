@@ -47,7 +47,7 @@
 	"utils/color.h"
 	"ray.h"
 
-1661785314 d:\pathtracer\utils\defs.h
+1661787424 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
@@ -80,7 +80,7 @@
 	"objects/objlist_naive.h"
 	"material/material_base.h"
 
-1661779279 d:\pathtracer\objects\objlist_base.h
+1661785639 d:\pathtracer\objects\objlist_base.h
 	"ray/ray.h"
 	"object_base.h"
 
@@ -100,18 +100,23 @@
 1661780602 d:\pathtracer\material\dielectric.h
 	"material_base.h"
 
-1661785378 d:\pathtracer\objects\spatial_structure\aabb.h
+1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1661785147 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1661787791 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
+	"utils/defs.h"
 
-1661785030 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
+1661787089 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
 	"../../objlist_base.h"
 
 1661784905 source:d:\pathtracer\test\bvh_test.cpp
 	"objects/spatial_structure/bvh/bvh.h"
 
-1661785305 source:d:\pathtracer\utils\defs.cpp
+1661787424 source:d:\pathtracer\utils\defs.cpp
 	"defs.h"
+
+1661786945 source:d:\pathtracer\objects\spatial_structure\aabb.cpp
+	"aabb.h"
+	"../object_base.h"
 
