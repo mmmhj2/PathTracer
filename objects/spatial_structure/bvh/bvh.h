@@ -18,6 +18,9 @@ public:
     bvh_node(obj_vec & objs, size_t start, size_t fin);
     virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
     virtual bool get_aabb(aabb & output) const override;
+#ifdef BVH_TEST
+    void debug();
+#endif
 };
 
 class bvh_tree : public objlist_base
@@ -31,7 +34,9 @@ public:
     virtual void add_object(std::shared_ptr <hittable_object> obj) override;
     virtual bool get_aabb(aabb & output) const override;
     virtual void build();
-
+#ifdef BVH_TEST
+    void debug();
+#endif
 };
 
 #endif // BVH_H_INCLUDED

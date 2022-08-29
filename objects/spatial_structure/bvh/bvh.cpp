@@ -25,7 +25,7 @@ bvh_node::bvh_node(obj_vec & objs, size_t start, size_t fin)
     else
     {
         std::sort(objs.begin() + start, objs.begin() + fin, comparator_shared);
-        size_t mid = start + span >> 1;
+        size_t mid = start + (span >> 1);
 
         lch = std::make_shared<bvh_node>(objs, start, mid);
         rch = std::make_shared<bvh_node>(objs, mid, fin);
@@ -82,3 +82,35 @@ void bvh_tree::build()
     root = std::make_shared<bvh_node>(objs, 0, objs.size());
 }
 
+#ifdef BVH_TEST
+#warning BVH testing is enabled
+#include <iostream>
+using namespace std;
+
+void bvh_node::debug()
+{
+    cout << this << ":" << this->box.min() << "\t" << this->box.max() << endl ;
+    cout << "Left " << lch.get() << " Right " << rch.get() << endl ;
+
+    bvh_node *lc, *rc;
+    lc = dynamic_cast<bvh_node*>(lch.get());
+    rc = dynamic_cast<bvh_node*>(rch.get());
+    if(lc)
+        lc->debug();
+    else
+        cout << "Left is leaf" << endl ;
+    if(rc)
+        rc->debug();
+    else
+        cout << "Right is leaf" << endl ;
+}
+
+void bvh_tree::debug()
+{
+    if(root == nullptr)
+        cout << "NO TREE HERE" << endl ;
+    else
+        root->debug();
+}
+
+#endif // BVH_TEST

@@ -63,6 +63,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-DBVH_TEST" />
 				</Compiler>
 			</Target>
 		</Build>
