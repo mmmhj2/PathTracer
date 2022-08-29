@@ -12,6 +12,7 @@ public:
     virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
     virtual void add_object(std::shared_ptr <hittable_object> obj) override;
     virtual bool get_aabb(aabb & output) const override;
+    virtual void build(){};
 private:
     std::list<std::shared_ptr<hittable_object>> objlist;
 };

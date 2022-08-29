@@ -11,6 +11,7 @@ public:
     //virtual ~objlist_base() = 0;
 
     virtual void add_object(std::shared_ptr <hittable_object> obj) = 0;
+    virtual void build() = 0;
     // virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const = 0;
 };
 
