@@ -34,6 +34,8 @@ constexpr double dinf = std::numeric_limits<double>::infinity();
 
 namespace tools
 {
+constexpr double EPS = 1e-6;
+
 template <typename T>
 inline T clamp (T x, T min, T max)
 {
@@ -41,21 +43,9 @@ inline T clamp (T x, T min, T max)
     return (x < min ? min : x);
 }
 
-inline double random_double()
-{
-    static std::uniform_real_distribution<double> dist(0.0, 1.0);
-    static std::mt19937 generator;
-    return dist(generator);
-}
-
-inline double random_double(double min, double max)
-{
-    static std::mt19937 generator;
-    return std::uniform_real_distribution<double>(min, max)(generator);
-}
-
-constexpr double EPS = 1e-6;
-
+double random_double();
+double random_double(double min, double max);
+int random_int(int min, int max);
 vec3 reflect(const vec3 & v, const vec3 & n);
 vec3 refract(const vec3 &uv, const vec3 & n, double etai_etat);
 bool is_near_zero(const vec3 & v);

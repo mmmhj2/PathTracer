@@ -3,6 +3,25 @@
 
 namespace tools
 {
+double random_double()
+{
+    static std::uniform_real_distribution<double> dist(0.0, 1.0);
+    static std::mt19937 generator;
+    return dist(generator);
+}
+
+double random_double(double min, double max)
+{
+    static std::mt19937 generator;
+    return std::uniform_real_distribution<double>(min, max)(generator);
+}
+
+int random_int(int min, int max)
+{
+    static std::mt19937 generator;
+    return std::uniform_int_distribution<int>(min, max)(generator);
+}
+
 vec3 reflect(const vec3 & v, const vec3 & n)
 {
     return v - 2 * (v * n) * n;
