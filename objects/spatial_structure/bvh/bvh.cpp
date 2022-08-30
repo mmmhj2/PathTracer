@@ -61,7 +61,7 @@ bvh_node::bvh_node(obj_vec & objs, size_t start, size_t fin)
     aabb box_l, box_r;
 
     if(!lch->get_aabb(box_l) || !rch->get_aabb(box_r))
-        ;
+        throw std::runtime_error("Cannot acquire AABB when constructing BVH");
 
     this->box = aabb::surrounding_box(box_l, box_r);
 }

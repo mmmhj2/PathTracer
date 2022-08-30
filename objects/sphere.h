@@ -10,6 +10,14 @@ public:
     double radius;
     std::shared_ptr <material> material_ptr;
 
+    static std::pair <double, double> get_sphere_uv(const point3 & point_local)
+    {
+        double theta, phi;
+        theta = std::acos(-point_local[1]);
+        phi = std::atan2(-point_local[2], point_local[0]) + constants::pi;
+        return std::make_pair(phi / (2 * constants::pi), theta / constants::pi);
+    }
+
 public:
     sphere() {};
     sphere(point3 c, double r, std::shared_ptr <material> mat)
@@ -44,9 +52,10 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) cons
 
     rec.t = root;
     rec.p = r.at(root);
-    //rec.normal = (rec.p - center) / radius;
     rec.mat = material_ptr;
-    rec.set_normal(r, (rec.p - center) / radius);
+    vec3 normal = (rec.p - center) / radius;
+    rec.set_normal(r, normal);
+    std::tie(rec.u, rec.v) = get_sphere_uv(normal);
     //std::cout << "ray : " << r.direction() << " intersect at : " << rec.p << " normal : " << rec.normal << std::endl ;
     return true;
 }
