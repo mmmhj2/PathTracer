@@ -28,6 +28,7 @@ class hittable_object
 public:
     virtual bool hit (const ray & r, double t_min, double t_max, hit_record & rec) const = 0;
     virtual bool get_aabb(aabb & output) const = 0;
+    virtual point3 get_centroid() const = 0;
 };
 
 #endif // OBJECT_BASE_H_INCLUDED

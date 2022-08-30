@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1661823992 source:d:\pathtracer\main.cpp
+1661826153 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	<future>
@@ -14,6 +14,7 @@
 	"material/lambertian_simple.h"
 	"material/dielectric.h"
 	"material/metallic.h"
+	"material/texture/checker_texture.h"
 
 1661785337 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
@@ -54,10 +55,10 @@
 	<thread>
 	<cmath>
 
-1661790002 d:\pathtracer\objects\sphere.h
+1661865785 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
-1661823933 d:\pathtracer\objects\object_base.h
+1661865751 d:\pathtracer\objects\object_base.h
 	"spatial_structure/aabb.h"
 	"ray/ray.h"
 	<memory>
@@ -81,7 +82,7 @@
 	"objects/objlist_base.h"
 	"material/material_base.h"
 
-1661785639 d:\pathtracer\objects\objlist_base.h
+1661864564 d:\pathtracer\objects\objlist_base.h
 	"ray/ray.h"
 	"object_base.h"
 
@@ -105,15 +106,15 @@
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1661822762 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1661865778 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
 	"utils/defs.h"
 	<iostream>
 
-1661788579 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
+1661865778 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
 	"../../objlist_base.h"
 
-1661789877 source:d:\pathtracer\test\bvh_test.cpp
+1661865666 source:d:\pathtracer\test\bvh_test.cpp
 	"utils/defs.h"
 	"objects/sphere.h"
 	"objects/spatial_structure/bvh/bvh.h"
@@ -126,7 +127,10 @@
 	"aabb.h"
 	"../object_base.h"
 
-1661824068 d:\pathtracer\material\texture\texture_base.h
+1661860563 d:\pathtracer\material\texture\texture_base.h
 	"utils/defs.h"
 	"utils/color.h"
+
+1661826118 d:\pathtracer\material\texture\checker_texture.h
+	"texture_base.h"
 

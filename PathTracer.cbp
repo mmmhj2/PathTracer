@@ -100,6 +100,9 @@
 		<Unit filename="material/metallic.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="material/texture/checker_texture.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="material/texture/texture_base.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

@@ -18,6 +18,8 @@ public:
 
     virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
     virtual bool get_aabb(aabb & output) const;
+
+    virtual point3 get_centroid() const override;
 };
 
 bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) const
@@ -55,6 +57,12 @@ bool sphere::get_aabb(aabb& output) const
     output = aabb(center - vec3(rad, rad, rad), center + vec3(rad, rad, rad));
     return true;
 }
+
+point3 sphere::get_centroid() const
+{
+    return this->center;
+}
+
 
 
 #endif // SPHERE_H_INCLUDED

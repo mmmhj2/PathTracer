@@ -20,7 +20,9 @@ public:
     solid_color (color clr)
     : color_value(clr) {};
 
-    virtual color get_color([[maybe_unused]] double u, [[maybe_unused]] double v, [[maybe_unused]] const point3 & p) const
+    virtual color get_color([[maybe_unused]] double u,
+                            [[maybe_unused]] double v,
+                            [[maybe_unused]] const point3 & p) const
     {
         return color_value;
     }
