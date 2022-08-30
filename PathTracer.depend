@@ -19,7 +19,7 @@
 1661785337 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
 
-1661789613 d:\pathtracer\utils\vec_template.h
+1661870193 d:\pathtracer\utils\vec_template.h
 	<ostream>
 	<algorithm>
 	<cmath>
@@ -106,7 +106,7 @@
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1661865778 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1661869408 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
 	"utils/defs.h"
 	<iostream>
@@ -133,4 +133,34 @@
 
 1661826118 d:\pathtracer\material\texture\checker_texture.h
 	"texture_base.h"
+
+1661869166 source:d:\pathtracer\external\stb_impl.cpp
+	"stb.h"
+
+1661869154 d:\pathtracer\external\stb.h
+	"stb/stb_image.h"
+
+1661867586 d:\pathtracer\external\stb\stb_image.h
+	"stb_image.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+
+1661870036 source:d:\pathtracer\test\image_test.cpp
+	"material/texture/image_texture.h"
+
+1661870448 d:\pathtracer\material\texture\image_texture.h
+	"texture_base.h"
+	"external/stb.h"
 

@@ -74,6 +74,10 @@
 			<Add option="-fexceptions" />
 			<Add directory="../PathTracer" />
 		</Compiler>
+		<Unit filename="external/stb.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="external/stb_impl.cpp" />
 		<Unit filename="image/ImageOutputBase.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -101,6 +105,9 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="material/texture/checker_texture.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="material/texture/image_texture.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="material/texture/texture_base.h">

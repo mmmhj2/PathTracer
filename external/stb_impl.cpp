@@ -1,8 +1,2 @@
-
-#define STBI_NO_PSD
-#define STBI_NO_TGA
-#define STBI_NO_PIC
-#define STBI_NO_PNM
-
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb/stb_image.h"
+#include "stb.h"
