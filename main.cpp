@@ -13,6 +13,7 @@
 #include "material/lambertian_simple.h"
 #include "material/dielectric.h"
 #include "material/metallic.h"
+#include "material/texture/checker_texture.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ int main()
     skybox_base sky;
     bvh_tree world;
 
-    auto texture_ground = make_shared<solid_color>(color(0.8, 0.8, 0.0));
+    auto texture_ground = make_shared<checker_texture>(color(0.2, 0.3, 0.1), color(0.9, 0.9, 0.9));
     auto texture_center = make_shared<solid_color>(color(0.1, 0.2, 0.5));
 
     auto material_ground = make_shared<lambertian>(texture_ground);
