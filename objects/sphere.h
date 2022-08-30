@@ -57,6 +57,7 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) cons
     rec.set_normal(r, normal);
     std::tie(rec.u, rec.v) = get_sphere_uv(normal);
     //std::cout << "ray : " << r.direction() << " intersect at : " << rec.p << " normal : " << rec.normal << std::endl ;
+    //std::cout << "UV : " << rec.u << " " << rec.v << std::endl ;
     return true;
 }
 

@@ -26,7 +26,11 @@ public:
         data = stbi_load(filename, &width, &height, &channels_in_file, bytes_per_pixel);
 
         if(data == nullptr)
+        {
             width = height = 0;
+            throw std::runtime_error(stbi_failure_reason());
+        }
+
 
         bytes_per_line = bytes_per_pixel * width;
     }
@@ -46,10 +50,10 @@ public:
         v = 1.0 - tools::clamp(v, 0.0, 1.0);
 
         int i, j;
-        i = std::max(static_cast<int>(u * width), width - 1);
-        j = std::max(static_cast<int>(v * height), height - 1);
+        i = std::min(static_cast<int>(u * width), width - 1);
+        j = std::min(static_cast<int>(v * height), height - 1);
         auto pixel = data + j * bytes_per_line + i * bytes_per_pixel;
-
+        //std::cerr << "Reading from " << i << " " << j << std::endl ;
         return color(color_scale * pixel[0], color_scale * pixel[1], color_scale * pixel[2]);
     }
 

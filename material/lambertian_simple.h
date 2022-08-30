@@ -3,6 +3,7 @@
 
 #include "material_base.h"
 #include "texture/texture_base.h"
+#include "objects/object_base.h"
 
 class lambertian : public material
 {

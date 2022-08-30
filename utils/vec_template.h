@@ -15,12 +15,12 @@ class vec_t
 {
 private:
 
-    void vec_t_init([[maybe_unused]] size_t cnt)
+    constexpr void vec_t_init([[maybe_unused]] size_t cnt)
     {
     }
 
     template <typename ... Targs>
-    void vec_t_init(size_t cnt, const T & val, Targs && ... args)
+    constexpr void vec_t_init(size_t cnt, const T & val, Targs && ... args)
     {
         d[cnt] = val;
         vec_t_init(cnt + 1, std::forward<Targs>(args)...);

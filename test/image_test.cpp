@@ -1,4 +1,10 @@
+#include <iostream>
+#include <fstream>
+#include <future>
+
 #include "material/texture/image_texture.h"
+#include "material/texture/checker_texture.h"
+#include "material/lambertian_simple.h"
 
 #include "ray/camera.h"
 #include "ray/skybox_base.h"
@@ -10,11 +16,23 @@
 
 #include "utils/concurrent_trace.h"
 
+using namespace std;
+
 int main()
 {
     camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), constants::pi / 9);
     skybox_base sky;
     bvh_tree world;
+
+    auto texture_ground = make_shared<checker_texture>(color(0.2, 0.3, 0.1), color(0.9, 0.9, 0.9));
+    auto texture_center = make_shared<image_texture>("earthmap.jpg");
+
+    auto material_ground = make_shared<lambertian>(texture_ground);
+    auto material_center = make_shared<lambertian>(texture_center);
+
+    world.add_object(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
+    world.add_object(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
+    world.build();
 
     std::vector <concurrent::block_info> infos(constants::blocks);
     int scanline_per_blocks = constants::image_height / constants::blocks + 1;
@@ -62,7 +80,7 @@ int main()
 
 
     ofstream fout;
-    fout.open("result.ppm");
+    fout.open("image_texture.ppm");
     ImageOutputPPM()(constants::image_width, constants::image_height, fout, pic);
     fout.close();
 }

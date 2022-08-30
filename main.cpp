@@ -88,7 +88,5 @@ int main()
     ImageOutputPPM()(constants::image_width, constants::image_height, fout, pic);
     fout.close();
 
-    ray r;
-
     return 0;
 }

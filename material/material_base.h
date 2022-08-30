@@ -3,6 +3,9 @@
 
 #include "ray/ray.h"
 #include "utils/color.h"
+#include <memory>
+
+struct hit_record;
 
 class material
 {
