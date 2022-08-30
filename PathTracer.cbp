@@ -33,7 +33,6 @@
 			</Target>
 			<Target title="vector_test">
 				<Option output="bin/vector_test/PathTracer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/vector_test/" />
 				<Option object_output="obj/vector_test/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -57,7 +56,18 @@
 			</Target>
 			<Target title="bvh_test">
 				<Option output="bin/vector_test/PathTracer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/vector_test/" />
+				<Option object_output="obj/vector_test/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DBVH_TEST" />
+				</Compiler>
+			</Target>
+			<Target title="image_test">
+				<Option output="bin/vector_test/PathTracer" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/vector_test/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -131,6 +141,7 @@
 			<Option target="Release" />
 			<Option target="Profile" />
 			<Option target="bvh_test" />
+			<Option target="image_test" />
 		</Unit>
 		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -149,6 +160,9 @@
 		</Unit>
 		<Unit filename="test/bvh_test.cpp">
 			<Option target="bvh_test" />
+		</Unit>
+		<Unit filename="test/image_test.cpp">
+			<Option target="image_test" />
 		</Unit>
 		<Unit filename="utils/color.h">
 			<Option target="&lt;{~None~}&gt;" />
