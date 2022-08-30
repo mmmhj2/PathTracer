@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cmath>
 #include <random>
+#include <functional>
 
 template <
     typename T, size_t sz,

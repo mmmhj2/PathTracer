@@ -6,7 +6,7 @@
 #include "vec3d.h"
 #include "defs.h"
 #include "ray/ray.h"
-#include "objects/objlist_naive.h"
+#include "objects/objlist_base.h"
 #include "material/material_base.h"
 
 namespace concurrent
@@ -17,13 +17,13 @@ struct block_info
     int scanline_max;
     int scanline_min;
     camera * cam;
-    objlist_naive * world;
+    objlist_base * world;
     skybox_base * skybox;
 
     mutable std::atomic_int progress;
 };
 
-color ray_trace(const ray & r, const objlist_naive & world, const skybox_base & skybox, int depth)
+color ray_trace(const ray & r, const objlist_base & world, const skybox_base & skybox, int depth)
 {
     if(depth <= 0)
         return color(0, 0, 0);
