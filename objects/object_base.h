@@ -12,6 +12,7 @@ struct hit_record
     point3 p;
     vec3 normal;
     double t;
+    double u, v;
     std::weak_ptr <material> mat;
     bool is_front;
 

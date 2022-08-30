@@ -2,11 +2,12 @@
 #define LAMBERTIAN_SIMPLE_H_INCLUDED
 
 #include "material_base.h"
+#include "texture/texture_base.h"
 
 class lambertian : public material
 {
 public:
-    lambertian(color clr) : k_L(clr)
+    lambertian(std::shared_ptr <uv_texture> clr) : k_L(clr)
     {
     }
 
@@ -23,11 +24,11 @@ public:
             scatter_dir = rec.normal;
 
         scattered = ray(rec.p, scatter_dir);
-        attenuation = k_L;
+        attenuation = k_L->get_color(rec.u, rec.v, rec.p);
         return true;
     }
 private:
-    color k_L;
+    std::shared_ptr <uv_texture> k_L;
 };
 
 

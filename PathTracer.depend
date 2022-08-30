@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1661701145 source:d:\pathtracer\main.cpp
+1661823992 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	<future>
@@ -8,7 +8,7 @@
 	"image/ImageOutputPPM.h"
 	"ray/skybox_base.h"
 	"objects/sphere.h"
-	"objects/objlist_naive.h"
+	"objects/spatial_structure/bvh/bvh.h"
 	"ray/camera.h"
 	"utils/concurrent_trace.h"
 	"material/lambertian_simple.h"
@@ -54,10 +54,10 @@
 	<thread>
 	<cmath>
 
-1661780443 d:\pathtracer\objects\sphere.h
+1661790002 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
-1661779257 d:\pathtracer\objects\object_base.h
+1661823933 d:\pathtracer\objects\object_base.h
 	"spatial_structure/aabb.h"
 	"ray/ray.h"
 	<memory>
@@ -72,21 +72,22 @@
 	"utils/defs.h"
 	"ray.h"
 
-1661768106 d:\pathtracer\utils\concurrent_trace.h
+1661789698 d:\pathtracer\utils\concurrent_trace.h
 	<vector>
 	<atomic>
 	"vec3d.h"
 	"defs.h"
 	"ray/ray.h"
-	"objects/objlist_naive.h"
+	"objects/objlist_base.h"
 	"material/material_base.h"
 
 1661785639 d:\pathtracer\objects\objlist_base.h
 	"ray/ray.h"
 	"object_base.h"
 
-1661787898 d:\pathtracer\material\lambertian_simple.h
+1661823933 d:\pathtracer\material\lambertian_simple.h
 	"material_base.h"
+	"texture/texture_base.h"
 
 1661768106 d:\pathtracer\material\material_base.h
 	"ray/ray.h"
@@ -104,7 +105,7 @@
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1661789144 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1661822762 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
 	"utils/defs.h"
 	<iostream>
@@ -112,7 +113,7 @@
 1661788579 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
 	"../../objlist_base.h"
 
-1661788932 source:d:\pathtracer\test\bvh_test.cpp
+1661789877 source:d:\pathtracer\test\bvh_test.cpp
 	"utils/defs.h"
 	"objects/sphere.h"
 	"objects/spatial_structure/bvh/bvh.h"
@@ -124,4 +125,8 @@
 1661786945 source:d:\pathtracer\objects\spatial_structure\aabb.cpp
 	"aabb.h"
 	"../object_base.h"
+
+1661824068 d:\pathtracer\material\texture\texture_base.h
+	"utils/defs.h"
+	"utils/color.h"
 

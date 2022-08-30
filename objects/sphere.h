@@ -51,7 +51,8 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) cons
 
 bool sphere::get_aabb(aabb& output) const
 {
-    output = aabb(center - vec3(radius, radius, radius), center + vec3(radius, radius, radius));
+    double rad = std::abs(radius);
+    output = aabb(center - vec3(rad, rad, rad), center + vec3(rad, rad, rad));
     return true;
 }
 

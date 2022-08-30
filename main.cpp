@@ -7,7 +7,7 @@
 #include "image/ImageOutputPPM.h"
 #include "ray/skybox_base.h"
 #include "objects/sphere.h"
-#include "objects/objlist_naive.h"
+#include "objects/spatial_structure/bvh/bvh.h"
 #include "ray/camera.h"
 #include "utils/concurrent_trace.h"
 #include "material/lambertian_simple.h"
@@ -20,10 +20,13 @@ int main()
 {
     camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), constants::pi / 9);
     skybox_base sky;
-    objlist_naive world;
+    bvh_tree world;
 
-    auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0));
-    auto material_center = make_shared<lambertian>(color(0.1, 0.2, 0.5));
+    auto texture_ground = make_shared<solid_color>(color(0.8, 0.8, 0.0));
+    auto texture_center = make_shared<solid_color>(color(0.1, 0.2, 0.5));
+
+    auto material_ground = make_shared<lambertian>(texture_ground);
+    auto material_center = make_shared<lambertian>(texture_center);
     auto material_left   = make_shared<dielectric>(1.5);
     auto material_right  = make_shared<metallic>(color(0.8, 0.6, 0.2));
 
@@ -32,6 +35,7 @@ int main()
     world.add_object(make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, material_left));
     world.add_object(make_shared<sphere>(point3(-1.0,    0.0, -1.0), -0.45, material_left));
     world.add_object(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right));
+    world.build();
 
     std::vector <concurrent::block_info> infos(constants::blocks);
     int scanline_per_blocks = constants::image_height / constants::blocks + 1;
