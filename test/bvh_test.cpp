@@ -6,12 +6,13 @@
 
 int main()
 {
-    auto mat = std::make_shared<lambertian>(color(1, 1, 1));
+    auto tex = std::make_shared<solid_color>(color(1, 1, 1));
+    auto mat = std::make_shared<lambertian>(tex);
     bvh_tree tree;
-    tree.add_object(std::make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, mat));
+    //tree.add_object(std::make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, mat));
     tree.add_object(std::make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, mat));
     tree.add_object(std::make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, mat));
-    tree.add_object(std::make_shared<sphere>(point3(-1.0,    0.0, -1.0), -0.45, mat));
+    //tree.add_object(std::make_shared<sphere>(point3(-1.0,    0.0, -1.0), -0.45, mat));
     tree.add_object(std::make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, mat));
     tree.build();
 

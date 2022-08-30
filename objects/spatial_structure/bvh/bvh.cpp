@@ -1,9 +1,35 @@
 #include "bvh.h"
 #include "utils/defs.h"
 
+int max_axis_distrib(bvh_node::obj_vec & objs, size_t start, size_t fin)
+{
+    double axis_max[3], axis_min[3];
+    for(size_t i = 0; i < 3; i++)
+        axis_max[i] = -constants::dinf, axis_min[i] = constants::dinf;
+
+    for(size_t i = start; i < fin; i++)
+    {
+        point3 cent = objs[i]->get_centroid();
+        axis_max[0] = std::max(axis_max[0], cent[0]);
+        axis_min[0] = std::min(axis_min[0], cent[0]);
+        axis_max[1] = std::max(axis_max[1], cent[1]);
+        axis_min[1] = std::min(axis_min[1], cent[1]);
+        axis_max[2] = std::max(axis_max[2], cent[2]);
+        axis_min[2] = std::min(axis_min[2], cent[2]);
+    }
+    int max_axis = 0;
+    double max_diff = -constants::dinf;
+    for(int axis = 0; axis < 3; axis++)
+        if(max_diff < axis_max[axis] - axis_min[axis])
+            max_diff = axis_max[axis] - axis_min[axis], max_axis = axis;
+    return max_axis;
+}
+
 bvh_node::bvh_node(obj_vec & objs, size_t start, size_t fin)
 {
-    int axis = tools::random_int(0, 2);
+
+    int axis = max_axis_distrib(objs, start, fin);
+
     auto comparator_shared = [axis](const obj_ptr & l, const obj_ptr & r)
     {
         return aabb::compare_box_axis(l.get(), r.get(), axis);
@@ -58,6 +84,12 @@ bool bvh_node::get_aabb(aabb& output) const
     return true;
 }
 
+point3 bvh_node::get_centroid() const
+{
+    return (lch->get_centroid() + rch->get_centroid()) / 2.0;
+}
+
+
 bool bvh_tree::hit(const ray& r, double t_min, double t_max, hit_record& rec) const
 {
     if(root != nullptr)
@@ -81,6 +113,14 @@ void bvh_tree::build()
 {
     root = std::make_shared<bvh_node>(objs, 0, objs.size());
 }
+
+point3 bvh_tree::get_centroid() const
+{
+    if(root != nullptr)
+        return root->get_centroid();
+    return point3(0, 0, 0);
+}
+
 
 #ifdef BVH_TEST
 #warning BVH testing is enabled
