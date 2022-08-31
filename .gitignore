@@ -6,3 +6,7 @@
 *.jpg
 *.png
 *.bmp
+
+# Code::Blocks project files
+CppProperties.json
+*.layout
