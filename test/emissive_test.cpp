@@ -5,6 +5,7 @@
 #include "material/texture/image_texture.h"
 #include "material/texture/checker_texture.h"
 #include "material/lambertian_simple.h"
+#include "material/blinn_phong.h"
 #include "material/emissive_simple.h"
 
 #include "ray/camera.h"
@@ -26,12 +27,16 @@ int main()
     bvh_tree world;
 
     auto texture_ground = make_shared<checker_texture>(color(0.2, 0.3, 0.1), color(0.9, 0.9, 0.9));
-    auto texture_center = make_shared<solid_color>(color(2, 2, 2));
+    auto texture_up = make_shared<solid_color>(color(20, 20, 20));
+    auto texture_center = make_shared<solid_color>(color(0.4, 0, 0));
 
     auto material_ground = make_shared<lambertian>(texture_ground);
-    auto material_center = make_shared<emissive_diffuse>(texture_center);
+    auto material_up = make_shared<emissive_diffuse>(texture_up);
+    auto material_center = make_shared<blinn_phong_naive>(color(0.4, 0, 0), color(1, 1, 1), 10);
+    //auto material_center = make_shared<lambertian>(texture_center);
 
     world.add_object(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
+    world.add_object(make_shared<sphere>(point3( 0.0,    1.0, -1.0),   0.25, material_up));
     world.add_object(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
     world.build();
 
@@ -81,7 +86,7 @@ int main()
 
 
     ofstream fout;
-    fout.open("emissive.ppm");
+    fout.open("emissive_phong.ppm");
     ImageOutputPPM()(constants::image_width, constants::image_height, fout, pic);
     fout.close();
 }

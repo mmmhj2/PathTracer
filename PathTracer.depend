@@ -50,7 +50,7 @@
 	"utils/color.h"
 	"ray.h"
 
-1661787424 d:\pathtracer\utils\defs.h
+1661950719 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
@@ -97,8 +97,11 @@
 	"utils/color.h"
 	<memory>
 
-1661693873 d:\pathtracer\material\blinn_phong.h
+1661953349 d:\pathtracer\material\blinn_phong.h
 	"material_base.h"
+	"ray/ray.h"
+	"objects/object_base.h"
+	<cassert>
 
 1661780743 d:\pathtracer\material\metallic.h
 	"material_base.h"
@@ -178,13 +181,14 @@
 	"texture_base.h"
 	"external/stb.h"
 
-1661948897 source:d:\pathtracer\test\emissive_test.cpp
+1661952805 source:d:\pathtracer\test\emissive_test.cpp
 	<iostream>
 	<fstream>
 	<future>
 	"material/texture/image_texture.h"
 	"material/texture/checker_texture.h"
 	"material/lambertian_simple.h"
+	"material/blinn_phong.h"
 	"material/emissive_simple.h"
 	"ray/camera.h"
 	"skybox/skybox_colored.h"
@@ -204,4 +208,8 @@
 1661948861 d:\pathtracer\skybox\skybox_base.h
 	"utils/color.h"
 	"ray/ray.h"
+
+1661953048 source:d:\pathtracer\test\specular_test.cpp
+	<iostream>
+	"material/blinn_phong.h"
 

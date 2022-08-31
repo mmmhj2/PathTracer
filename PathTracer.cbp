@@ -90,6 +90,18 @@
 					<Add option="-DBVH_TEST" />
 				</Compiler>
 			</Target>
+			<Target title="specular_test">
+				<Option output="bin/specular_test/PathTracer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/specular_test" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DBVH_TEST" />
+				</Compiler>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -158,6 +170,7 @@
 			<Option target="bvh_test" />
 			<Option target="image_test" />
 			<Option target="emissive_test" />
+			<Option target="specular_test" />
 		</Unit>
 		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -171,7 +184,8 @@
 		<Unit filename="ray/ray.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="ray/skybox_base.h">
+		<Unit filename="skybox/skybox_base.h" />
+		<Unit filename="skybox/skybox_colored.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="test/bvh_test.cpp">
@@ -182,6 +196,9 @@
 		</Unit>
 		<Unit filename="test/image_test.cpp">
 			<Option target="image_test" />
+		</Unit>
+		<Unit filename="test/specular_test.cpp">
+			<Option target="specular_test" />
 		</Unit>
 		<Unit filename="utils/color.h">
 			<Option target="&lt;{~None~}&gt;" />

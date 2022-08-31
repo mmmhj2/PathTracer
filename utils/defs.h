@@ -19,7 +19,7 @@ constexpr int image_height = image_width / aspect_ratio;
 //constexpr double viewport_width = viewport_height * aspect_ratio;
 //constexpr double focal_length = 1.0;
 
-constexpr int sample_per_pixel = 100;
+constexpr int sample_per_pixel = 500;
 
 const int blocks = std::thread::hardware_concurrency() - 1;
 /*
