@@ -178,8 +178,20 @@
 	"texture_base.h"
 	"external/stb.h"
 
-1661947699 source:d:\pathtracer\test\emissive_test.cpp
+1661948165 source:d:\pathtracer\test\emissive_test.cpp
+	<iostream>
+	<fstream>
+	<future>
+	"material/texture/image_texture.h"
+	"material/texture/checker_texture.h"
+	"material/lambertian_simple.h"
 	"material/emissive_simple.h"
+	"ray/camera.h"
+	"ray/skybox_base.h"
+	"objects/sphere.h"
+	"objects/spatial_structure/bvh/bvh.h"
+	"image/ImageOutputPPM.h"
+	"utils/concurrent_trace.h"
 
 1661947889 d:\pathtracer\material\emissive_simple.h
 	"material_base.h"
