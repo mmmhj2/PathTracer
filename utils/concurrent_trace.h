@@ -30,16 +30,17 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
 
     hit_record rec;
 
-    if(world.hit(r, 0.001, constants::dinf, rec))
-    {
-        ray scattered;
-        color attenu;
-        if(rec.mat.lock()->evaluateScatter(r, rec, attenu, scattered))
-            return elem_product(attenu ,ray_trace(scattered, world, skybox, depth - 1));
-        return color(0, 0, 0);
-    }
+    if(!world.hit(r, 0.001, constants::dinf, rec))
+        return skybox(r);
 
-    return skybox(r);
+    ray scattered;
+    color attenu, emissive;
+    auto mat_ptr = rec.mat.lock();
+
+    mat_ptr->evaluateEmissive(r, rec, emissive);
+    if(mat_ptr->evaluateScatter(r, rec, attenu, scattered))
+        return emissive + elem_product(attenu, ray_trace(scattered, world, skybox, depth - 1));
+    return emissive;
 }
 
 std::vector <color> trace_block(const block_info & info)

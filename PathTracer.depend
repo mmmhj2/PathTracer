@@ -74,7 +74,7 @@
 	"utils/defs.h"
 	"ray.h"
 
-1661789698 d:\pathtracer\utils\concurrent_trace.h
+1661949188 d:\pathtracer\utils\concurrent_trace.h
 	<vector>
 	<atomic>
 	"vec3d.h"
@@ -178,7 +178,7 @@
 	"texture_base.h"
 	"external/stb.h"
 
-1661948165 source:d:\pathtracer\test\emissive_test.cpp
+1661948897 source:d:\pathtracer\test\emissive_test.cpp
 	<iostream>
 	<fstream>
 	<future>
@@ -187,7 +187,7 @@
 	"material/lambertian_simple.h"
 	"material/emissive_simple.h"
 	"ray/camera.h"
-	"ray/skybox_base.h"
+	"skybox/skybox_colored.h"
 	"objects/sphere.h"
 	"objects/spatial_structure/bvh/bvh.h"
 	"image/ImageOutputPPM.h"
@@ -197,4 +197,11 @@
 	"material_base.h"
 	"objects/object_base.h"
 	"texture/texture_base.h"
+
+1661948853 d:\pathtracer\skybox\skybox_colored.h
+	"skybox_base.h"
+
+1661948861 d:\pathtracer\skybox\skybox_base.h
+	"utils/color.h"
+	"ray/ray.h"
 
