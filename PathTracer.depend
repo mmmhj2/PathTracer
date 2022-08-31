@@ -34,8 +34,9 @@
 	<vector>
 	"utils/color.h"
 
-1661613706 d:\pathtracer\utils\color.h
+1661947903 d:\pathtracer\utils\color.h
 	"vec3d.h"
+	"defs.h"
 	<tuple>
 
 1661587378 source:d:\pathtracer\vector_feature_test.cpp
@@ -86,12 +87,12 @@
 	"ray/ray.h"
 	"object_base.h"
 
-1661872451 d:\pathtracer\material\lambertian_simple.h
+1661947379 d:\pathtracer\material\lambertian_simple.h
 	"material_base.h"
 	"texture/texture_base.h"
 	"objects/object_base.h"
 
-1661872435 d:\pathtracer\material\material_base.h
+1661947929 d:\pathtracer\material\material_base.h
 	"ray/ray.h"
 	"utils/color.h"
 	<memory>
@@ -176,4 +177,12 @@
 1661873417 d:\pathtracer\material\texture\image_texture.h
 	"texture_base.h"
 	"external/stb.h"
+
+1661947699 source:d:\pathtracer\test\emissive_test.cpp
+	"material/emissive_simple.h"
+
+1661947889 d:\pathtracer\material\emissive_simple.h
+	"material_base.h"
+	"objects/object_base.h"
+	"texture/texture_base.h"
 

@@ -3,7 +3,7 @@
 
 #include "material_base.h"
 
-class blinn_phong_naive : public material
+class blinn_phong_naive : public non_emissive_material
 {
 private:
     color k_L, k_G;

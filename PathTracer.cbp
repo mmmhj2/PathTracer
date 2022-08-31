@@ -78,6 +78,18 @@
 					<Add option="-DBVH_TEST" />
 				</Compiler>
 			</Target>
+			<Target title="emissive_test">
+				<Option output="bin/emissive_test/PathTracer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/emissive_test" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DBVH_TEST" />
+				</Compiler>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -103,6 +115,9 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="material/dielectric.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="material/emissive_simple.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="material/lambertian_simple.h">
@@ -142,6 +157,7 @@
 			<Option target="Profile" />
 			<Option target="bvh_test" />
 			<Option target="image_test" />
+			<Option target="emissive_test" />
 		</Unit>
 		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -160,6 +176,9 @@
 		</Unit>
 		<Unit filename="test/bvh_test.cpp">
 			<Option target="bvh_test" />
+		</Unit>
+		<Unit filename="test/emissive_test.cpp">
+			<Option target="emissive_test" />
 		</Unit>
 		<Unit filename="test/image_test.cpp">
 			<Option target="image_test" />

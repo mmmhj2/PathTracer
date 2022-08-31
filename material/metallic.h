@@ -3,7 +3,7 @@
 
 #include "material_base.h"
 
-class metallic : public material
+class metallic : public non_emissive_material
 {
 private:
     color albedo;

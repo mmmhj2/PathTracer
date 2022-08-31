@@ -5,7 +5,7 @@
 #include "texture/texture_base.h"
 #include "objects/object_base.h"
 
-class lambertian : public material
+class lambertian : public non_emissive_material
 {
 public:
     lambertian(std::shared_ptr <uv_texture> clr) : k_L(clr)

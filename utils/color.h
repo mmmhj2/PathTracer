@@ -2,6 +2,7 @@
 #define COLOR_H_INCLUDED
 
 #include "vec3d.h"
+#include "defs.h"
 #include <tuple>
 
 typedef vec3 color;

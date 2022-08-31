@@ -3,7 +3,7 @@
 
 #include "material_base.h"
 
-class dielectric : public material
+class dielectric : public non_emissive_material
 {
 private:
     double ior;
