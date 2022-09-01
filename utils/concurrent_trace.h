@@ -16,6 +16,7 @@ struct block_info
 {
     int scanline_max;
     int scanline_min;
+    int image_height, image_width;
     camera * cam;
     objlist_base * world;
     skybox_base * skybox;
@@ -48,14 +49,14 @@ std::vector <color> trace_block(const block_info & info)
     std::vector <color> ret;
     for(int j = info.scanline_max - 1; j >= info.scanline_min; j--)
     {
-        for(int i = 0; i < constants::image_width; i++)
+        for(int i = 0; i < info.image_width; i++)
         {
             color result;
             for(int k = 0; k < constants::sample_per_pixel; k++)
             {
                 double u, v;
-                u = (i + tools::random_double()) / (constants::image_width - 1);
-                v = (j + tools::random_double()) / (constants::image_height - 1);
+                u = (i + tools::random_double()) / (info.image_width - 1);
+                v = (j + tools::random_double()) / (info.image_height - 1);
                 ray r = info.cam->get_ray(u, v);
                 result += ray_trace(r, *(info.world), *(info.skybox), 20);
             }
