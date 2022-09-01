@@ -50,7 +50,7 @@
 	"utils/color.h"
 	"ray.h"
 
-1661950719 d:\pathtracer\utils\defs.h
+1662043281 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
@@ -74,7 +74,7 @@
 	"utils/defs.h"
 	"ray.h"
 
-1661949188 d:\pathtracer\utils\concurrent_trace.h
+1662043865 d:\pathtracer\utils\concurrent_trace.h
 	<vector>
 	<atomic>
 	"vec3d.h"
@@ -213,7 +213,7 @@
 	<iostream>
 	"material/blinn_phong.h"
 
-1662041566 source:d:\pathtracer\test\triangle_test.cpp
+1662043678 source:d:\pathtracer\test\triangle_test.cpp
 	<iostream>
 	<fstream>
 	<future>
