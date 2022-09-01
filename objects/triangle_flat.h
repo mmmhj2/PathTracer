@@ -10,8 +10,8 @@ private:
     constexpr static double parallel_eps = 1e-6;
     typedef std::pair <double, double> uv_pair;
 
-    point3 vert[3];
-    uv_pair uv[3];
+    point3 * vert;
+    uv_pair * uv;
     point3 normal;
 
     std::shared_ptr <material> mat;
@@ -20,8 +20,9 @@ public:
 
     triangle_flat(point3 _vert[3], uv_pair _uv[3], std::shared_ptr <material> _mat)
     {
-        std::copy(_vert, _vert+3, vert);
-        std::copy(_uv, _uv+3, uv);
+        //std::copy(_vert, _vert+3, vert);
+        vert = _vert, uv = _uv;
+        //std::copy(_uv, _uv+3, uv);
         // Flat triangle
         normal = ((vert[1] - vert[0]) ^ (vert[2] - vert[0]));
         mat = _mat;
