@@ -37,11 +37,12 @@ bvh_node::bvh_node(obj_vec & objs, size_t start, size_t fin)
 
     size_t span = fin - start;
 
+//    assert(span > 1);
     if(span == 1)
     {
         lch = rch = objs[start];
     }
-    else if(span == 2)
+    if(span == 2)
     {
         if(comparator_shared(objs[start], objs[start+1]))
             lch = objs[start], rch = objs[start+1];
@@ -53,8 +54,15 @@ bvh_node::bvh_node(obj_vec & objs, size_t start, size_t fin)
         std::sort(objs.begin() + start, objs.begin() + fin, comparator_shared);
         size_t mid = start + (span >> 1);
 
-        lch = std::make_shared<bvh_node>(objs, start, mid);
-        rch = std::make_shared<bvh_node>(objs, mid, fin);
+        if(mid - start == 1)
+            lch = objs[start];
+        else
+            lch = std::make_shared<bvh_node>(objs, start, mid);
+
+        if(fin - mid == 1)
+            rch = objs[mid];
+        else
+            rch = std::make_shared<bvh_node>(objs, mid, fin);
     }
 
     // Construct bounding box for this node
