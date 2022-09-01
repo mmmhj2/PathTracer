@@ -102,6 +102,18 @@
 					<Add option="-DBVH_TEST" />
 				</Compiler>
 			</Target>
+			<Target title="triangle_test">
+				<Option output="bin/triangle_test/PathTracer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/triangle_test" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DBVH_TEST" />
+				</Compiler>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -171,11 +183,15 @@
 			<Option target="image_test" />
 			<Option target="emissive_test" />
 			<Option target="specular_test" />
+			<Option target="triangle_test" />
 		</Unit>
 		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="objects/sphere.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="objects/triangle_flat.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="ray/camera.h">
@@ -199,6 +215,9 @@
 		</Unit>
 		<Unit filename="test/specular_test.cpp">
 			<Option target="specular_test" />
+		</Unit>
+		<Unit filename="test/triangle_test.cpp">
+			<Option target="triangle_test" />
 		</Unit>
 		<Unit filename="utils/color.h">
 			<Option target="&lt;{~None~}&gt;" />

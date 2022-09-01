@@ -213,3 +213,13 @@
 	<iostream>
 	"material/blinn_phong.h"
 
+1662040573 source:d:\pathtracer\test\triangle_test.cpp
+	<iostream>
+	"material/lambertian_simple.h"
+	"material/texture/texture_base.h"
+	"objects/triangle_flat.h"
+
+1662040732 d:\pathtracer\objects\triangle_flat.h
+	"object_base.h"
+	"material/material_base.h"
+
