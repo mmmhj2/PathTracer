@@ -213,13 +213,22 @@
 	<iostream>
 	"material/blinn_phong.h"
 
-1662040573 source:d:\pathtracer\test\triangle_test.cpp
+1662041566 source:d:\pathtracer\test\triangle_test.cpp
 	<iostream>
+	<fstream>
+	<future>
 	"material/lambertian_simple.h"
 	"material/texture/texture_base.h"
+	"material/texture/checker_texture.h"
 	"objects/triangle_flat.h"
+	"objects/sphere.h"
+	"objects/spatial_structure/bvh/bvh.h"
+	"ray/camera.h"
+	"skybox/skybox_colored.h"
+	"utils/concurrent_trace.h"
+	"image/ImageOutputPPM.h"
 
-1662040732 d:\pathtracer\objects\triangle_flat.h
+1662041860 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
 
