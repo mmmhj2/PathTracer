@@ -135,6 +135,24 @@
 					<Add library="ncurses" />
 				</Linker>
 			</Target>
+			<Target title="pdf_test">
+				<Option output="bin/pdf_test/PathTracer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/pdf_test" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DBVH_TEST" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add library="ncurses" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -174,6 +192,9 @@
 		<Unit filename="material/metallic.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="material/pdf/pdf_base.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="material/texture/checker_texture.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -206,6 +227,7 @@
 			<Option target="specular_test" />
 			<Option target="triangle_test" />
 			<Option target="pbar_test" />
+			<Option target="pdf_test" />
 		</Unit>
 		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -238,6 +260,9 @@
 		<Unit filename="test/pbar_test.cpp">
 			<Option target="pbar_test" />
 		</Unit>
+		<Unit filename="test/pdf_test.cpp">
+			<Option target="pdf_test" />
+		</Unit>
 		<Unit filename="test/specular_test.cpp">
 			<Option target="specular_test" />
 		</Unit>
@@ -266,6 +291,9 @@
 		</Unit>
 		<Unit filename="utils/defs.cpp" />
 		<Unit filename="utils/defs.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="utils/orthonormal_basis.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="utils/vec3d.h">

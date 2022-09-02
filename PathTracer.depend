@@ -50,7 +50,7 @@
 	"utils/color.h"
 	"ray.h"
 
-1662043281 d:\pathtracer\utils\defs.h
+1662120756 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
@@ -270,4 +270,11 @@
 	"image/ImageOutputPPM.h"
 
 1662118468 d:\pathtracer\test\cornellbox_def.h
+
+1662127511 source:d:\pathtracer\test\pdf_test.cpp
+	"utils/orthonormal_basis.h"
+	<iostream>
+
+1662126337 d:\pathtracer\utils\orthonormal_basis.h
+	"vec3d.h"
 
