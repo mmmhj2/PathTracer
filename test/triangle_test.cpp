@@ -3,6 +3,7 @@
 #include <future>
 //#define TRIANGLE_TEST
 #include "material/lambertian_simple.h"
+#include "material/emissive_simple.h"
 #include "material/texture/texture_base.h"
 #include "material/texture/checker_texture.h"
 #include "material/texture/image_texture.h"
@@ -69,18 +70,20 @@ void test_simple()
 int main()
 {
     using namespace cornell_box;
-    camera cam(point3(278,278,1500), point3(278,278,0), vec3(0,1,0), constants::pi / 4.5, 1.0);
-    skybox_color_gradient sky;
+    camera cam(point3(278,278,1350), point3(278,278,0), vec3(0,1,0), constants::pi / 4.5, 1.0);
+    skybox_color sky;
     bvh_tree world;
 
     auto red_tex   = make_shared<solid_color>(color(.65, .05, .05));
     auto white_tex = make_shared<solid_color>(color(.73, .73, .73));
+    auto light_tex = make_shared<solid_color>(color(50., 50., 50.));
     auto green_tex = make_shared<solid_color>(color(.12, .45, .15));
     auto back_tex = make_shared<image_texture>("checker-map_tho.png");
     auto red   = make_shared<lambertian>(red_tex);
     auto white = make_shared<lambertian>(white_tex);
     auto green = make_shared<lambertian>(green_tex);
     auto back_mat = make_shared<lambertian>(back_tex);
+    auto light = make_shared<emissive_diffuse>(light_tex);
 
     world.add_object(make_shared<triangle_flat>(vert_right, uv, green));
     world.add_object(make_shared<triangle_flat>(vert_right+2, uv+2, green));
@@ -90,6 +93,10 @@ int main()
     world.add_object(make_shared<triangle_flat>(vert_back+2, uv+2, back_mat));
     world.add_object(make_shared<triangle_flat>(vert_down, uv, white));
     world.add_object(make_shared<triangle_flat>(vert_down+2, uv+2, white));
+    world.add_object(make_shared<triangle_flat>(vert_up, uv, white));
+    world.add_object(make_shared<triangle_flat>(vert_up+2, uv+2, white));
+    world.add_object(make_shared<triangle_flat>(vert_up_light, uv, light));
+    world.add_object(make_shared<triangle_flat>(vert_up_light+2, uv+2, light));
     //world.add_object(make_shared<sphere>(point3( 0.0, 0.0, 0.0), 200, white));
     world.build();
 

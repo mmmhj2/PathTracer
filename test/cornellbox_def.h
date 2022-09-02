@@ -35,6 +35,23 @@ namespace cornell_box
         vec3(0, 0, 0),
         vec3(0, 0, 555)
     };
+    vec3 vert_up[] =
+    {
+        vec3(0, 555, 0),
+        vec3(555, 555, 0),
+        vec3(555, 555, 555),
+        vec3(0, 555, 555),
+        vec3(0, 555, 0)
+    };
+
+    vec3 vert_up_light[] =
+    {
+        vec3(213, 554, 227),
+        vec3(343, 554, 227),
+        vec3(343, 554, 332),
+        vec3(213, 554, 332),
+        vec3(213, 554, 227)
+    };
 
     std::pair <double, double> uv[5] =
     {
