@@ -213,11 +213,12 @@
 	<iostream>
 	"material/blinn_phong.h"
 
-1662106775 source:d:\pathtracer\test\triangle_test.cpp
+1662117784 source:d:\pathtracer\test\triangle_test.cpp
 	<iostream>
 	<fstream>
 	<future>
 	"material/lambertian_simple.h"
+	"material/emissive_simple.h"
 	"material/texture/texture_base.h"
 	"material/texture/checker_texture.h"
 	"material/texture/image_texture.h"
@@ -228,8 +229,9 @@
 	"skybox/skybox_colored.h"
 	"tracer/tracer.h"
 	"image/ImageOutputPPM.h"
+	"cornellbox_def.h"
 
-1662041860 d:\pathtracer\objects\triangle_flat.h
+1662118228 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
 
@@ -246,7 +248,7 @@
 	"objects/objlist_base.h"
 	"material/material_base.h"
 
-1662110217 d:\pathtracer\tracer\progress_bar.h
+1662110773 d:\pathtracer\tracer\progress_bar.h
 	"concurrent_trace.h"
 	<cinttypes>
 	<ncurses/ncurses.h>
@@ -266,4 +268,6 @@
 	"skybox/skybox_colored.h"
 	"tracer/tracer.h"
 	"image/ImageOutputPPM.h"
+
+1662117630 d:\pathtracer\test\cornellbox_def.h
 

@@ -14,11 +14,16 @@ private:
     uv_pair * uv;
     point3 normal;
 
+    int flag;
     std::shared_ptr <material> mat;
 
 public:
 
-    triangle_flat(point3 _vert[3], uv_pair _uv[3], std::shared_ptr <material> _mat)
+    constexpr static int FLAG_BIDIRECTIONAL = 0x0000;
+    constexpr static int FLAG_DIRECTIONAL = 0x0001;
+    constexpr static int FLAG_INVERSENORMAL = 0x0002;
+
+    triangle_flat(point3 _vert[3], uv_pair _uv[3], std::shared_ptr <material> _mat, int _flag = FLAG_DIRECTIONAL)
     {
         //std::copy(_vert, _vert+3, vert);
         vert = _vert, uv = _uv;
@@ -26,6 +31,10 @@ public:
         // Flat triangle
         normal = ((vert[1] - vert[0]) ^ (vert[2] - vert[0]));
         mat = _mat;
+
+        flag = _flag;
+        if(flag & FLAG_INVERSENORMAL)
+            normal = -normal;
     }
 
     virtual bool hit (const ray & r, double t_min, double t_max, hit_record & rec) const
@@ -60,6 +69,10 @@ public:
 #endif
         rec.p = p;
         rec.set_normal(r, normal.unit());
+
+        if(flag & FLAG_DIRECTIONAL && rec.is_front == false)
+            return false;
+
         rec.t = t;
         rec.mat = mat;
         rec.u = barycentric[1] * uv[0].first + barycentric[2] * uv[1].first + barycentric[0] * uv[2].first;
