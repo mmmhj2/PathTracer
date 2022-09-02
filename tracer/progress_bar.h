@@ -9,7 +9,7 @@ namespace pbar
 
 #include <ncurses/ncurses.h>
 
-void init_curse()
+void init_curses()
 {
     initscr();
     noecho();
@@ -54,6 +54,11 @@ bool print_progressbar(const std::vector <concurrent::block_info> & info)
     }
     refresh();
     return is_completed;
+}
+
+void decon_curses()
+{
+    endwin();
 }
 
 };
