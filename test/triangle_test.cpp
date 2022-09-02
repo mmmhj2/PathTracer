@@ -14,6 +14,8 @@
 #include "tracer/tracer.h"
 #include "image/ImageOutputPPM.h"
 
+#include "cornellbox_def.h"
+
 using namespace std;
 
 void test_simple()
@@ -66,56 +68,15 @@ void test_simple()
 
 int main()
 {
+    using namespace cornell_box;
     camera cam(point3(278,278,1500), point3(278,278,0), vec3(0,1,0), constants::pi / 4.5, 1.0);
     skybox_color_gradient sky;
     bvh_tree world;
 
-    vec3 vert_right[] =
-    {
-        vec3(0, 0, 555),
-        vec3(0, 0, 0),
-        vec3(0, 555, 0),
-        vec3(0, 555, 555),
-        vec3(0, 0, 555)
-    };
-    vec3 vert_left[] =
-    {
-        vec3(555, 0, 555),
-        vec3(555, 0, 0),
-        vec3(555, 555, 0),
-        vec3(555, 555, 555),
-        vec3(555, 0, 555)
-    };
-    vec3 vert_back[] =
-    {
-        vec3(0, 0, 0),
-        vec3(555, 0, 0),
-        vec3(555, 555, 0),
-        vec3(0, 555, 0),
-        vec3(0, 0, 0)
-    };
-    vec3 vert_down[] =
-    {
-        vec3(0, 0, 555),
-        vec3(555, 0, 555),
-        vec3(555, 0, 0),
-        vec3(0, 0, 0),
-        vec3(0, 0, 555)
-    };
-
-    std::pair <double, double> uv[5] =
-    {
-        std::make_pair(0.0, 0.0),
-        std::make_pair(1.0, 0.0),
-        std::make_pair(1.0, 1.0),
-        std::make_pair(0.0, 1.0),
-        std::make_pair(0.0, 0.0)
-    };
-
     auto red_tex   = make_shared<solid_color>(color(.65, .05, .05));
     auto white_tex = make_shared<solid_color>(color(.73, .73, .73));
     auto green_tex = make_shared<solid_color>(color(.12, .45, .15));
-    auto back_tex = make_shared<image_texture>("back.jpg");
+    auto back_tex = make_shared<image_texture>("checker-map_tho.png");
     auto red   = make_shared<lambertian>(red_tex);
     auto white = make_shared<lambertian>(white_tex);
     auto green = make_shared<lambertian>(green_tex);
@@ -136,43 +97,18 @@ int main()
     int image_width = 600;
     int image_height = 600;
 
-    int scanline_per_blocks = image_height / constants::blocks + 1;
-    for(int i = 0; i < constants::blocks; i++)
-    {
-        infos[i].scanline_max = image_height - i * scanline_per_blocks;
-        const int scanline_min = image_height - (i+1) * scanline_per_blocks;
-        infos[i].scanline_min = std::max(0, scanline_min);
-        infos[i].image_height = image_height;
-        infos[i].image_width = image_width;
-        cout << "Block " << i << " from " << infos[i].scanline_max << " to " << infos[i].scanline_min << endl ;
-        infos[i].cam = &cam;
-        infos[i].skybox = &sky;
-        infos[i].world = &world;
-        infos[i].progress = 0;
-    }
+    concurrent::fill_info(infos, image_width, image_height, constants::blocks, &cam, &world, &sky);
 
     std::vector <std::future<std::vector<color>>> async_task;
     for(int i = 0; i < constants::blocks; i++)
         async_task.push_back(std::async(concurrent::trace_block, std::cref(infos[i])));
 
-    while(true)
+    pbar::init_curses();
+    while(!pbar::print_progressbar(infos))
     {
-        bool completed = true;
-
-        for(int i = 0; i < constants::blocks; i++)
-        {
-            cout << "(" << infos[i].progress << " of " << infos[i].scanline_max - infos[i].scanline_min << ")";
-            if(infos[i].progress < infos[i].scanline_max - infos[i].scanline_min)
-                completed = false;
-        }
-        cout << endl ;
-
-        if(completed)
-            break;
-
         std::this_thread::sleep_for(100ms);
     }
-    cout << endl ;
+    pbar::decon_curses();
 
     std::vector <color> pic;
     for(int i = 0; i < constants::blocks; i++)
