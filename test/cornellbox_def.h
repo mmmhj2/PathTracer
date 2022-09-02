@@ -3,7 +3,7 @@
 
 namespace cornell_box
 {
-    vec3 vert_right[] =
+    vec3 vert_left[] =
     {
         vec3(0, 0, 555),
         vec3(0, 0, 0),
@@ -11,13 +11,13 @@ namespace cornell_box
         vec3(0, 555, 555),
         vec3(0, 0, 555)
     };
-    vec3 vert_left[] =
+    vec3 vert_right[] =
     {
-        vec3(555, 0, 555),
         vec3(555, 0, 0),
-        vec3(555, 555, 0),
+        vec3(555, 0, 555),
         vec3(555, 555, 555),
-        vec3(555, 0, 555)
+        vec3(555, 555, 0),
+        vec3(555, 0, 0)
     };
     vec3 vert_back[] =
     {
