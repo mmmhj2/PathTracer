@@ -88,32 +88,20 @@ int main()
     int image_width = 600;
     int image_height = 600;
 
-    int scanline_per_blocks = image_height / constants::blocks + 1;
-    for(int i = 0; i < constants::blocks; i++)
-    {
-        infos[i].scanline_max = image_height - i * scanline_per_blocks;
-        const int scanline_min = image_height - (i+1) * scanline_per_blocks;
-        infos[i].scanline_min = std::max(0, scanline_min);
-        infos[i].image_height = image_height;
-        infos[i].image_width = image_width;
-        cout << "Block " << i << " from " << infos[i].scanline_max << " to " << infos[i].scanline_min << endl ;
-        infos[i].cam = &cam;
-        infos[i].skybox = &sky;
-        infos[i].world = &world;
-        infos[i].progress = 0;
-    }
+    concurrent::fill_info(infos, image_width, image_height, constants::blocks, &cam, &world, &sky);
 
     std::vector <std::future<std::vector<color>>> async_task;
     for(int i = 0; i < constants::blocks; i++)
         async_task.push_back(std::async(concurrent::trace_block, std::cref(infos[i])));
 
-    pbar::init_curse();
+    pbar::init_curses();
     while(true)
     {
         if(pbar::print_progressbar(infos))
             break;
         std::this_thread::sleep_for(200ms);
     }
+    pbar::decon_curses();
     cout << endl ;
 
     std::vector <color> pic;

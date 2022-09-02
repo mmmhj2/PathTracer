@@ -24,6 +24,30 @@ struct block_info
     mutable std::atomic_int progress;
 };
 
+void fill_info(std::vector<block_info> & infos,
+               int width, int height, int blocks,
+               camera * cam,
+               objlist_base * world,
+               skybox_base * sky)
+{
+    int scanline_per_blocks = height / blocks + 1;
+    for(int i = 0; i < blocks; i++)
+    {
+        infos[i].scanline_max = height - i * scanline_per_blocks;
+        const int scanline_min = height - (i+1) * scanline_per_blocks;
+        infos[i].scanline_min = std::max(0, scanline_min);
+        infos[i].image_height = height;
+        infos[i].image_width = width;
+#ifdef TRACER_TEST
+        cout << "Block " << i << " from " << infos[i].scanline_max << " to " << infos[i].scanline_min << endl ;
+#endif
+        infos[i].cam = cam;
+        infos[i].skybox = sky;
+        infos[i].world = world;
+        infos[i].progress = 0;
+    }
+}
+
 color ray_trace(const ray & r, const objlist_base & world, const skybox_base & skybox, int depth)
 {
     if(depth <= 0)
