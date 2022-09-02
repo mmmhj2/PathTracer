@@ -213,22 +213,57 @@
 	<iostream>
 	"material/blinn_phong.h"
 
-1662043678 source:d:\pathtracer\test\triangle_test.cpp
+1662106775 source:d:\pathtracer\test\triangle_test.cpp
 	<iostream>
 	<fstream>
 	<future>
 	"material/lambertian_simple.h"
 	"material/texture/texture_base.h"
 	"material/texture/checker_texture.h"
+	"material/texture/image_texture.h"
 	"objects/triangle_flat.h"
 	"objects/sphere.h"
 	"objects/spatial_structure/bvh/bvh.h"
 	"ray/camera.h"
 	"skybox/skybox_colored.h"
-	"utils/concurrent_trace.h"
+	"tracer/tracer.h"
 	"image/ImageOutputPPM.h"
 
 1662041860 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
+
+1662106760 d:\pathtracer\tracer\tracer.h
+	"concurrent_trace.h"
+	"progress_bar.h"
+
+1662106782 d:\pathtracer\tracer\concurrent_trace.h
+	<vector>
+	<atomic>
+	"utils/vec3d.h"
+	"utils/defs.h"
+	"ray/ray.h"
+	"objects/objlist_base.h"
+	"material/material_base.h"
+
+1662110217 d:\pathtracer\tracer\progress_bar.h
+	"concurrent_trace.h"
+	<cinttypes>
+	<ncurses/ncurses.h>
+
+1662108150 source:d:\pathtracer\test\pbar_test.cpp
+	<iostream>
+	<fstream>
+	<future>
+	"material/lambertian_simple.h"
+	"material/texture/texture_base.h"
+	"material/texture/checker_texture.h"
+	"material/texture/image_texture.h"
+	"objects/triangle_flat.h"
+	"objects/sphere.h"
+	"objects/spatial_structure/bvh/bvh.h"
+	"ray/camera.h"
+	"skybox/skybox_colored.h"
+	"tracer/tracer.h"
+	"image/ImageOutputPPM.h"
 

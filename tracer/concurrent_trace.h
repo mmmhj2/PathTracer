@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <atomic>
-#include "vec3d.h"
-#include "defs.h"
+#include "utils/vec3d.h"
+#include "utils/defs.h"
 #include "ray/ray.h"
 #include "objects/objlist_base.h"
 #include "material/material_base.h"

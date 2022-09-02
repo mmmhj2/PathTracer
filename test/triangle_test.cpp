@@ -11,7 +11,7 @@
 #include "objects/spatial_structure/bvh/bvh.h"
 #include "ray/camera.h"
 #include "skybox/skybox_colored.h"
-#include "utils/concurrent_trace.h"
+#include "tracer/tracer.h"
 #include "image/ImageOutputPPM.h"
 
 using namespace std;

@@ -16,7 +16,7 @@
 
 #include "image/ImageOutputPPM.h"
 
-#include "utils/concurrent_trace.h"
+#include "tracer/tracer.h"
 
 using namespace std;
 

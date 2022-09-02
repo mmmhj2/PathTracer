@@ -9,7 +9,7 @@
 #include "objects/sphere.h"
 #include "objects/spatial_structure/bvh/bvh.h"
 #include "ray/camera.h"
-#include "utils/concurrent_trace.h"
+#include "tracer/tracer.h"
 #include "material/lambertian_simple.h"
 #include "material/dielectric.h"
 #include "material/metallic.h"
