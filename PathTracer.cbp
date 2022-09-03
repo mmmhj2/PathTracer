@@ -192,7 +192,16 @@
 		<Unit filename="material/metallic.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="material/pdf/pdf.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="material/pdf/pdf_base.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="material/pdf/pdf_cosp.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="material/pdf/pdf_mixture.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="material/texture/checker_texture.h">
