@@ -108,7 +108,7 @@ public:
     virtual double pdf_value(const ray & r, const hit_record & h) const
     {
         double distance_sq = h.t * h.t * r.direction().norm_squared();
-        double cosine = std::abs(r.direction() * h.normal / r.direction().norm());
+        double cosine = std::abs((r.direction() * h.normal) / (r.direction().norm() * h.normal.norm()));
 
         return distance_sq / (cosine * area);
     }

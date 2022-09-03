@@ -19,15 +19,13 @@ public:
         vec3 sampled_point = ptr->sample();
 
         light_sample ret;
+        ret.clr = color(0, 0, 0);
         ret.shadow_ray = ray(rec.p, sampled_point - rec.p);
 
         // Test occlusion
         hit_record world_rec;
         if(!ptr->hit(ret.shadow_ray, 0.001, constants::dinf, ret.shadow_hitrec))
         {
-            //std::cerr << "Scattered from " << rec.p << std::endl;
-            //std::cerr << "Sampling " << sampled_point << std::endl ;
-            //throw std::runtime_error("Sampled ray cannot hit the light source");
             ret.is_occluded = true;
             return ret;
         }

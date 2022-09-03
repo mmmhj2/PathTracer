@@ -19,7 +19,10 @@ public:
                           const hit_record & rec,
                           color & emissive) const
     {
+        // Introducing a hard-coded cosine PDF
         emissive = emit->get_color(rec.u, rec.v, rec.p);
+        double cosine = std::abs(incident.direction() * rec.normal / (incident.direction().norm() * rec.normal.norm()));
+        emissive = emissive * cosine;
         return true;
     }
 

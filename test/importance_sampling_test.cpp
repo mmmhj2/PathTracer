@@ -32,7 +32,7 @@ int main()
 
     auto red_tex   = make_shared<solid_color>(color(.65, .05, .05));
     auto white_tex = make_shared<solid_color>(color(.73, .73, .73));
-    auto light_tex = make_shared<solid_color>(color(50, 50, 50));
+    auto light_tex = make_shared<solid_color>(color(25, 25, 25));
     auto green_tex = make_shared<solid_color>(color(.12, .45, .15));
     auto back_tex = make_shared<image_texture>("checker-map_tho.png");
     auto red   = make_shared<lambertian>(red_tex);

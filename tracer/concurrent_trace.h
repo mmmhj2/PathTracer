@@ -66,26 +66,13 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     ray scattered;
     color attenu, emissive;
     auto mat_ptr = rec.mat.lock();
-
-    // Evaluate self-emitting
     bool is_emissive = mat_ptr->evaluateEmissive(r, rec, emissive);
+    if(!mat_ptr->evaluateScatter(r, rec, attenu, scattered))
+        return emissive;
 
-    color scatter_color = color(0, 0, 0);
-    color shadow_ray_color = color(0, 0, 0);
-
-    if(mat_ptr->evaluateScatter(r, rec, attenu, scattered))
-    {
-        scatter_color = elem_product(attenu, ray_trace(scattered, world, skybox, lights, depth - 1));
-        if(!is_emissive)
-        {
-            shadow_ray_color = gen_shadow_ray(rec, lights);
-            shadow_ray_color /= 2.0;
-            scatter_color /= 2.0;
-        }
-
-    }
-
-    return emissive + scatter_color + shadow_ray_color;
+    light_sample smpl;
+    gen_shadow_ray(rec, lights, smpl);
+    return emissive + elem_product(attenu, ray_trace(smpl.shadow_ray, world, skybox, lights, depth-1)) / smpl.pdf;
 }
 
 std::vector <color> trace_block(const block_info & info)
@@ -102,7 +89,7 @@ std::vector <color> trace_block(const block_info & info)
                 u = (i + tools::random_double()) / (info.image_width - 1);
                 v = (j + tools::random_double()) / (info.image_height - 1);
                 ray r = info.cam->get_ray(u, v);
-                result += ray_trace(r, *(info.world), *(info.skybox), info.lights, 20);
+                result += ray_trace(r, *(info.world), *(info.skybox), info.lights, constants::max_depth);
             }
             result /= constants::sample_per_pixel;
             ret.push_back(result);

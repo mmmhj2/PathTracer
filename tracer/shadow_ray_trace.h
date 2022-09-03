@@ -4,20 +4,21 @@
 #include "objects/objlist_base.h"
 #include "material/pdf/pdf_object.h"
 
-color gen_shadow_ray(const hit_record & rec, std::vector <std::shared_ptr<light_base>> * lights)
+bool gen_shadow_ray(const hit_record & rec, std::vector <std::shared_ptr<light_base>> * lights, light_sample & sample)
 {
+    if(lights->empty())
+        return false;
+
     int light_sz = (int)lights->size();
     int rindex = tools::random_int(0, light_sz - 1);
 
-    light_sample smp = (*lights)[rindex]->sample_Li(rec);
-    if(smp.is_occluded)
-        return color(0, 0, 0);
+    sample = (*lights)[rindex]->sample_Li(rec);
+    if(sample.is_occluded)
+        return false;
+    if(sample.pdf * 10000 < 1)
+        return false;
 
-    //smp.pdf /= light_sz;
-
-    color emissive;
-    smp.shadow_hitrec.mat.lock()->evaluateEmissive(smp.shadow_ray, smp.shadow_hitrec, emissive);
-    return emissive / smp.pdf;
+    return true;
 }
 
 #endif // SHADOW_RAY_TRACE_H_INCLUDED
