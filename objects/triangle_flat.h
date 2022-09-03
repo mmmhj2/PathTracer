@@ -14,6 +14,8 @@ private:
     uv_pair * uv;
     point3 normal;
 
+    double area;
+
     int flag;
     std::shared_ptr <material> mat;
 
@@ -35,6 +37,7 @@ public:
         flag = _flag;
         if(flag & FLAG_INVERSENORMAL)
             normal = -normal;
+        area = normal.norm_squared() / 2.0;
     }
 
     virtual bool hit (const ray & r, double t_min, double t_max, hit_record & rec) const
@@ -100,6 +103,23 @@ public:
     virtual point3 get_centroid() const
     {
         return (vert[0] + vert[1] + vert[2]) / 3.0;
+    }
+
+    virtual double pdf_value(const ray & r, const hit_record & h) const
+    {
+        double distance_sq = h.t * h.t * r.direction().norm_squared();
+        double cosine = std::abs(r.direction() * h.normal / r.direction().norm());
+
+        return distance_sq / (cosine * area);
+    }
+
+    virtual vec3 sample(const vec3 & o) const
+    {
+        double r1, r2;
+        r1 = tools::random_double();
+        r2 = tools::random_double();
+        vec3 rand_point = (1 - std::sqrt(r1)) * vert[0] + (std::sqrt(r1)*(1 - r2)) * vert[1] + (r2*std::sqrt(r1)) * vert[2];
+        return rand_point - o;
     }
 
 };

@@ -11,6 +11,7 @@ class material;
 struct hit_record
 {
     point3 p;
+    // Normal vector of p, norm should be 1
     vec3 normal;
     double t;
     double u, v;
