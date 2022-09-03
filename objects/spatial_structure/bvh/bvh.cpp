@@ -56,12 +56,12 @@ bvh_node::bvh_node(obj_vec & objs, size_t start, size_t fin)
 
         if(mid - start == 1)
             lch = objs[start];
-        else
+        else if(mid - start > 1)
             lch = std::make_shared<bvh_node>(objs, start, mid);
 
         if(fin - mid == 1)
             rch = objs[mid];
-        else
+        else if(fin - mid > 1)
             rch = std::make_shared<bvh_node>(objs, mid, fin);
     }
 
@@ -187,6 +187,13 @@ vec3 bvh_tree::sample() const
     int sz = (int)objs.size();
     return objs[tools::random_int(0, sz - 1)]->sample();
 }
+
+/*std::shared_ptr<hittable_object> bvh_tree::sample_obj()
+{
+    int sz = (int)objs.size();
+    return objs[tools::random_int(0, sz - 1)];
+}*/
+
 
 
 #endif // BVH_TEST
