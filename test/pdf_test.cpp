@@ -1,5 +1,5 @@
 #include "utils/orthonormal_basis.h"
-#include "material/pdf/pdf_base.h"
+#include "material/pdf/pdf.h"
 #include <iostream>
 using namespace std;
 

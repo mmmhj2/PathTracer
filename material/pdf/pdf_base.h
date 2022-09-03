@@ -13,6 +13,7 @@ public:
     virtual vec3 sample_hemisphere() const = 0;
 };
 
+// Uniformly distributed PDF, used as benchmark
 class pdf_uniform : public pdf_base
 {
     onb uvw;
@@ -44,6 +45,7 @@ public:
     }
 };
 
+// Cosine weighted PDF, used to sample Lambertain BSDF
 class pdf_cosine : public pdf_base
 {
     onb uvw;
