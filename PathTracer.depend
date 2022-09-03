@@ -84,7 +84,7 @@
 	"objects/objlist_base.h"
 	"material/material_base.h"
 
-1662187672 d:\pathtracer\objects\objlist_base.h
+1662202613 d:\pathtracer\objects\objlist_base.h
 	"ray/ray.h"
 	"object_base.h"
 
@@ -113,12 +113,12 @@
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1662191738 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1662203440 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
 	"utils/defs.h"
 	<iostream>
 
-1662191723 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
+1662202630 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
 	"../../objlist_base.h"
 
 1661865666 source:d:\pathtracer\test\bvh_test.cpp
@@ -236,9 +236,10 @@
 	"object_base.h"
 	"material/material_base.h"
 
-1662106760 d:\pathtracer\tracer\tracer.h
+1662198172 d:\pathtracer\tracer\tracer.h
 	"concurrent_trace.h"
 	"progress_bar.h"
+	"shadow_ray_trace.h"
 
 1662110641 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
@@ -297,7 +298,32 @@
 1662189316 d:\pathtracer\material\pdf\pdf_cosp.h
 	"pdf_base.h"
 
-1662191770 d:\pathtracer\material\pdf\pdf_object.h
+1662198563 d:\pathtracer\material\pdf\pdf_object.h
 	"objects/object_base.h"
 	"pdf_base.h"
+
+1662203520 source:d:\pathtracer\test\importance_sampling_test.cpp
+	"ray/light/light.h"
+	"objects/triangle_flat.h"
+	"objects/spatial_structure/bvh/bvh.h"
+	"material/lambertian_simple.h"
+	"material/emissive_simple.h"
+	<iostream>
+
+1662199039 d:\pathtracer\tracer\shadow_ray_trace.h
+	"objects/objlist_base.h"
+	"material/pdf/pdf_object.h"
+
+1662202495 d:\pathtracer\ray\light\light.h
+	"light_base.h"
+	"light_shape.h"
+
+1662202550 d:\pathtracer\ray\light\light_base.h
+	"objects/object_base.h"
+	"objects/objlist_base.h"
+	"../ray.h"
+	"utils/color.h"
+
+1662203604 d:\pathtracer\ray\light\light_shape.h
+	"light_base.h"
 

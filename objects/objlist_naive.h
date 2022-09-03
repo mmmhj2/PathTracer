@@ -27,6 +27,13 @@ public:
         return objlist[tools::random_int(0, sz - 1)]->sample(o);
     }
 
+    /*
+    virtual std::shared_ptr<hittable_object> sample_obj() const override
+    {
+        int sz = (int)objlist.size();
+        return objlist[tools::random_int(0, sz - 1)];
+    }*/
+
 private:
     std::list<std::shared_ptr<hittable_object>> objlist;
 };

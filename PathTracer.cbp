@@ -272,6 +272,15 @@
 		<Unit filename="ray/camera.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="ray/light/light.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="ray/light/light_base.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="ray/light/light_shape.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="ray/ray.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -315,6 +324,9 @@
 			<Option target="triangle_test" />
 		</Unit>
 		<Unit filename="tracer/progress_bar.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="tracer/shadow_ray_trace.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="tracer/tracer.h">
