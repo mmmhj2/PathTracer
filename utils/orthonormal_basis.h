@@ -9,6 +9,8 @@ class orthonormal_basis
 public:
     orthonormal_basis() = delete;
 
+    // Generate a orhtonormal basis whose z-axis is the normal given
+    // Doesn't care its chirality
     orthonormal_basis(const vec3 & normal)
     {
         axis[2] = normal.unit();
