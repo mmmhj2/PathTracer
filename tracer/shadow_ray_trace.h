@@ -10,7 +10,10 @@ color gen_shadow_ray(const hit_record & rec, std::vector <std::shared_ptr<light_
     int rindex = tools::random_int(0, light_sz - 1);
 
     light_sample smp = (*lights)[rindex]->sample_Li(rec);
-    smp.pdf /= light_sz;
+    if(smp.is_occluded)
+        return color(0, 0, 0);
+
+    //smp.pdf /= light_sz;
 
     color emissive;
     smp.shadow_hitrec.mat.lock()->evaluateEmissive(smp.shadow_ray, smp.shadow_hitrec, emissive);

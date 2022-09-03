@@ -37,7 +37,7 @@ public:
         flag = _flag;
         if(flag & FLAG_INVERSENORMAL)
             normal = -normal;
-        area = normal.norm_squared() / 2.0;
+        area = normal.norm() / 2.0;
     }
 
     virtual bool hit (const ray & r, double t_min, double t_max, hit_record & rec) const

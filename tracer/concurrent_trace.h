@@ -68,7 +68,7 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     auto mat_ptr = rec.mat.lock();
 
     // Evaluate self-emitting
-    mat_ptr->evaluateEmissive(r, rec, emissive);
+    bool is_emissive = mat_ptr->evaluateEmissive(r, rec, emissive);
 
     color scatter_color = color(0, 0, 0);
     color shadow_ray_color = color(0, 0, 0);
@@ -76,7 +76,13 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     if(mat_ptr->evaluateScatter(r, rec, attenu, scattered))
     {
         scatter_color = elem_product(attenu, ray_trace(scattered, world, skybox, lights, depth - 1));
-        shadow_ray_color = gen_shadow_ray(rec, lights);
+        if(!is_emissive)
+        {
+            shadow_ray_color = gen_shadow_ray(rec, lights);
+            shadow_ray_color /= 2.0;
+            scatter_color /= 2.0;
+        }
+
     }
 
     return emissive + scatter_color + shadow_ray_color;

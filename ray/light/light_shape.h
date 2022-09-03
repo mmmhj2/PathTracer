@@ -3,6 +3,8 @@
 
 #include "light_base.h"
 
+#include <iostream>
+
 class diffuse_light_shape : public light_base
 {
     std::shared_ptr <hittable_object> ptr;
@@ -22,7 +24,14 @@ public:
         // Test occlusion
         hit_record world_rec;
         if(!ptr->hit(ret.shadow_ray, 0.001, constants::dinf, ret.shadow_hitrec))
-            throw std::runtime_error("Sampled ray cannot hit the light source");
+        {
+            //std::cerr << "Scattered from " << rec.p << std::endl;
+            //std::cerr << "Sampling " << sampled_point << std::endl ;
+            //throw std::runtime_error("Sampled ray cannot hit the light source");
+            ret.is_occluded = true;
+            return ret;
+        }
+
         if(world->hit(ret.shadow_ray, 0.001, ret.shadow_hitrec.t - 1e-7, world_rec))
         {
             ret.is_occluded = true;

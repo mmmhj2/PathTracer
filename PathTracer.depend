@@ -50,7 +50,7 @@
 	"utils/color.h"
 	"ray.h"
 
-1662120756 d:\pathtracer\utils\defs.h
+1662206030 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
@@ -232,7 +232,7 @@
 	"image/ImageOutputPPM.h"
 	"cornellbox_def.h"
 
-1662191710 d:\pathtracer\objects\triangle_flat.h
+1662206939 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
 
@@ -241,7 +241,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662110641 d:\pathtracer\tracer\concurrent_trace.h
+1662207130 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
@@ -249,6 +249,7 @@
 	"ray/ray.h"
 	"objects/objlist_base.h"
 	"material/material_base.h"
+	"shadow_ray_trace.h"
 
 1662110773 d:\pathtracer\tracer\progress_bar.h
 	"concurrent_trace.h"
@@ -302,15 +303,28 @@
 	"objects/object_base.h"
 	"pdf_base.h"
 
-1662203520 source:d:\pathtracer\test\importance_sampling_test.cpp
+1662206986 source:d:\pathtracer\test\importance_sampling_test.cpp
 	"ray/light/light.h"
 	"objects/triangle_flat.h"
 	"objects/spatial_structure/bvh/bvh.h"
 	"material/lambertian_simple.h"
 	"material/emissive_simple.h"
+	"material/texture/texture_base.h"
+	"material/texture/checker_texture.h"
+	"material/texture/image_texture.h"
+	"objects/triangle_flat.h"
+	"objects/sphere.h"
+	"objects/spatial_structure/bvh/bvh.h"
+	"ray/camera.h"
+	"skybox/skybox_colored.h"
+	"tracer/tracer.h"
+	"image/ImageOutputPPM.h"
+	"cornellbox_def.h"
 	<iostream>
+	<fstream>
+	<future>
 
-1662199039 d:\pathtracer\tracer\shadow_ray_trace.h
+1662207642 d:\pathtracer\tracer\shadow_ray_trace.h
 	"objects/objlist_base.h"
 	"material/pdf/pdf_object.h"
 
@@ -324,6 +338,7 @@
 	"../ray.h"
 	"utils/color.h"
 
-1662203604 d:\pathtracer\ray\light\light_shape.h
+1662205993 d:\pathtracer\ray\light\light_shape.h
 	"light_base.h"
+	<iostream>
 
