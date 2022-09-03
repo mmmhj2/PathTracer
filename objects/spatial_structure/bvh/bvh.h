@@ -20,6 +20,9 @@ public:
     virtual bool get_aabb(aabb & output) const override;
 
     virtual point3 get_centroid() const override;
+
+    virtual double pdf_value(const point3 & o, const vec3 & v) const;
+    virtual vec3 sample(const vec3 & o) const;
 #ifdef BVH_TEST
     void debug();
 #endif
@@ -38,6 +41,9 @@ public:
     virtual void build();
 
     virtual point3 get_centroid() const override;
+
+    virtual double pdf_value(const point3 & o, const vec3 & v) const;
+    virtual vec3 sample(const vec3 & o) const;
 #ifdef BVH_TEST
     void debug();
 #endif

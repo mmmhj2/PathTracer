@@ -13,6 +13,20 @@ public:
     virtual void add_object(std::shared_ptr <hittable_object> obj) override;
     virtual bool get_aabb(aabb & output) const override;
     virtual void build(){};
+
+    virtual double pdf_value(const point3 & o, const vec3 & v) const
+    {
+        double sum = 0;
+        for(const auto & obj : objlist)
+            sum += obj->pdf_value(o, v);
+        return sum / objlist.size();
+    }
+    virtual vec3 sample(const vec3 & o) const
+    {
+        int sz = (int)objlist.size();
+        return objlist[tools::random_int(0, sz - 1)]->sample(o);
+    }
+
 private:
     std::list<std::shared_ptr<hittable_object>> objlist;
 };
