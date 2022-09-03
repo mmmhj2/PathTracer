@@ -153,6 +153,24 @@
 					<Add library="ncurses" />
 				</Linker>
 			</Target>
+			<Target title="impsmp_test">
+				<Option output="bin/impsmp_test/PathTracer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/impsmp_test" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DBVH_TEST" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add library="ncurses" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -204,6 +222,9 @@
 		<Unit filename="material/pdf/pdf_mixture.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="material/pdf/pdf_object.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="material/texture/checker_texture.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -237,6 +258,7 @@
 			<Option target="triangle_test" />
 			<Option target="pbar_test" />
 			<Option target="pdf_test" />
+			<Option target="impsmp_test" />
 		</Unit>
 		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -265,6 +287,9 @@
 		</Unit>
 		<Unit filename="test/image_test.cpp">
 			<Option target="image_test" />
+		</Unit>
+		<Unit filename="test/importance_sampling_test.cpp">
+			<Option target="impsmp_test" />
 		</Unit>
 		<Unit filename="test/pbar_test.cpp">
 			<Option target="pbar_test" />
