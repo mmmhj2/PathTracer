@@ -59,9 +59,10 @@
 1661873276 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
-1662187387 d:\pathtracer\objects\object_base.h
+1662188275 d:\pathtracer\objects\object_base.h
 	"spatial_structure/aabb.h"
 	"ray/ray.h"
+	"utils/defs.h"
 	<memory>
 
 1661785658 d:\pathtracer\objects\objlist_naive.h

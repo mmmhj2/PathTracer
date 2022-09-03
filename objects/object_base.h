@@ -3,6 +3,7 @@
 
 #include "spatial_structure/aabb.h"
 #include "ray/ray.h"
+#include "utils/defs.h"
 #include <memory>
 
 class material;
@@ -30,7 +31,16 @@ public:
     virtual bool get_aabb(aabb & output) const = 0;
     virtual point3 get_centroid() const = 0;
 
-    virtual double pdf_value(const point3 & o, const vec3 & v) const = 0;
+    virtual double pdf_value(const point3 & o, const vec3 & v) const
+    {
+        ray r(o, v);
+        hit_record rec;
+        if(!this->hit(r, 0.001, constants::dinf, rec))
+            return 0;
+        return this->pdf_value(r, rec);
+    }
+
+    virtual double pdf_value(const ray & r, const hit_record & h) const = 0;
     virtual vec3 sample(const vec3 & o) const = 0;
 };
 

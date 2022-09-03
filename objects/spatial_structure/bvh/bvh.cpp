@@ -162,7 +162,7 @@ void bvh_tree::debug()
 }
 
 // Sampling related functions
-double bvh_node::pdf_value(const point3& o, const vec3& v) const
+double bvh_node::pdf_value(const ray & r, const hit_record & h) const
 {
     throw std::runtime_error("Trying to sample an AABB which cannot be sampled");
     return 0;
@@ -174,11 +174,11 @@ vec3 bvh_node::sample(const vec3& o) const
     return vec3(0, 0, 0);
 }
 
-double bvh_tree::pdf_value(const point3& o, const vec3& v) const
+double bvh_tree::pdf_value(const ray & r, const hit_record & h) const
 {
     double sum = 0;
     for(const auto & obj : objs)
-        sum += obj->pdf_value(o, v);
+        sum += obj->pdf_value(r, h);
     return sum / objs.size();
 }
 
