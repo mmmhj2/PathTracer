@@ -59,7 +59,7 @@
 1661873276 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
-1662188508 d:\pathtracer\objects\object_base.h
+1662191691 d:\pathtracer\objects\object_base.h
 	"spatial_structure/aabb.h"
 	"ray/ray.h"
 	"utils/defs.h"
@@ -113,12 +113,12 @@
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1662188262 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1662191738 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
 	"utils/defs.h"
 	<iostream>
 
-1662188247 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
+1662191723 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
 	"../../objlist_base.h"
 
 1661865666 source:d:\pathtracer\test\bvh_test.cpp
@@ -232,7 +232,7 @@
 	"image/ImageOutputPPM.h"
 	"cornellbox_def.h"
 
-1662118228 d:\pathtracer\objects\triangle_flat.h
+1662191710 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
 
@@ -272,27 +272,32 @@
 
 1662118468 d:\pathtracer\test\cornellbox_def.h
 
-1662184669 source:d:\pathtracer\test\pdf_test.cpp
+1662188830 source:d:\pathtracer\test\pdf_test.cpp
 	"utils/orthonormal_basis.h"
 	"material/pdf/pdf.h"
+	"objects/triangle_flat.h"
 	<iostream>
 
 1662178378 d:\pathtracer\utils\orthonormal_basis.h
 	"vec3d.h"
 
-1662180929 d:\pathtracer\material\pdf\pdf_base.h
+1662191613 d:\pathtracer\material\pdf\pdf_base.h
 	"utils/orthonormal_basis.h"
 	"utils/defs.h"
 
-1662186009 d:\pathtracer\material\pdf\pdf.h
+1662191338 d:\pathtracer\material\pdf\pdf.h
 	"pdf_base.h"
 	"pdf_mixture.h"
-	"pdf_cosp.h"
+	"pdf_object.h"
 
-1662184689 d:\pathtracer\material\pdf\pdf_mixture.h
+1662191761 d:\pathtracer\material\pdf\pdf_mixture.h
 	"pdf_base.h"
 	<memory>
 
-1662186945 d:\pathtracer\material\pdf\pdf_cosp.h
+1662189316 d:\pathtracer\material\pdf\pdf_cosp.h
+	"pdf_base.h"
+
+1662191770 d:\pathtracer\material\pdf\pdf_object.h
+	"objects/object_base.h"
 	"pdf_base.h"
 

@@ -42,7 +42,8 @@ public:
     }
 
     virtual double pdf_value(const ray & r, const hit_record & h) const = 0;
-    virtual vec3 sample(const vec3 & o) const = 0;
+    // Generate a point in the object in global frame
+    virtual vec3 sample() const = 0;
 };
 
 #endif // OBJECT_BASE_H_INCLUDED

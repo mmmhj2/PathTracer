@@ -23,6 +23,6 @@ int main()
     auto triangle = std::make_shared<triangle_flat>(vert, uv, nullptr);
 
     for(int i = 0; i <= 100; i++)
-        cout << triangle->sample(vec3(0, 0, 1)) << endl ;
+        cout << triangle->sample() << endl ;
     return 0;
 }
