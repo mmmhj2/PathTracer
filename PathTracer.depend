@@ -314,7 +314,7 @@
 	"objects/objlist_base.h"
 	"material/pdf/pdf_object.h"
 
-1662202495 d:\pathtracer\ray\light\light.h
+1662204678 d:\pathtracer\ray\light\light.h
 	"light_base.h"
 	"light_shape.h"
 

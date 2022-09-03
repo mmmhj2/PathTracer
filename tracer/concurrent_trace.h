@@ -12,6 +12,8 @@
 namespace concurrent
 {
 
+#include "shadow_ray_trace.h"
+
 struct block_info
 {
     int scanline_max;
@@ -20,6 +22,7 @@ struct block_info
     camera * cam;
     objlist_base * world;
     skybox_base * skybox;
+    light_list * lights;
 
     mutable std::atomic_int progress;
 };
@@ -28,7 +31,8 @@ void fill_info(std::vector<block_info> & infos,
                int width, int height, int blocks,
                camera * cam,
                objlist_base * world,
-               skybox_base * sky)
+               skybox_base * sky,
+               light_list * lights)
 {
     int scanline_per_blocks = height / blocks + 1;
     for(int i = 0; i < blocks; i++)
@@ -44,11 +48,12 @@ void fill_info(std::vector<block_info> & infos,
         infos[i].cam = cam;
         infos[i].skybox = sky;
         infos[i].world = world;
+        infos[i].lights = lights;
         infos[i].progress = 0;
     }
 }
 
-color ray_trace(const ray & r, const objlist_base & world, const skybox_base & skybox, int depth)
+color ray_trace(const ray & r, const objlist_base & world, const skybox_base & skybox, light_list * lights, int depth)
 {
     if(depth <= 0)
         return color(0, 0, 0);
@@ -62,10 +67,19 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     color attenu, emissive;
     auto mat_ptr = rec.mat.lock();
 
+    // Evaluate self-emitting
     mat_ptr->evaluateEmissive(r, rec, emissive);
+
+    color scatter_color = color(0, 0, 0);
+    color shadow_ray_color = color(0, 0, 0);
+
     if(mat_ptr->evaluateScatter(r, rec, attenu, scattered))
-        return emissive + elem_product(attenu, ray_trace(scattered, world, skybox, depth - 1));
-    return emissive;
+    {
+        scatter_color = elem_product(attenu, ray_trace(scattered, world, skybox, lights, depth - 1));
+        shadow_ray_color = gen_shadow_ray(rec, lights);
+    }
+
+    return emissive + scatter_color + shadow_ray_color;
 }
 
 std::vector <color> trace_block(const block_info & info)
@@ -82,7 +96,7 @@ std::vector <color> trace_block(const block_info & info)
                 u = (i + tools::random_double()) / (info.image_width - 1);
                 v = (j + tools::random_double()) / (info.image_height - 1);
                 ray r = info.cam->get_ray(u, v);
-                result += ray_trace(r, *(info.world), *(info.skybox), 20);
+                result += ray_trace(r, *(info.world), *(info.skybox), info.lights, 20);
             }
             result /= constants::sample_per_pixel;
             ret.push_back(result);
