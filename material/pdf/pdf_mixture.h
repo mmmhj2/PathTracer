@@ -12,14 +12,14 @@ public:
     pdf_mixture(std::shared_ptr <pdf_base> _p1, std::shared_ptr <pdf_base> _p2)
     : p1(_p1), p2(_p2) {};
 
-    virtual double prob(const vec3 & direction) const override
+    virtual double prob(const vec3 & direction, const onb & uvw) const override
     {
-        return (p1->prob(direction) + p2->prob(direction)) * 0.5;
+        return (p1->prob(direction, uvw) + p2->prob(direction, uvw)) * 0.5;
     }
 
-    virtual vec3 sample_hemisphere() const override
+    virtual vec3 sample(const onb & uvw) const override
     {
-        return (tools::random_double() < 0.5 ? p1->sample_hemisphere() : p2->sample_hemisphere());
+        return uvw.local(tools::random_double() < 0.5 ? p1->sample(uvw) : p2->sample(uvw));
     }
 };
 
@@ -32,14 +32,14 @@ public:
     pdf_mixture_weighted(std::shared_ptr <pdf_base> _p1, std::shared_ptr <pdf_base> _p2, double _w)
     : p1(_p1), p2(_p2), w(_w) {};
 
-    virtual double prob(const vec3 & direction) const override
+    virtual double prob(const vec3 & direction, const onb & uvw) const override
     {
-        return (w * p1->prob(direction) + (1-w) * p2->prob(direction));
+        return (w * p1->prob(direction, uvw) + (1-w) * p2->prob(direction, uvw));
     }
 
-    virtual vec3 sample_hemisphere() const override
+    virtual vec3 sample(const onb & uvw) const override
     {
-        return (tools::random_double() < w ? p1->sample_hemisphere() : p2->sample_hemisphere());
+        return uvw.local(tools::random_double() < w ? p1->sample(uvw) : p2->sample(uvw));
     }
 };
 

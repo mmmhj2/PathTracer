@@ -26,7 +26,7 @@ public:
         return (n+1) / (2*constants::pi) * cosine_power / woDotwh;
     }
 
-    virtual vec3 sample_hemisphere() const override
+    virtual vec3 sample(const onb & uvw) const override
     {
         double theta, phi, u1, u2;
         u1 = tools::random_double();
@@ -34,7 +34,7 @@ public:
         theta = std::acos(std::pow(u1, 1 / (n+1)));
         phi = u2 * 2 * constants::pi;
 
-        return vec3(std::cos(phi) * std::sin(theta), std::sin(phi) * std::sin(theta), std::cos(theta));
+        return uvw.local(vec3(std::cos(phi) * std::sin(theta), std::sin(phi) * std::sin(theta), std::cos(theta)));
     }
 
 };
