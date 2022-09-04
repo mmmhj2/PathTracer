@@ -18,7 +18,14 @@ public:
 
     virtual color eval(const ray & o, const ray & i) const = 0;
     virtual double pdf(const ray & o, const ray & i) const = 0;
-    virtual void sample(const ray & o, ray & sample) const  = 0;
+    virtual void sample(const ray & o, ray & sample) const = 0;
+
+    // If a BSDF contains Dirac delta function
+    // Its Monte Carlo integration needs to be handled carefully
+    virtual bool is_delta_bsdf() const
+    {
+        return false;
+    }
 
 };
 

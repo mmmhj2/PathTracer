@@ -2,6 +2,7 @@
 #define SPHERE_H_INCLUDED
 
 #include "object_base.h"
+#include "utils/orthonormal_basis.h"
 
 class sphere : public hittable_object
 {

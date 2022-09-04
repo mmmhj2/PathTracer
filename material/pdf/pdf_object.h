@@ -5,6 +5,7 @@
 #include "pdf_base.h"
 
 // PDF wrapper to call the PDF of a hittable object
+/*
 class pdf_object : public pdf_base
 {
 private:
@@ -25,6 +26,6 @@ public:
     {
         return ptr->sample() - o;
     }
-};
+};*/
 
 #endif // PDF_OBJECT_H_INCLUDED

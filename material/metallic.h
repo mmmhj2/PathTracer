@@ -6,22 +6,20 @@
 class metallic : public non_emissive_material
 {
 private:
-    color albedo;
+    std::shared_ptr <uv_texture> albedo;
 
 public:
-    metallic(color alb) : albedo(alb)
+    metallic(std::shared_ptr <uv_texture> alb) : albedo(alb)
     {
     }
 
-    virtual bool evaluateScatter(const ray & incident, const hit_record & rec, color & attenuation, ray & scattered) const override;
+    virtual bool evaluateScatter(const ray & incident, const hit_record & rec, std::shared_ptr <BSDF_base> & bsdf) const override;
 };
 
-bool metallic::evaluateScatter(const ray& incident, const hit_record& rec, color& attenuation, ray& scattered) const
+bool metallic::evaluateScatter(const ray& incident, const hit_record& rec, std::shared_ptr <BSDF_base> & bsdf) const
 {
-    vec3 reflected = tools::reflect(incident.direction().unit(), rec.normal);
-    scattered = ray(rec.p, reflected);
-    attenuation = albedo;
-    return (scattered.direction() * rec.normal > 0);
+    bsdf = std::make_shared<BSDF_specular_reflection>(rec, albedo);
+    return true;
 }
 
 

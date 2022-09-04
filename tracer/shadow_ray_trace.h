@@ -2,7 +2,8 @@
 #define SHADOW_RAY_TRACE_H_INCLUDED
 
 #include "objects/objlist_base.h"
-#include "material/pdf/pdf_object.h"
+//#include "material/pdf/pdf_object.h"
+#include "ray/light/light.h"
 
 bool gen_shadow_ray(const hit_record & rec, std::vector <std::shared_ptr<light_base>> * lights, light_sample & sample)
 {

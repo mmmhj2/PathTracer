@@ -23,6 +23,11 @@ public:
         vec3 reflected = tools::reflect(o.direction().unit(), rec.normal);
         sample = ray(rec.p, reflected);
     }
+
+    virtual bool is_delta_bsdf() const
+    {
+        return true;
+    }
 };
 
 #endif // BSDF_SPECULAR_REFLECTION_H_INCLUDED

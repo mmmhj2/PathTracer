@@ -16,8 +16,6 @@ public:
                                  const hit_record & rec,
                                  std::shared_ptr <BSDF_base> & bsdf) const override
     {
-        // PDF of random_unit() is cos(theta) / PI
-        // Where theta is the angle between normal and scattered ray
         bsdf = std::make_shared <BSDF_lambertian>(rec, k_L);
         return true;
     }
