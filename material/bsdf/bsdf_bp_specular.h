@@ -14,11 +14,21 @@ public:
     BSDF_BP_specular(const hit_record & rec, int _power, std::shared_ptr<uv_texture> tex)
     : BSDF_base(rec), power(_power), spec(tex) {};
 
+    virtual color eval_raw(const ray & o, const ray & i) const
+    {
+        vec3 omega_out = -o.direction().unit();
+        vec3 omega_in = i.direction().unit();
+        vec3 half_vec = (omega_out + omega_in).unit();
+        double z = std::max(0., omega_out * half_vec);
+        double weight = (power + 2.0) / (8 * constants::pi) * std::pow(z, power * 1.0);
+        return spec->get_color(rec.u, rec.v, rec.p) * weight * (omega_in * rec.normal.unit());
+    }
+
     virtual color eval(const ray & o, const ray & i) const
     {
         vec3 omega_out = -o.direction().unit();
         vec3 half_vec = (omega_out + i.direction().unit()).unit();
-        double weight = (power + 2.0) / (power + 1.0) * (omega_out * half_vec);
+        double weight = (power + 2.0) / (power + 1.0) * std::max(0., omega_out * half_vec);
         return spec->get_color(rec.u, rec.v, rec.p) * weight;
     }
 

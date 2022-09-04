@@ -12,6 +12,12 @@ public:
     BSDF_lambertian(const hit_record & _rec, std::shared_ptr <uv_texture> _tex)
     : BSDF_base(_rec), tex(_tex) {};
 
+    virtual color eval_raw([[maybe_unused]] const ray & o, const ray & i) const
+    {
+        vec3 omega_in = i.direction().unit();
+        return tex->get_color(rec.u, rec.v, rec.p) * (omega_in * rec.normal.unit());
+    }
+
     virtual color eval([[maybe_unused]] const ray & o, [[maybe_unused]] const ray & i) const
     {
         return tex->get_color(rec.u, rec.v, rec.p);
