@@ -4,5 +4,6 @@
 #include "bsdf_base.h"
 #include "bsdf_lambertian.h"
 #include "bsdf_specular_reflection.h"
+#include "bsdf_specular_refraction.h"
 
 #endif // BSDF_H_INCLUDED

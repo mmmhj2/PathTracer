@@ -210,6 +210,9 @@
 		<Unit filename="material/bsdf/bsdf_specular_reflection.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="material/bsdf/bsdf_specular_refraction.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="material/dielectric.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
