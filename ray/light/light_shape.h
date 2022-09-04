@@ -26,10 +26,13 @@ public:
         hit_record world_rec;
         if(!ptr->hit(ret.shadow_ray, 0.001, constants::dinf, ret.shadow_hitrec))
         {
-            ret.is_occluded = true;
+            ret.pdf = 0;
+            ret.cannot_hit = true;
             return ret;
         }
+        ret.cannot_hit = false;
 
+        ret.pdf = ptr->pdf_value(ret.shadow_ray, ret.shadow_hitrec);
         if(world->hit(ret.shadow_ray, 0.001, ret.shadow_hitrec.t - 1e-7, world_rec))
         {
             ret.is_occluded = true;
@@ -37,7 +40,6 @@ public:
         }
 
         ret.is_occluded = false;
-        ret.pdf = ptr->pdf_value(ret.shadow_ray, ret.shadow_hitrec);
         return ret;
     }
 

@@ -12,7 +12,7 @@ struct light_sample
     ray shadow_ray;
 
     double pdf;
-    bool is_occluded, is_delta_light;
+    bool cannot_hit, is_occluded, is_delta_light;
 };
 
 class light_base
