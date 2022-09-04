@@ -50,7 +50,7 @@
 	"utils/color.h"
 	"ray.h"
 
-1662213179 d:\pathtracer\utils\defs.h
+1662280878 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
@@ -100,7 +100,7 @@
 	"utils/color.h"
 	<memory>
 
-1661953349 d:\pathtracer\material\blinn_phong.h
+1662279436 d:\pathtracer\material\blinn_phong.h
 	"material_base.h"
 	"ray/ray.h"
 	"objects/object_base.h"
@@ -212,7 +212,7 @@
 	"utils/color.h"
 	"ray/ray.h"
 
-1662277307 source:d:\pathtracer\test\specular_test.cpp
+1662279887 source:d:\pathtracer\test\specular_test.cpp
 	<iostream>
 	<fstream>
 	<future>
@@ -223,6 +223,7 @@
 	"objects/spatial_structure/bvh/bvh.h"
 	"ray/camera.h"
 	"tracer/tracer.h"
+	"material/blinn_phong.h"
 	"material/lambertian_simple.h"
 	"material/dielectric.h"
 	"material/metallic.h"
@@ -255,7 +256,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662275861 d:\pathtracer\tracer\concurrent_trace.h
+1662281233 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
