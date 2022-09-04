@@ -9,6 +9,7 @@
 #include "objects/spatial_structure/bvh/bvh.h"
 #include "ray/camera.h"
 #include "tracer/tracer.h"
+#include "material/blinn_phong.h"
 #include "material/lambertian_simple.h"
 #include "material/dielectric.h"
 #include "material/metallic.h"
@@ -24,9 +25,10 @@ int main()
     auto texture_ground = make_shared<checker_texture>(color(0.2, 0.3, 0.1), color(0.9, 0.9, 0.9));
     auto texture_center = make_shared<solid_color>(color(0.1, 0.2, 0.5));
     auto texture_full_white = make_shared<solid_color>(color(1, 1, 1));
+    auto texture_half_white = make_shared<solid_color>(color(.5, .5, .5));
 
     auto material_ground = make_shared<lambertian>(texture_ground);
-    auto material_center = make_shared<lambertian>(texture_center);
+    auto material_center = make_shared<blinn_phong>(texture_center, texture_half_white, 2048);
     auto material_left   = make_shared<dielectric>(1.5, texture_full_white);
     auto material_right  = make_shared<metallic>(texture_full_white);
 
