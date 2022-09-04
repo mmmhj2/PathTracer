@@ -19,6 +19,7 @@ struct block_info
     int scanline_max;
     int scanline_min;
     int image_height, image_width;
+    int max_depth;
     camera * cam;
     objlist_base * world;
     skybox_base * skybox;
@@ -28,7 +29,7 @@ struct block_info
 };
 
 void fill_info(std::vector<block_info> & infos,
-               int width, int height, int blocks,
+               int width, int height, int max_depth, int blocks,
                camera * cam,
                objlist_base * world,
                skybox_base * sky,
@@ -42,6 +43,7 @@ void fill_info(std::vector<block_info> & infos,
         infos[i].scanline_min = std::max(0, scanline_min);
         infos[i].image_height = height;
         infos[i].image_width = width;
+        infos[i].max_depth = max_depth;
 #ifdef TRACER_TEST
         cout << "Block " << i << " from " << infos[i].scanline_max << " to " << infos[i].scanline_min << endl ;
 #endif
@@ -93,6 +95,16 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     return ret + scatter_color / 2.0;
 }
 
+color albedo_trace(const ray & r, const objlist_base & world, const skybox_base & skybox)
+{
+    hit_record rec;
+    if(!world.hit(r, 0.001, constants::dinf, rec))
+        return skybox(r);
+
+    auto mat_ptr = rec.mat.lock();
+    return mat_ptr->getAlbedo(rec);
+}
+
 std::vector <color> trace_block(const block_info & info)
 {
     std::vector <color> ret;
@@ -107,7 +119,32 @@ std::vector <color> trace_block(const block_info & info)
                 u = (i + tools::random_double()) / (info.image_width - 1);
                 v = (j + tools::random_double()) / (info.image_height - 1);
                 ray r = info.cam->get_ray(u, v);
-                result += ray_trace(r, *(info.world), *(info.skybox), info.lights, constants::max_depth);
+                result += ray_trace(r, *(info.world), *(info.skybox), info.lights, info.max_depth);
+            }
+            result /= constants::sample_per_pixel;
+            ret.push_back(result);
+        }
+        info.progress++;
+    }
+
+    return ret;
+}
+
+std::vector <color> albedo_trace_block(const block_info & info)
+{
+    std::vector <color> ret;
+    for(int j = info.scanline_max - 1; j >= info.scanline_min; j--)
+    {
+        for(int i = 0; i < info.image_width; i++)
+        {
+            color result;
+            for(int k = 0; k < constants::sample_per_pixel; k++)
+            {
+                double u, v;
+                u = (i + tools::random_double()) / (info.image_width - 1);
+                v = (j + tools::random_double()) / (info.image_height - 1);
+                ray r = info.cam->get_ray(u, v);
+                result += albedo_trace(r, *(info.world), *(info.skybox));
             }
             result /= constants::sample_per_pixel;
             ret.push_back(result);

@@ -12,6 +12,9 @@ class material
 {
 public:
 
+    // Acquire Albedo for image denoise
+    virtual color getAlbedo(const hit_record & rec) const = 0;
+
     virtual bool evaluateEmissive(const ray & incident,
                           const hit_record & rec,
                           std::shared_ptr <BSDF_base> & bsdf) const = 0;

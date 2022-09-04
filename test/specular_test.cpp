@@ -72,4 +72,5 @@ int main()
     fout.open("specular.ppm");
     ImageOutputPPM()(image_width, image_height, fout, pic);
     fout.close();
+
 }

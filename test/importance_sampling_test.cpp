@@ -67,33 +67,63 @@ int main()
     std::vector <concurrent::block_info> infos(constants::blocks);
 
 
-
     int image_width = 600;
     int image_height = 600;
 
-    concurrent::fill_info(infos, image_width, image_height, constants::blocks, &cam, world.get(), &sky, &lights);
-
-    std::vector <std::future<std::vector<color>>> async_task;
-    for(int i = 0; i < constants::blocks; i++)
-        async_task.push_back(std::async(concurrent::trace_block, std::cref(infos[i])));
-
-    pbar::init_curses();
-    while(!pbar::print_progressbar(infos))
     {
-        std::this_thread::sleep_for(100ms);
-    }
-    pbar::decon_curses();
+        concurrent::fill_info(infos, image_width, image_height, constants::max_depth, constants::blocks, &cam, world.get(), &sky, &lights);
 
-    std::vector <color> pic;
-    for(int i = 0; i < constants::blocks; i++)
+        std::vector <std::future<std::vector<color>>> async_task;
+        for(int i = 0; i < constants::blocks; i++)
+            async_task.push_back(std::async(concurrent::trace_block, std::cref(infos[i])));
+
+        pbar::init_curses();
+        while(!pbar::print_progressbar(infos))
+        {
+            std::this_thread::sleep_for(100ms);
+        }
+        pbar::decon_curses();
+
+        std::vector <color> pic;
+        for(int i = 0; i < constants::blocks; i++)
+        {
+            std::vector <color> block = async_task[i].get();
+            pic.insert(pic.end(), block.cbegin(), block.cend());
+        }
+
+
+        ofstream fout;
+        fout.open("importance_sampling.ppm");
+        ImageOutputPPM()(image_width, image_height, fout, pic);
+        fout.close();
+    }
+    // Generate Albedo map for OIDN
     {
-        std::vector <color> block = async_task[i].get();
-        pic.insert(pic.end(), block.cbegin(), block.cend());
+        concurrent::fill_info(infos, image_width, image_height, 1, constants::blocks, &cam, world.get(), &sky, nullptr);
+
+        std::vector <std::future<std::vector<color>>> async_task;
+        for(int i = 0; i < constants::blocks; i++)
+            async_task.push_back(std::async(concurrent::albedo_trace_block, std::cref(infos[i])));
+
+        pbar::init_curses();
+        while(!pbar::print_progressbar(infos))
+        {
+            std::this_thread::sleep_for(100ms);
+        }
+        pbar::decon_curses();
+
+        std::vector <color> pic;
+        for(int i = 0; i < constants::blocks; i++)
+        {
+            std::vector <color> block = async_task[i].get();
+            pic.insert(pic.end(), block.cbegin(), block.cend());
+        }
+
+
+        ofstream fout;
+        fout.open("importance_sampling_albedo.ppm");
+        ImageOutputPPM()(image_width, image_height, fout, pic);
+        fout.close();
     }
 
-
-    ofstream fout;
-    fout.open("importance_sampling.ppm");
-    ImageOutputPPM()(image_width, image_height, fout, pic);
-    fout.close();
 }
