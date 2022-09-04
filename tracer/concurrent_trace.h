@@ -67,8 +67,12 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     color ret = color(0, 0, 0);
     color attenu, emissive;
     auto mat_ptr = rec.mat.lock();
-    bool is_emissive = mat_ptr->evaluateEmissive(r, rec, emissive);
-    if(!mat_ptr->evaluateScatter(r, rec, attenu, scattered))
+    std::shared_ptr <BSDF_base> bsdf;
+
+    bool is_emissive = mat_ptr->evaluateEmissive(r, rec, bsdf);
+    if(is_emissive)
+        emissive = bsdf->eval(r, r);
+    if(!mat_ptr->evaluateScatter(r, rec, bsdf))
         return emissive;
 
     ret = ret + emissive;
@@ -77,7 +81,7 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     gen_shadow_ray(rec, lights, smpl);
     is_emissive = trace_shadow_ray(smpl, emissive);
     if(is_emissive)
-        ret = ret + elem_product(attenu, emissive);
+        ret = ret + elem_product(bsdf->eval(r, smpl.shadow_ray), emissive);
 
     return ret;
 }

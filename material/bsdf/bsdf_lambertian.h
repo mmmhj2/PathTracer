@@ -1,6 +1,7 @@
 #ifndef BSDF_LAMBERTIAN_H_INCLUDED
 #define BSDF_LAMBERTIAN_H_INCLUDED
 
+#include "utils/orthonormal_basis.h"
 #include "bsdf_base.h"
 #include "../texture/texture_base.h"
 

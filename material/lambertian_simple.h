@@ -14,18 +14,11 @@ public:
 
     virtual bool evaluateScatter(const ray & incident,
                                  const hit_record & rec,
-                                 color & attenuation,
-                                 ray & scattered) const override
+                                 std::shared_ptr <BSDF_base> & bsdf) const override
     {
         // PDF of random_unit() is cos(theta) / PI
         // Where theta is the angle between normal and scattered ray
-        auto scatter_dir = rec.normal + vec3::random_unit();
-
-        if(tools::is_near_zero(scatter_dir))
-            scatter_dir = rec.normal;
-
-        scattered = ray(rec.p, scatter_dir);
-        attenuation = k_L->get_color(rec.u, rec.v, rec.p);
+        bsdf = std::make_shared <BSDF_lambertian>(rec, k_L);
         return true;
     }
 private:

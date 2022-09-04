@@ -25,9 +25,10 @@ bool trace_shadow_ray(const light_sample & sample, color & emissive)
 {
     if(sample.is_occluded)
         return false;
+    std::shared_ptr <BSDF_base> bsdf;
     bool is_emissive =
-        sample.shadow_hitrec.mat.lock()->evaluateEmissive(sample.shadow_ray, sample.shadow_hitrec, emissive);
-    emissive /= sample.pdf;
+        sample.shadow_hitrec.mat.lock()->evaluateEmissive(sample.shadow_ray, sample.shadow_hitrec, bsdf);
+    emissive = bsdf->eval(sample.shadow_ray, sample.shadow_ray) / sample.pdf;
     return is_emissive;
 }
 

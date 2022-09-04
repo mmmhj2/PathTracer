@@ -17,19 +17,21 @@ public:
 
     virtual bool evaluateEmissive(const ray & incident,
                           const hit_record & rec,
-                          color & emissive) const
+                          std::shared_ptr <BSDF_base> & bsdf) const
     {
+        /*
         // Introducing a hard-coded cosine PDF
         emissive = emit->get_color(rec.u, rec.v, rec.p);
         double cosine = std::abs(incident.direction() * rec.normal / (incident.direction().norm() * rec.normal.norm()));
         emissive = emissive * cosine;
+        */
+        bsdf = std::make_shared<BSDF_lambertian>(rec, emit);
         return true;
     }
 
     virtual bool evaluateScatter(const ray & incident,
                                  const hit_record & rec,
-                                 color & attenuation,
-                                 ray & scattered) const
+                                 std::shared_ptr <BSDF_base> & bsdf) const
     {
         return false;
     }
