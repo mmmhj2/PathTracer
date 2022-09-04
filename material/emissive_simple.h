@@ -15,6 +15,11 @@ public:
     emissive_diffuse(std::shared_ptr <uv_texture> _emit)
     : emit(_emit) {};
 
+    virtual color getAlbedo(const hit_record & rec) const
+    {
+        return emit->get_color(rec.u, rec.v, rec.p);
+    }
+
     virtual bool evaluateEmissive(const ray & incident,
                           const hit_record & rec,
                           std::shared_ptr <BSDF_base> & bsdf) const

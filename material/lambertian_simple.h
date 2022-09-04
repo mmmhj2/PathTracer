@@ -12,6 +12,11 @@ public:
     {
     }
 
+    virtual color getAlbedo(const hit_record & rec) const
+    {
+        return k_L->get_color(rec.u, rec.v, rec.p);
+    }
+
     virtual bool evaluateScatter(const ray & incident,
                                  const hit_record & rec,
                                  std::shared_ptr <BSDF_base> & bsdf) const override
