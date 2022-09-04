@@ -33,6 +33,7 @@ double heuristic_weight(int nf, double fPdf, int ng, double gPdf)
     double f, g;
     f = nf * fPdf, g = ng * gPdf;
     return (f * f) / (f * f + g * g);
+//    return f / (f + g);
 }
 
 void fill_info(std::vector<block_info> & infos,
@@ -90,19 +91,22 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     scatter_bsdf->sample(r, scattered);
     b_sample = elem_product(scatter_bsdf->eval(r, scattered), ray_trace(scattered, world, skybox, lights, depth-1));
 
-    // No MIP
-    if(lights == nullptr)
+    // No MIS if no lights or scatter BSDF contains delta function
+    if(lights == nullptr || scatter_bsdf->is_delta_bsdf())
         return emissive + b_sample;
 
     color light_color;
     gen_shadow_ray(rec, lights, smpl);
-    is_emissive = trace_shadow_ray(smpl, light_color);
-    if(is_emissive)
-        l_sample = elem_product(scatter_bsdf->eval(r, smpl.shadow_ray), light_color);
 
-    // Simply blend two samples if there is a delta function
-    if(scatter_bsdf->is_delta_bsdf() || smpl.is_delta_light)
-        return emissive + b_sample / 2.0 + l_sample / 2.0;
+    if(smpl.cannot_hit)
+        return emissive + b_sample;
+
+    trace_shadow_ray(smpl, light_color);
+    l_sample = elem_product(scatter_bsdf->eval_raw(r, smpl.shadow_ray), light_color);
+
+
+    //if(trace_shadow_ray(smpl, light_color))
+    //    l_sample = elem_product(scatter_bsdf->eval(r, smpl.shadow_ray), light_color);
 
     // Use heuristic power technique introduced at
     // https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling
@@ -110,7 +114,10 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     light_pdf = smpl.pdf, bsdf_pdf = scatter_bsdf->pdf(r, scattered);
     weight = heuristic_weight(1, bsdf_pdf, 1, light_pdf);
 
-    return emissive + b_sample * weight + l_sample * (1 - weight);
+    //if(tools::random_double() <= 0.00001)
+    //    std::cerr << "BSDF PDF : " << bsdf_pdf << " Light PDF : " << light_pdf << std::endl ;
+
+    return emissive + b_sample * (weight) + l_sample * (1 - weight);
 }
 
 color albedo_trace(const ray & r, const objlist_base & world, const skybox_base & skybox)

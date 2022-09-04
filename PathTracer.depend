@@ -212,7 +212,7 @@
 	"utils/color.h"
 	"ray/ray.h"
 
-1662299754 source:d:\pathtracer\test\specular_test.cpp
+1662306301 source:d:\pathtracer\test\specular_test.cpp
 	<iostream>
 	<fstream>
 	<future>
@@ -222,9 +222,11 @@
 	"objects/sphere.h"
 	"objects/spatial_structure/bvh/bvh.h"
 	"ray/camera.h"
+	"ray/light/light.h"
 	"tracer/tracer.h"
 	"material/blinn_phong.h"
 	"material/lambertian_simple.h"
+	"material/emissive_simple.h"
 	"material/dielectric.h"
 	"material/metallic.h"
 	"material/texture/checker_texture.h"
@@ -256,7 +258,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662299703 d:\pathtracer\tracer\concurrent_trace.h
+1662307621 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
@@ -339,7 +341,7 @@
 	<fstream>
 	<future>
 
-1662275596 d:\pathtracer\tracer\shadow_ray_trace.h
+1662304616 d:\pathtracer\tracer\shadow_ray_trace.h
 	"objects/objlist_base.h"
 	"ray/light/light.h"
 
@@ -347,13 +349,13 @@
 	"light_base.h"
 	"light_shape.h"
 
-1662288743 d:\pathtracer\ray\light\light_base.h
+1662303242 d:\pathtracer\ray\light\light_base.h
 	"objects/object_base.h"
 	"objects/objlist_base.h"
 	"../ray.h"
 	"utils/color.h"
 
-1662288812 d:\pathtracer\ray\light\light_shape.h
+1662304931 d:\pathtracer\ray\light\light_shape.h
 	"light_base.h"
 	<iostream>
 
@@ -364,22 +366,22 @@
 	"bsdf_specular_refraction.h"
 	"bsdf_bp_specular.h"
 
-1662277100 d:\pathtracer\material\bsdf\bsdf_base.h
+1662307528 d:\pathtracer\material\bsdf\bsdf_base.h
 	"ray/ray.h"
 	"objects/object_base.h"
 	"utils/color.h"
 
-1662265572 d:\pathtracer\material\bsdf\bsdf_lambertian.h
+1662308074 d:\pathtracer\material\bsdf\bsdf_lambertian.h
 	"utils/orthonormal_basis.h"
 	"bsdf_base.h"
 	"../texture/texture_base.h"
 
-1662277067 d:\pathtracer\material\bsdf\bsdf_specular_reflection.h
+1662307416 d:\pathtracer\material\bsdf\bsdf_specular_reflection.h
 	"bsdf_base.h"
 
 1662277125 d:\pathtracer\material\bsdf\bsdf_specular_refraction.h
 	"bsdf_base.h"
 
-1662299936 d:\pathtracer\material\bsdf\bsdf_bp_specular.h
+1662308091 d:\pathtracer\material\bsdf\bsdf_bp_specular.h
 	"bsdf_base.h"
 

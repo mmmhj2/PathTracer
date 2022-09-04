@@ -14,7 +14,7 @@ bool gen_shadow_ray(const hit_record & rec, std::vector <std::shared_ptr<light_b
     int rindex = tools::random_int(0, light_sz - 1);
 
     sample = (*lights)[rindex]->sample_Li(rec);
-    if(sample.is_occluded)
+    if(sample.cannot_hit || sample.is_occluded)
         return false;
     if(sample.pdf * 10000 < 1)
         return false;
