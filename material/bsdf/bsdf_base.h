@@ -5,12 +5,6 @@
 #include "objects/object_base.h"
 #include "utils/color.h"
 
-struct BSDF_Sample
-{
-    ray in_rev;
-    double pdf;
-};
-
 class BSDF_base
 {
 protected:
@@ -24,7 +18,7 @@ public:
 
     virtual color eval(const ray & o, const ray & i) const = 0;
     virtual double pdf(const ray & o, const ray & i) const = 0;
-    virtual void sample(const ray & o, BSDF_Sample & sample) const  = 0;
+    virtual void sample(const ray & o, ray & sample) const  = 0;
 
 };
 

@@ -23,7 +23,7 @@ public:
         return (cosine < 0 ? 0 : cosine / constants::pi);
     }
 
-    virtual void sample(const ray & o, BSDF_Sample & spl) const override
+    virtual void sample(const ray & o, ray & spl) const override
     {
         // Cosine weighted sample
         onb uvw(rec.normal);
@@ -34,8 +34,7 @@ public:
         phi = 2 * constants::pi * r1;
 
         vec3 dir = uvw.local(vec3(std::cos(phi) * std::sqrt(r2), std::sin(phi) * std::sqrt(r2), z));
-        spl.in_rev = ray(rec.p, dir - rec.p);
-        spl.pdf = this->pdf(o, spl.in_rev);
+        spl = ray(rec.p, dir);
     }
 };
 
