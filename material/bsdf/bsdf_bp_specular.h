@@ -18,8 +18,8 @@ public:
     {
         vec3 omega_out = -o.direction().unit();
         vec3 half_vec = (omega_out + i.direction().unit()).unit();
-        double weight = (power + 2.0) / (power + 1.0) * 4 * (omega_out * half_vec);
-        return spec->get_color(rec.u, rec.v, rec.p);
+        double weight = (power + 2.0) / (power + 1.0) * (omega_out * half_vec);
+        return spec->get_color(rec.u, rec.v, rec.p) * weight;
     }
 
     virtual double pdf(const ray & o, const ray & i) const override
