@@ -87,18 +87,18 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     if(!mat_ptr->evaluateScatter(r, rec, scatter_bsdf))
         return emissive;
 
-    if(lights != nullptr)
-    {
-        color light_color;
-        gen_shadow_ray(rec, lights, smpl);
-        is_emissive = trace_shadow_ray(smpl, light_color);
-        if(is_emissive)
-            //ret = ret + elem_product(bsdf->eval(r, smpl.shadow_ray), emissive) / 2.0;
-            l_sample = elem_product(scatter_bsdf->eval(r, smpl.shadow_ray), light_color);
-    }
-
     scatter_bsdf->sample(r, scattered);
     b_sample = elem_product(scatter_bsdf->eval(r, scattered), ray_trace(scattered, world, skybox, lights, depth-1));
+
+    // No MIP
+    if(lights == nullptr)
+        return emissive + b_sample;
+
+    color light_color;
+    gen_shadow_ray(rec, lights, smpl);
+    is_emissive = trace_shadow_ray(smpl, light_color);
+    if(is_emissive)
+        l_sample = elem_product(scatter_bsdf->eval(r, smpl.shadow_ray), light_color);
 
     // Simply blend two samples if there is a delta function
     if(scatter_bsdf->is_delta_bsdf() || smpl.is_delta_light)
