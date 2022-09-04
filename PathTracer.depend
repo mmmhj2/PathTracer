@@ -109,7 +109,7 @@
 1662275759 d:\pathtracer\material\metallic.h
 	"material_base.h"
 
-1661780602 d:\pathtracer\material\dielectric.h
+1662277227 d:\pathtracer\material\dielectric.h
 	"material_base.h"
 
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
@@ -212,7 +212,7 @@
 	"utils/color.h"
 	"ray/ray.h"
 
-1662276112 source:d:\pathtracer\test\specular_test.cpp
+1662277307 source:d:\pathtracer\test\specular_test.cpp
 	<iostream>
 	<fstream>
 	<future>
@@ -224,6 +224,7 @@
 	"ray/camera.h"
 	"tracer/tracer.h"
 	"material/lambertian_simple.h"
+	"material/dielectric.h"
 	"material/metallic.h"
 	"material/texture/checker_texture.h"
 
@@ -355,11 +356,12 @@
 	"light_base.h"
 	<iostream>
 
-1662277110 d:\pathtracer\material\bsdf\bsdf.h
+1662278781 d:\pathtracer\material\bsdf\bsdf.h
 	"bsdf_base.h"
 	"bsdf_lambertian.h"
 	"bsdf_specular_reflection.h"
 	"bsdf_specular_refraction.h"
+	"bsdf_bp_specular.h"
 
 1662277100 d:\pathtracer\material\bsdf\bsdf_base.h
 	"ray/ray.h"
@@ -375,5 +377,8 @@
 	"bsdf_base.h"
 
 1662277125 d:\pathtracer\material\bsdf\bsdf_specular_refraction.h
+	"bsdf_base.h"
+
+1662278800 d:\pathtracer\material\bsdf\bsdf_bp_specular.h
 	"bsdf_base.h"
 

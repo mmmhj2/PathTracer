@@ -204,6 +204,9 @@
 		<Unit filename="material/bsdf/bsdf_base.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="material/bsdf/bsdf_bp_specular.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="material/bsdf/bsdf_lambertian.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
