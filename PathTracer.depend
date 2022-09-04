@@ -274,9 +274,9 @@
 
 1662118468 d:\pathtracer\test\cornellbox_def.h
 
-1662188830 source:d:\pathtracer\test\pdf_test.cpp
+1662263250 source:d:\pathtracer\test\pdf_test.cpp
 	"utils/orthonormal_basis.h"
-	"material/pdf/pdf.h"
+	"material/bsdf/bsdf.h"
 	"objects/triangle_flat.h"
 	<iostream>
 
@@ -303,7 +303,7 @@
 	"objects/object_base.h"
 	"pdf_base.h"
 
-1662213170 source:d:\pathtracer\test\importance_sampling_test.cpp
+1662261452 source:d:\pathtracer\test\importance_sampling_test.cpp
 	"ray/light/light.h"
 	"objects/triangle_flat.h"
 	"objects/spatial_structure/bvh/bvh.h"
@@ -338,7 +338,20 @@
 	"../ray.h"
 	"utils/color.h"
 
-1662260545 d:\pathtracer\ray\light\light_shape.h
+1662261458 d:\pathtracer\ray\light\light_shape.h
 	"light_base.h"
 	<iostream>
+
+1662262756 d:\pathtracer\material\bsdf\bsdf.h
+	"bsdf_base.h"
+	"bsdf_lambertian.h"
+
+1662262969 d:\pathtracer\material\bsdf\bsdf_base.h
+	"ray/ray.h"
+	"objects/object_base.h"
+	"utils/color.h"
+
+1662263319 d:\pathtracer\material\bsdf\bsdf_lambertian.h
+	"bsdf_base.h"
+	"../texture/texture_base.h"
 

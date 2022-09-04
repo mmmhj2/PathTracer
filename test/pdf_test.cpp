@@ -1,5 +1,5 @@
 #include "utils/orthonormal_basis.h"
-#include "material/pdf/pdf.h"
+#include "material/bsdf/bsdf.h"
 #include "objects/triangle_flat.h"
 
 #include <iostream>
@@ -22,7 +22,18 @@ int main()
 
     auto triangle = std::make_shared<triangle_flat>(vert, uv, nullptr);
 
-    for(int i = 0; i <= 100; i++)
-        cout << triangle->sample() << endl ;
+    hit_record test_rec;
+    ray test_ray;
+    test_rec.p = point3(0, 0, 0);
+    test_rec.normal = vec3(0, 0, 1);
+    auto lamBSDF = std::make_shared<BSDF_lambertian>(test_rec, nullptr);
+
+    for(int i = 0; i < 50; i++)
+    {
+        BSDF_Sample spl;
+        lamBSDF->sample(test_ray, spl);
+        cout << spl.in_rev.origin() << " " << spl.in_rev.direction() << " " << spl.pdf << endl ;
+    }
+
     return 0;
 }
