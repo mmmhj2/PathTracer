@@ -5,13 +5,13 @@
 
 #include <iostream>
 
-class diffuse_light_shape : public light_base
+class diffuse_light_area : public light_base
 {
     std::shared_ptr <hittable_object> ptr;
 public:
 
-    diffuse_light_shape() = delete;
-    diffuse_light_shape(std::shared_ptr<objlist_base> _world, std::shared_ptr <hittable_object> _ptr)
+    diffuse_light_area() = delete;
+    diffuse_light_area(std::shared_ptr<objlist_base> _world, std::shared_ptr <hittable_object> _ptr)
     : light_base(_world), ptr(_ptr) {}
 
     virtual light_sample sample_Li(const hit_record & rec) const

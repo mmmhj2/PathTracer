@@ -43,8 +43,8 @@ int main()
     auto light = make_shared<emissive_diffuse>(light_tex);
     auto light_t1 = make_shared<triangle_flat>(vert_up_light, uv, light);
     auto light_t2 = make_shared<triangle_flat>(vert_up_light+2, uv+2, light);
-    auto light_l1 = make_shared<diffuse_light_shape>(world, light_t1);
-    auto light_l2 = make_shared<diffuse_light_shape>(world, light_t2);
+    auto light_l1 = make_shared<diffuse_light_area>(world, light_t1);
+    auto light_l2 = make_shared<diffuse_light_area>(world, light_t2);
 
     world->add_object(make_shared<triangle_flat>(vert_right, uv, green));
     world->add_object(make_shared<triangle_flat>(vert_right+2, uv+2, green));
