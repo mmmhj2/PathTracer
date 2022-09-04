@@ -56,10 +56,10 @@
 	<thread>
 	<cmath>
 
-1661873276 d:\pathtracer\objects\sphere.h
+1662275209 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 
-1662191691 d:\pathtracer\objects\object_base.h
+1662274876 d:\pathtracer\objects\object_base.h
 	"spatial_structure/aabb.h"
 	"ray/ray.h"
 	"utils/defs.h"
@@ -114,12 +114,12 @@
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1662203440 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1662275065 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
 	"utils/defs.h"
 	<iostream>
 
-1662202630 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
+1662275076 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
 	"../../objlist_base.h"
 
 1661865666 source:d:\pathtracer\test\bvh_test.cpp
@@ -233,7 +233,7 @@
 	"image/ImageOutputPPM.h"
 	"cornellbox_def.h"
 
-1662211015 d:\pathtracer\objects\triangle_flat.h
+1662274899 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
 
@@ -242,7 +242,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662265129 d:\pathtracer\tracer\concurrent_trace.h
+1662265588 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
@@ -300,7 +300,7 @@
 1662189316 d:\pathtracer\material\pdf\pdf_cosp.h
 	"pdf_base.h"
 
-1662198563 d:\pathtracer\material\pdf\pdf_object.h
+1662275089 d:\pathtracer\material\pdf\pdf_object.h
 	"objects/object_base.h"
 	"pdf_base.h"
 
@@ -339,13 +339,14 @@
 	"../ray.h"
 	"utils/color.h"
 
-1662261458 d:\pathtracer\ray\light\light_shape.h
+1662275029 d:\pathtracer\ray\light\light_shape.h
 	"light_base.h"
 	<iostream>
 
-1662262756 d:\pathtracer\material\bsdf\bsdf.h
+1662273760 d:\pathtracer\material\bsdf\bsdf.h
 	"bsdf_base.h"
 	"bsdf_lambertian.h"
+	"bsdf_specular_reflection.h"
 
 1662265562 d:\pathtracer\material\bsdf\bsdf_base.h
 	"ray/ray.h"
@@ -356,4 +357,7 @@
 	"utils/orthonormal_basis.h"
 	"bsdf_base.h"
 	"../texture/texture_base.h"
+
+1662274253 d:\pathtracer\material\bsdf\bsdf_specular_reflection.h
+	"bsdf_base.h"
 
