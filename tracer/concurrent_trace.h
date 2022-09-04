@@ -64,15 +64,22 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
         return skybox(r);
 
     ray scattered;
+    color ret = color(0, 0, 0);
     color attenu, emissive;
     auto mat_ptr = rec.mat.lock();
     bool is_emissive = mat_ptr->evaluateEmissive(r, rec, emissive);
     if(!mat_ptr->evaluateScatter(r, rec, attenu, scattered))
         return emissive;
 
+    ret = ret + emissive;
+
     light_sample smpl;
     gen_shadow_ray(rec, lights, smpl);
-    return emissive + elem_product(attenu, ray_trace(smpl.shadow_ray, world, skybox, lights, depth-1)) / smpl.pdf;
+    is_emissive = trace_shadow_ray(smpl, emissive);
+    if(is_emissive)
+        ret = ret + elem_product(attenu, emissive);
+
+    return ret;
 }
 
 std::vector <color> trace_block(const block_info & info)

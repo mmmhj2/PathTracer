@@ -19,7 +19,6 @@ public:
         vec3 sampled_point = ptr->sample();
 
         light_sample ret;
-        ret.clr = color(0, 0, 0);
         ret.shadow_ray = ray(rec.p, sampled_point - rec.p);
 
         // Test occlusion

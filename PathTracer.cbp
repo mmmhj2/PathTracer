@@ -291,6 +291,7 @@
 		<Unit filename="test/bvh_test.cpp">
 			<Option target="bvh_test" />
 		</Unit>
+		<Unit filename="test/cornellbox_def.h" />
 		<Unit filename="test/emissive_test.cpp">
 			<Option target="emissive_test" />
 		</Unit>

@@ -241,7 +241,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662215752 d:\pathtracer\tracer\concurrent_trace.h
+1662261382 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
@@ -324,7 +324,7 @@
 	<fstream>
 	<future>
 
-1662215712 d:\pathtracer\tracer\shadow_ray_trace.h
+1662261341 d:\pathtracer\tracer\shadow_ray_trace.h
 	"objects/objlist_base.h"
 	"material/pdf/pdf_object.h"
 
@@ -332,13 +332,13 @@
 	"light_base.h"
 	"light_shape.h"
 
-1662202550 d:\pathtracer\ray\light\light_base.h
+1662260840 d:\pathtracer\ray\light\light_base.h
 	"objects/object_base.h"
 	"objects/objlist_base.h"
 	"../ray.h"
 	"utils/color.h"
 
-1662215510 d:\pathtracer\ray\light\light_shape.h
+1662260545 d:\pathtracer\ray\light\light_shape.h
 	"light_base.h"
 	<iostream>
 

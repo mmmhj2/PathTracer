@@ -10,7 +10,7 @@ struct light_sample
 {
     hit_record shadow_hitrec;
     ray shadow_ray;
-    color clr;
+
     double pdf;
     bool is_occluded;
 };

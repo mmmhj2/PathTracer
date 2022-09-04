@@ -21,4 +21,14 @@ bool gen_shadow_ray(const hit_record & rec, std::vector <std::shared_ptr<light_b
     return true;
 }
 
+bool trace_shadow_ray(const light_sample & sample, color & emissive)
+{
+    if(sample.is_occluded)
+        return false;
+    bool is_emissive =
+        sample.shadow_hitrec.mat.lock()->evaluateEmissive(sample.shadow_ray, sample.shadow_hitrec, emissive);
+    emissive /= sample.pdf;
+    return is_emissive;
+}
+
 #endif // SHADOW_RAY_TRACE_H_INCLUDED
