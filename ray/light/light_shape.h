@@ -16,10 +16,10 @@ public:
 
     virtual light_sample sample_Li(const hit_record & rec) const
     {
-        vec3 sampled_point = ptr->sample();
+        vec3 sampled_vec = ptr->sample(rec.p);
 
         light_sample ret;
-        ret.shadow_ray = ray(rec.p, sampled_point - rec.p);
+        ret.shadow_ray = ray(rec.p, sampled_vec);
 
         // Test occlusion
         hit_record world_rec;

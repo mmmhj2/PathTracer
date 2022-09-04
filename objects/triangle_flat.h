@@ -113,13 +113,13 @@ public:
         return distance_sq / (cosine * area);
     }
 
-    virtual vec3 sample() const
+    virtual vec3 sample(const point3 & from) const
     {
         double r1, r2;
         r1 = tools::random_double();
         r2 = tools::random_double();
         vec3 rand_point = (1 - std::sqrt(r1)) * vert[0] + (std::sqrt(r1)*(1 - r2)) * vert[1] + (r2*std::sqrt(r1)) * vert[2];
-        return rand_point;
+        return rand_point - from;
     }
 
 };

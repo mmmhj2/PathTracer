@@ -18,6 +18,18 @@ public:
         return std::make_pair(phi / (2 * constants::pi), theta / constants::pi);
     }
 
+    static vec3 random_to_sphere(double radius, double distance_sq)
+    {
+        double r1, r2, z, phi, x, y;
+        r1 = tools::random_double();
+        r2 = tools::random_double();
+        z = 1 + r2*(std::sqrt(1-radius*radius/distance_sq) - 1);
+        phi = 2 * constants::pi * r1;
+        x = std::cos(phi) * std::sqrt(1 - z * z);
+        y = std::sin(phi) * std::sqrt(1 - z * z);
+        return vec3(x, y, z);
+    }
+
 public:
     sphere() {};
     sphere(point3 c, double r, std::shared_ptr <material> mat)
@@ -28,6 +40,21 @@ public:
     virtual bool get_aabb(aabb & output) const;
 
     virtual point3 get_centroid() const override;
+
+    virtual double pdf_value(const ray & r, const hit_record & h) const override
+    {
+        double cos_theta_max = std::sqrt(1 - radius * radius / (center - r.origin()).norm_squared());
+        double solid_angle = 2 * constants::pi * (1 - cos_theta_max);
+        return 1 / solid_angle;
+    }
+
+    virtual vec3 sample(const point3 & from) const override
+    {
+        vec3 dir = center - from;
+        double distance_sq = dir.norm_squared();
+        onb uvw(dir);
+        return uvw.local(random_to_sphere(radius, distance_sq));
+    }
 };
 
 bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) const

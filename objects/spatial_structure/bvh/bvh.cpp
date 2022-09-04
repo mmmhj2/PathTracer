@@ -168,7 +168,7 @@ double bvh_node::pdf_value(const ray & r, const hit_record & h) const
     return 0;
 }
 
-vec3 bvh_node::sample() const
+vec3 bvh_node::sample(const point3 &) const
 {
     throw std::runtime_error("Trying to sample an AABB which cannot be sampled");
     return vec3(0, 0, 0);
@@ -182,10 +182,10 @@ double bvh_tree::pdf_value(const ray & r, const hit_record & h) const
     return sum / objs.size();
 }
 
-vec3 bvh_tree::sample() const
+vec3 bvh_tree::sample(const point3 & from) const
 {
     int sz = (int)objs.size();
-    return objs[tools::random_int(0, sz - 1)]->sample();
+    return objs[tools::random_int(0, sz - 1)]->sample(from);
 }
 
 /*std::shared_ptr<hittable_object> bvh_tree::sample_obj()

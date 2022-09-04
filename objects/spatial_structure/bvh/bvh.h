@@ -22,7 +22,7 @@ public:
     virtual point3 get_centroid() const override;
 
     virtual double pdf_value(const ray & r, const hit_record & h) const;
-    virtual vec3 sample() const;
+    virtual vec3 sample(const point3 &) const;
 #ifdef BVH_TEST
     void debug();
 #endif
@@ -43,7 +43,7 @@ public:
     virtual point3 get_centroid() const override;
 
     virtual double pdf_value(const ray & r, const hit_record & h) const override;
-    virtual vec3 sample() const override;
+    virtual vec3 sample(const point3 &) const override;
     //virtual std::shared_ptr<hittable_object> sample_obj() override;
 #ifdef BVH_TEST
     void debug();
