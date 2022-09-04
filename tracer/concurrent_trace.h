@@ -28,6 +28,13 @@ struct block_info
     mutable std::atomic_int progress;
 };
 
+double heuristic_weight(int nf, double fPdf, int ng, double gPdf)
+{
+    double f, g;
+    f = nf * fPdf, g = ng * gPdf;
+    return (f * f) / (f * f + g * g);
+}
+
 void fill_info(std::vector<block_info> & infos,
                int width, int height, int max_depth, int blocks,
                camera * cam,
@@ -66,33 +73,44 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
         return skybox(r);
 
     ray scattered;
-    color ret = color(0, 0, 0);
 
     auto mat_ptr = rec.mat.lock();
-    std::shared_ptr <BSDF_base> bsdf;
+    std::shared_ptr <BSDF_base> emissive_bsdf, scatter_bsdf;
 
     color emissive;
-    bool is_emissive = mat_ptr->evaluateEmissive(r, rec, bsdf);
-    if(is_emissive)
-        emissive = bsdf->eval(r, r);
-    if(!mat_ptr->evaluateScatter(r, rec, bsdf))
-        return emissive;
+    color b_sample, l_sample;
+    light_sample smpl;
 
-    ret = ret + emissive;
+    bool is_emissive = mat_ptr->evaluateEmissive(r, rec, emissive_bsdf);
+    if(is_emissive)
+        emissive = emissive_bsdf->eval(r, r);
+    if(!mat_ptr->evaluateScatter(r, rec, scatter_bsdf))
+        return emissive;
 
     if(lights != nullptr)
     {
-        light_sample smpl;
+        color light_color;
         gen_shadow_ray(rec, lights, smpl);
-        is_emissive = trace_shadow_ray(smpl, emissive);
+        is_emissive = trace_shadow_ray(smpl, light_color);
         if(is_emissive)
-            ret = ret + elem_product(bsdf->eval(r, smpl.shadow_ray), emissive) / 2.0;
+            //ret = ret + elem_product(bsdf->eval(r, smpl.shadow_ray), emissive) / 2.0;
+            l_sample = elem_product(scatter_bsdf->eval(r, smpl.shadow_ray), light_color);
     }
 
-    bsdf->sample(r, scattered);
-    color scatter_color = elem_product(bsdf->eval(r, scattered), ray_trace(scattered, world, skybox, lights, depth-1));
+    scatter_bsdf->sample(r, scattered);
+    b_sample = elem_product(scatter_bsdf->eval(r, scattered), ray_trace(scattered, world, skybox, lights, depth-1));
 
-    return ret + scatter_color / 2.0;
+    // Simply blend two samples if there is a delta function
+    if(scatter_bsdf->is_delta_bsdf() || smpl.is_delta_light)
+        return emissive + b_sample / 2.0 + l_sample / 2.0;
+
+    // Use heuristic power technique introduced at
+    // https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling
+    double light_pdf, bsdf_pdf, weight;
+    light_pdf = smpl.pdf, bsdf_pdf = scatter_bsdf->pdf(r, scattered);
+    weight = heuristic_weight(1, bsdf_pdf, 1, light_pdf);
+
+    return emissive + b_sample * weight + l_sample * (1 - weight);
 }
 
 color albedo_trace(const ray & r, const objlist_base & world, const skybox_base & skybox)

@@ -20,6 +20,7 @@ public:
 
         light_sample ret;
         ret.shadow_ray = ray(rec.p, sampled_vec);
+        ret.is_delta_light = false;
 
         // Test occlusion
         hit_record world_rec;

@@ -256,7 +256,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662282421 d:\pathtracer\tracer\concurrent_trace.h
+1662289230 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
@@ -318,7 +318,7 @@
 	"objects/object_base.h"
 	"pdf_base.h"
 
-1662281876 source:d:\pathtracer\test\importance_sampling_test.cpp
+1662282479 source:d:\pathtracer\test\importance_sampling_test.cpp
 	"ray/light/light.h"
 	"objects/triangle_flat.h"
 	"objects/spatial_structure/bvh/bvh.h"
@@ -347,13 +347,13 @@
 	"light_base.h"
 	"light_shape.h"
 
-1662260840 d:\pathtracer\ray\light\light_base.h
+1662288743 d:\pathtracer\ray\light\light_base.h
 	"objects/object_base.h"
 	"objects/objlist_base.h"
 	"../ray.h"
 	"utils/color.h"
 
-1662275029 d:\pathtracer\ray\light\light_shape.h
+1662288812 d:\pathtracer\ray\light\light_shape.h
 	"light_base.h"
 	<iostream>
 
