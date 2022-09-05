@@ -60,18 +60,12 @@ public:
         vec_t_init(0, std::move(arg), std::forward<Targs>(args)...);
     }
 
-
-    vec_t(std::initializer_list<T> init_list)
-    {
-
-    }
-
     // Operators
     T & operator [](size_t index)
     {
         return d[index];
     }
-    T operator [](size_t index) const
+    const T & operator [](size_t index) const
     {
         return d[index];
     }
@@ -264,5 +258,6 @@ inline vec_t<T, sz> elem_product (const vec_t<T, sz> & lhs, const vec_t<T, sz> &
     return ret;
 }
 
+#include "vec_double_spec.h"
 
 #endif // VEC_TEMPLATE_H_INCLUDED
