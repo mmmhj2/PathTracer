@@ -41,21 +41,21 @@ int main()
     auto back_mat = make_shared<lambertian>(back_tex);
 
     auto light = make_shared<emissive_diffuse>(light_tex);
-    auto light_t1 = make_shared<triangle_flat>(vert_up_light, uv, light);
-    auto light_t2 = make_shared<triangle_flat>(vert_up_light+2, uv+2, light);
+    auto light_t1 = make_shared<triangle_flat>(triangle_vert(vert_up_light), triangle_uv(uv), light);
+    auto light_t2 = make_shared<triangle_flat>(triangle_vert(vert_up_light+2), triangle_uv(uv+2), light);
     auto light_l1 = make_shared<diffuse_light_area>(world, light_t1);
     auto light_l2 = make_shared<diffuse_light_area>(world, light_t2);
 
-    world->add_object(make_shared<triangle_flat>(vert_right, uv, green));
-    world->add_object(make_shared<triangle_flat>(vert_right+2, uv+2, green));
-    world->add_object(make_shared<triangle_flat>(vert_left, uv, red));
-    world->add_object(make_shared<triangle_flat>(vert_left+2, uv+2, red));
-    world->add_object(make_shared<triangle_flat>(vert_back, uv, back_mat));
-    world->add_object(make_shared<triangle_flat>(vert_back+2, uv+2, back_mat));
-    world->add_object(make_shared<triangle_flat>(vert_down, uv, white));
-    world->add_object(make_shared<triangle_flat>(vert_down+2, uv+2, white));
-    world->add_object(make_shared<triangle_flat>(vert_up, uv, white));
-    world->add_object(make_shared<triangle_flat>(vert_up+2, uv+2, white));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_right), triangle_uv(uv), green));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_right+2), triangle_uv(uv+2), green));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_left), triangle_uv(uv), red));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_left+2), triangle_uv(uv+2), red));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_back), triangle_uv(uv), back_mat));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_back+2), triangle_uv(uv+2), back_mat));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_down), triangle_uv(uv), white));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_down+2), triangle_uv(uv+2), white));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_up), triangle_uv(uv), white));
+    world->add_object(make_shared<triangle_flat>(triangle_vert(vert_up+2), triangle_uv(uv+2), white));
     world->add_object(light_t1);
     world->add_object(light_t2);
     //world.add_object(make_shared<sphere>(point3( 0.0, 0.0, 0.0), 200, white));
