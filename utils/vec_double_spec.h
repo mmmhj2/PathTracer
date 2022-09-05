@@ -37,9 +37,9 @@ public:
     vec_t operator -() const
     {
         vec_t ret;
-        ret.d[0] = d[0];
-        ret.d[1] = d[1];
-        ret.d[2] = d[2];
+        ret.d[0] = -d[0];
+        ret.d[1] = -d[1];
+        ret.d[2] = -d[2];
         return ret;
     }
 
