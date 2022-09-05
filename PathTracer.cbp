@@ -164,6 +164,7 @@
 				<Compiler>
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
+					<Add option="-Og" />
 					<Add option="-g" />
 					<Add option="-DBVH_TEST" />
 				</Compiler>
@@ -184,6 +185,10 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="external/stb_impl.cpp" />
+		<Unit filename="external/tol.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="external/tol_impl.cpp" />
 		<Unit filename="image/ImageOutputBase.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -284,6 +289,9 @@
 		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="objects/spatial_structure/mesh.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="objects/sphere.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -365,6 +373,9 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="utils/vec3d.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="utils/vec_double_spec.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="utils/vec_template.h">

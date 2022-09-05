@@ -3,15 +3,19 @@
 
 #include "object_base.h"
 #include "material/material_base.h"
+#include "spatial_structure/mesh.h"
 
 class triangle_flat : public hittable_object
 {
 private:
     constexpr static double parallel_eps = 1e-6;
-    typedef std::pair <double, double> uv_pair;
 
-    point3 * vert;
-    uv_pair * uv;
+    //point3 * vert;
+    //uv_pair * uv;
+
+    triangle_vert vert;
+    triangle_uv uv;
+
     point3 normal;
 
     double area;
@@ -25,13 +29,16 @@ public:
     constexpr static int FLAG_DIRECTIONAL = 0x0001;
     constexpr static int FLAG_INVERSENORMAL = 0x0002;
 
-    triangle_flat(point3 _vert[3], uv_pair _uv[3], std::shared_ptr <material> _mat, int _flag = FLAG_DIRECTIONAL)
+    triangle_flat(const triangle_vert & _vert,
+                  const triangle_uv & _uv,
+                  std::shared_ptr <material> _mat,
+                  int _flag = FLAG_DIRECTIONAL)
+        : vert(_vert), uv(_uv)
     {
         //std::copy(_vert, _vert+3, vert);
-        vert = _vert, uv = _uv;
         //std::copy(_uv, _uv+3, uv);
         // Flat triangle
-        normal = ((vert[1] - vert[0]) ^ (vert[2] - vert[0]));
+        normal = ((*(vert[1]) - *(vert[0])) ^ (*(vert[2]) - *(vert[0])));
         mat = _mat;
 
         flag = _flag;
@@ -47,7 +54,7 @@ public:
         if(-parallel_eps <= NdotRay && NdotRay <= parallel_eps)
             return false;
 
-        double t = - (normal * r.origin() - normal * vert[0]) / NdotRay;
+        double t = - (normal * r.origin() - normal * (*(vert[0]))) / NdotRay;
         if(t < t_min || t > t_max)
             return false;
 
@@ -60,8 +67,8 @@ public:
 
         for(int i = 0; i < 3; i++)
         {
-            vec3 edge = vert[(i+1) % 3] - vert[i];
-            vec3 vp = p - vert[i];
+            vec3 edge = *(vert[(i+1) % 3]) - *(vert[i]);
+            vec3 vp = p - *(vert[i]);
             vec3 C = edge ^ vp;
             barycentric[i] = normal * C / area_square;
             if(barycentric[i] < 0)
@@ -78,8 +85,8 @@ public:
 
         rec.t = t;
         rec.mat = mat;
-        rec.u = barycentric[1] * uv[0].first + barycentric[2] * uv[1].first + barycentric[0] * uv[2].first;
-        rec.v = barycentric[1] * uv[0].second + barycentric[2] * uv[1].second + barycentric[0] * uv[2].second;
+        rec.u = barycentric[1] * uv[0]->first + barycentric[2] * uv[1]->first + barycentric[0] * uv[2]->first;
+        rec.v = barycentric[1] * uv[0]->second + barycentric[2] * uv[1]->second + barycentric[0] * uv[2]->second;
         return true;
     }
 
@@ -89,8 +96,8 @@ public:
 
         for(int i = 0; i < 3; i++)
         {
-            _max[i] = std::max({vert[0][i], vert[1][i], vert[2][i]});
-            _min[i] = std::min({vert[0][i], vert[1][i], vert[2][i]});
+            _max[i] = std::max({(*vert[0])[i], (*vert[1])[i], (*vert[2])[i]});
+            _min[i] = std::min({(*vert[0])[i], (*vert[1])[i], (*vert[2])[i]});
 
             // Extend AABB a little
             if(_max[i] - _min[i] <= 0.001)
@@ -102,7 +109,7 @@ public:
 
     virtual point3 get_centroid() const
     {
-        return (vert[0] + vert[1] + vert[2]) / 3.0;
+        return (*vert[0] + *vert[1] + *vert[2]) / 3.0;
     }
 
     virtual double pdf_value(const ray & r, const hit_record & h) const
@@ -118,7 +125,7 @@ public:
         double r1, r2;
         r1 = tools::random_double();
         r2 = tools::random_double();
-        vec3 rand_point = (1 - std::sqrt(r1)) * vert[0] + (std::sqrt(r1)*(1 - r2)) * vert[1] + (r2*std::sqrt(r1)) * vert[2];
+        vec3 rand_point = (1 - std::sqrt(r1)) * *vert[0] + (std::sqrt(r1)*(1 - r2)) * *vert[1] + (r2*std::sqrt(r1)) * *vert[2];
         return rand_point - from;
     }
 

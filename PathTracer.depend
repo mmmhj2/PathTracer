@@ -250,9 +250,10 @@
 	"image/ImageOutputPPM.h"
 	"cornellbox_def.h"
 
-1662274899 d:\pathtracer\objects\triangle_flat.h
+1662387475 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
+	"spatial_structure/mesh.h"
 
 1662198172 d:\pathtracer\tracer\tracer.h
 	"concurrent_trace.h"
@@ -321,7 +322,7 @@
 	"objects/object_base.h"
 	"pdf_base.h"
 
-1662282479 source:d:\pathtracer\test\importance_sampling_test.cpp
+1662387645 source:d:\pathtracer\test\importance_sampling_test.cpp
 	"ray/light/light.h"
 	"objects/triangle_flat.h"
 	"objects/spatial_structure/bvh/bvh.h"
@@ -388,4 +389,38 @@
 
 1662383727 d:\pathtracer\utils\vec_double_spec.h
 	<valarray>
+
+1662387791 d:\pathtracer\objects\spatial_structure\mesh.h
+	"utils/vec3d.h"
+
+1662386476 source:d:\pathtracer\external\tol_impl.cpp
+	"tol.h"
+
+1662386263 d:\pathtracer\external\tol.h
+	"external/tinyobjloader/tiny_obj_loader.h"
+
+1662131366 d:\pathtracer\external\tinyobjloader\tiny_obj_loader.h
+	<map>
+	<string>
+	<vector>
+	<cassert>
+	<cctype>
+	<cmath>
+	<cstddef>
+	<cstdlib>
+	<cstring>
+	<fstream>
+	<limits>
+	<set>
+	<sstream>
+	<utility>
+	<array>
+	"mapbox/earcut.hpp"
+
+1662131366 d:\pathtracer\external\tinyobjloader\mapbox\earcut.hpp
+	<algorithm>
+	<cassert>
+	<cmath>
+	<memory>
+	<vector>
 
