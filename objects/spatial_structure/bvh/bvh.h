@@ -16,6 +16,7 @@ private:
 
 public:
     bvh_node(obj_vec & objs, size_t start, size_t fin);
+    virtual std::shared_ptr <material> get_material() const;
     virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
     virtual bool get_aabb(aabb & output) const override;
 
@@ -35,6 +36,7 @@ private:
     std::shared_ptr <bvh_node> root;
 
 public:
+    virtual std::shared_ptr <material> get_material() const;
     virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
     virtual void add_object(std::shared_ptr <hittable_object> obj) override;
     virtual bool get_aabb(aabb & output) const override;

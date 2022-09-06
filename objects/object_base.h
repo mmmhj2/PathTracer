@@ -6,6 +6,7 @@
 #include "utils/defs.h"
 #include <memory>
 
+class hittable_object;
 class material;
 
 struct hit_record
@@ -15,7 +16,7 @@ struct hit_record
     vec3 normal;
     double t;
     double u, v;
-    std::weak_ptr <material> mat;
+    const hittable_object * obj;
     bool is_front;
 
     void set_normal(const ray & incident, const vec3 & normal_out)
@@ -44,6 +45,7 @@ public:
     virtual double pdf_value(const ray & r, const hit_record & h) const = 0;
     // Generate a vector pointing to the object in global frame
     virtual vec3 sample(const point3 & from) const = 0;
+    virtual std::shared_ptr <material> get_material() const = 0;
 };
 
 #endif // OBJECT_BASE_H_INCLUDED

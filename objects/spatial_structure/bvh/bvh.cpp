@@ -194,6 +194,15 @@ vec3 bvh_tree::sample(const point3 & from) const
     return objs[tools::random_int(0, sz - 1)];
 }*/
 
+std::shared_ptr <material> bvh_node::get_material() const
+{
+    return nullptr;
+}
+
+std::shared_ptr <material> bvh_tree::get_material() const
+{
+    return nullptr;
+}
 
 
 #endif // BVH_TEST
