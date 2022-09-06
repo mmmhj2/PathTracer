@@ -55,7 +55,7 @@ public:
         return 0;
     }
 
-    virtual bool is_delta_bsdf() const
+    virtual bool is_delta_bsdf() const override
     {
         return true;
     }

@@ -19,8 +19,8 @@ public:
         vec3 omega_out = -o.direction().unit();
         vec3 omega_in = i.direction().unit();
         vec3 half_vec = (omega_out + omega_in).unit();
-        double z = std::max(0., omega_out * half_vec);
-        double weight = (power + 2.0) / (8 * constants::pi) * std::pow(z, power * 1.0);
+        double z = std::max(0., rec.normal.unit() * half_vec);
+        double weight = (power + 2.0) / (2 * constants::pi) * std::pow(z, power * 1.0);
         return spec->get_color(rec.u, rec.v, rec.p) * weight * (omega_in * rec.normal.unit());
     }
 
@@ -38,7 +38,7 @@ public:
         vec3 half_vec = (omega_out + i.direction().unit()).unit();
         double cos_beta = half_vec * rec.normal.unit();
 
-        return (power + 1) * std::pow(cos_beta, power) / 2 / constants::pi;
+        return (power + 1.0) * std::pow(cos_beta, power * 1.0) / (8 * constants::pi * (omega_out * half_vec));
     }
 
     virtual void sample(const ray & o, ray & spl) const override
