@@ -19,7 +19,7 @@
 1661785337 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
 
-1662381998 d:\pathtracer\utils\vec_template.h
+1662388822 d:\pathtracer\utils\vec_template.h
 	<ostream>
 	<algorithm>
 	<cmath>
@@ -51,17 +51,17 @@
 	"utils/color.h"
 	"ray.h"
 
-1662280878 d:\pathtracer\utils\defs.h
+1662394845 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
 	<cmath>
 
-1662275574 d:\pathtracer\objects\sphere.h
+1662461545 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 	"utils/orthonormal_basis.h"
 
-1662274876 d:\pathtracer\objects\object_base.h
+1662461514 d:\pathtracer\objects\object_base.h
 	"spatial_structure/aabb.h"
 	"ray/ray.h"
 	"utils/defs.h"
@@ -110,18 +110,18 @@
 1662299508 d:\pathtracer\material\metallic.h
 	"material_base.h"
 
-1662299501 d:\pathtracer\material\dielectric.h
+1662444013 d:\pathtracer\material\dielectric.h
 	"material_base.h"
 
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1662275065 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1662456280 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
 	"utils/defs.h"
 	<iostream>
 
-1662275076 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
+1662456248 d:\pathtracer\objects\spatial_structure\bvh\bvh.h
 	"../../objlist_base.h"
 
 1661865666 source:d:\pathtracer\test\bvh_test.cpp
@@ -213,7 +213,7 @@
 	"utils/color.h"
 	"ray/ray.h"
 
-1662306301 source:d:\pathtracer\test\specular_test.cpp
+1662388693 source:d:\pathtracer\test\specular_test.cpp
 	<iostream>
 	<fstream>
 	<future>
@@ -250,7 +250,7 @@
 	"image/ImageOutputPPM.h"
 	"cornellbox_def.h"
 
-1662387475 d:\pathtracer\objects\triangle_flat.h
+1662461490 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
 	"spatial_structure/mesh.h"
@@ -260,7 +260,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662308657 d:\pathtracer\tracer\concurrent_trace.h
+1662461619 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
@@ -322,12 +322,14 @@
 	"objects/object_base.h"
 	"pdf_base.h"
 
-1662387645 source:d:\pathtracer\test\importance_sampling_test.cpp
+1662449283 source:d:\pathtracer\test\importance_sampling_test.cpp
 	"ray/light/light.h"
 	"objects/triangle_flat.h"
 	"objects/spatial_structure/bvh/bvh.h"
 	"material/lambertian_simple.h"
 	"material/emissive_simple.h"
+	"material/dielectric.h"
+	"material/metallic.h"
 	"material/texture/texture_base.h"
 	"material/texture/checker_texture.h"
 	"material/texture/image_texture.h"
@@ -343,7 +345,7 @@
 	<fstream>
 	<future>
 
-1662304616 d:\pathtracer\tracer\shadow_ray_trace.h
+1662461587 d:\pathtracer\tracer\shadow_ray_trace.h
 	"objects/objlist_base.h"
 	"ray/light/light.h"
 
@@ -351,14 +353,16 @@
 	"light_base.h"
 	"light_shape.h"
 
-1662303242 d:\pathtracer\ray\light\light_base.h
+1662461479 d:\pathtracer\ray\light\light_base.h
 	"objects/object_base.h"
 	"objects/objlist_base.h"
 	"../ray.h"
 	"utils/color.h"
 
-1662304931 d:\pathtracer\ray\light\light_shape.h
+1662461008 d:\pathtracer\ray\light\light_shape.h
 	"light_base.h"
+	"material/material_base.h"
+	"material/bsdf/bsdf.h"
 	<iostream>
 
 1662278781 d:\pathtracer\material\bsdf\bsdf.h
@@ -368,7 +372,7 @@
 	"bsdf_specular_refraction.h"
 	"bsdf_bp_specular.h"
 
-1662307528 d:\pathtracer\material\bsdf\bsdf_base.h
+1662394607 d:\pathtracer\material\bsdf\bsdf_base.h
 	"ray/ray.h"
 	"objects/object_base.h"
 	"utils/color.h"
@@ -381,13 +385,13 @@
 1662307416 d:\pathtracer\material\bsdf\bsdf_specular_reflection.h
 	"bsdf_base.h"
 
-1662277125 d:\pathtracer\material\bsdf\bsdf_specular_refraction.h
+1662438969 d:\pathtracer\material\bsdf\bsdf_specular_refraction.h
 	"bsdf_base.h"
 
-1662308091 d:\pathtracer\material\bsdf\bsdf_bp_specular.h
+1662429714 d:\pathtracer\material\bsdf\bsdf_bp_specular.h
 	"bsdf_base.h"
 
-1662383727 d:\pathtracer\utils\vec_double_spec.h
+1662388822 d:\pathtracer\utils\vec_double_spec.h
 	<valarray>
 
 1662387791 d:\pathtracer\objects\spatial_structure\mesh.h
