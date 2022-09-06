@@ -31,7 +31,7 @@ int main()
     auto texture_white_light = make_shared<solid_color>(color(30, 30, 30));
 
     auto material_ground = make_shared<lambertian>(texture_ground);
-    auto material_center = make_shared<blinn_phong>(texture_center, texture_half_white, 1024);
+    auto material_center = make_shared<blinn_phong>(texture_center, texture_half_white, 64);
     auto material_left   = make_shared<dielectric>(1.5, texture_full_white);
     auto material_right  = make_shared<metallic>(texture_full_white);
     auto material_up  = make_shared<emissive_diffuse>(texture_white_light);
@@ -60,7 +60,7 @@ int main()
     for(int i = 0; i < constants::blocks; i++)
         async_task.push_back(std::async(concurrent::trace_block, std::cref(infos[i])));
 
-    //pbar::init_curses();
+    pbar::init_curses();
     while(true)
     {
         if(pbar::print_progressbar(infos))

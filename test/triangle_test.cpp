@@ -104,7 +104,7 @@ int main()
     int image_width = 600;
     int image_height = 600;
 
-    concurrent::fill_info(infos, image_width, image_height, constants::blocks, &cam, &world, &sky);
+    concurrent::fill_info(infos, image_width, image_height, constants::max_depth, constants::blocks, &cam, &world, &sky);
 
     std::vector <std::future<std::vector<color>>> async_task;
     for(int i = 0; i < constants::blocks; i++)

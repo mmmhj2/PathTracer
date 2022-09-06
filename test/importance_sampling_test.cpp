@@ -4,6 +4,8 @@
 
 #include "material/lambertian_simple.h"
 #include "material/emissive_simple.h"
+#include "material/dielectric.h"
+#include "material/metallic.h"
 #include "material/texture/texture_base.h"
 #include "material/texture/checker_texture.h"
 #include "material/texture/image_texture.h"
@@ -32,6 +34,8 @@ int main()
 
     auto red_tex   = make_shared<solid_color>(color(.65, .05, .05));
     auto white_tex = make_shared<solid_color>(color(.73, .73, .73));
+    auto half_white_tex = make_shared<solid_color>(color(.5, .5, .5));
+    auto full_white_tex = make_shared<solid_color>(color(1, 1, 1));
     auto light_tex = make_shared<solid_color>(color(25, 25, 25));
     auto green_tex = make_shared<solid_color>(color(.12, .45, .15));
     auto back_tex = make_shared<image_texture>("checker-map_tho.png");
@@ -39,6 +43,8 @@ int main()
     auto white = make_shared<lambertian>(white_tex);
     auto green = make_shared<lambertian>(green_tex);
     auto back_mat = make_shared<lambertian>(back_tex);
+
+    auto sphere_mat = make_shared<metallic>(white_tex);
 
     auto light = make_shared<emissive_diffuse>(light_tex);
     auto light_t1 = make_shared<triangle_flat>(triangle_vert(vert_up_light), triangle_uv(uv), light);
@@ -58,7 +64,7 @@ int main()
     world->add_object(make_shared<triangle_flat>(triangle_vert(vert_up+2), triangle_uv(uv+2), white));
     world->add_object(light_t1);
     world->add_object(light_t2);
-    //world.add_object(make_shared<sphere>(point3( 0.0, 0.0, 0.0), 200, white));
+    world->add_object(make_shared<sphere>(point3( 250.0, 75.0, 250.0), 75, sphere_mat));
     world->build();
     light_list lights;
     lights.push_back(light_l1);
