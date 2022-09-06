@@ -101,9 +101,16 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     if(smpl.cannot_hit)
         return emissive + b_sample;
 
+    if(smpl.is_occluded)
+    {
+        light_color = ray_trace(smpl.shadow_ray, world, skybox, nullptr, depth-1);
+        l_sample = elem_product(scatter_bsdf->eval_raw(r, smpl.shadow_ray), light_color);
+        l_sample /= smpl.pdf;
+        return emissive + b_sample / 2 + l_sample / 2;
+    }
+
     trace_shadow_ray(smpl, light_color);
     l_sample = elem_product(scatter_bsdf->eval_raw(r, smpl.shadow_ray), light_color);
-
 
     //if(trace_shadow_ray(smpl, light_color))
     //    l_sample = elem_product(scatter_bsdf->eval(r, smpl.shadow_ray), light_color);
@@ -113,9 +120,6 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
     double light_pdf, bsdf_pdf, weight;
     light_pdf = smpl.pdf, bsdf_pdf = scatter_bsdf->pdf(r, scattered);
     weight = heuristic_weight(1, bsdf_pdf, 1, light_pdf);
-
-    //if(tools::random_double() <= 0.00001)
-    //    std::cerr << "BSDF PDF : " << bsdf_pdf << " Light PDF : " << light_pdf << std::endl ;
 
     return emissive + b_sample * (weight) + l_sample * (1 - weight);
 }

@@ -33,4 +33,9 @@ bool trace_shadow_ray(const light_sample & sample, color & emissive)
     return is_emissive;
 }
 
+color trace_shadow_ray_recursive(const ray & r)
+{
+
+}
+
 #endif // SHADOW_RAY_TRACE_H_INCLUDED

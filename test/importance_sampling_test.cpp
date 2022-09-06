@@ -4,6 +4,7 @@
 
 #include "material/lambertian_simple.h"
 #include "material/emissive_simple.h"
+#include "material/metallic.h"
 #include "material/texture/texture_base.h"
 #include "material/texture/checker_texture.h"
 #include "material/texture/image_texture.h"
@@ -40,6 +41,8 @@ int main()
     auto green = make_shared<lambertian>(green_tex);
     auto back_mat = make_shared<lambertian>(back_tex);
 
+    auto sphere_mat = make_shared<metallic>(white_tex);
+
     auto light = make_shared<emissive_diffuse>(light_tex);
     auto light_t1 = make_shared<triangle_flat>(triangle_vert(vert_up_light), triangle_uv(uv), light);
     auto light_t2 = make_shared<triangle_flat>(triangle_vert(vert_up_light+2), triangle_uv(uv+2), light);
@@ -58,7 +61,7 @@ int main()
     world->add_object(make_shared<triangle_flat>(triangle_vert(vert_up+2), triangle_uv(uv+2), white));
     world->add_object(light_t1);
     world->add_object(light_t2);
-    //world.add_object(make_shared<sphere>(point3( 0.0, 0.0, 0.0), 200, white));
+    world->add_object(make_shared<sphere>(point3( 270, 100, 270), 100, sphere_mat));
     world->build();
     light_list lights;
     lights.push_back(light_l1);
