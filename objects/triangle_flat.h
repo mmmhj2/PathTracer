@@ -47,6 +47,11 @@ public:
         area = normal.norm() / 2.0;
     }
 
+    virtual std::shared_ptr <material> get_material() const
+    {
+        return mat;
+    }
+
     virtual bool hit (const ray & r, double t_min, double t_max, hit_record & rec) const
     {
         // Parallel test
@@ -84,7 +89,7 @@ public:
             return false;
 
         rec.t = t;
-        rec.mat = mat;
+        rec.obj = this;
         rec.u = barycentric[1] * uv[0]->first + barycentric[2] * uv[1]->first + barycentric[0] * uv[2]->first;
         rec.v = barycentric[1] * uv[0]->second + barycentric[2] * uv[1]->second + barycentric[0] * uv[2]->second;
         return true;

@@ -37,6 +37,11 @@ public:
         : center(c), radius(r), material_ptr(mat)
     {};
 
+    virtual std::shared_ptr <material> get_material() const
+    {
+        return material_ptr;
+    }
+
     virtual bool hit(const ray & r, double t_min, double t_max, hit_record & rec) const override;
     virtual bool get_aabb(aabb & output) const;
 
@@ -80,12 +85,11 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) cons
 
     rec.t = root;
     rec.p = r.at(root);
-    rec.mat = material_ptr;
+    rec.obj = this;
     vec3 normal = (rec.p - center) / radius;
     rec.set_normal(r, normal);
     std::tie(rec.u, rec.v) = get_sphere_uv(normal);
-    //std::cout << "ray : " << r.direction() << " intersect at : " << rec.p << " normal : " << rec.normal << std::endl ;
-    //std::cout << "UV : " << rec.u << " " << rec.v << std::endl ;
+
     return true;
 }
 
