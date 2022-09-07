@@ -4,6 +4,7 @@
 #include "utils/orthonormal_basis.h"
 #include "bsdf_base.h"
 #include "../texture/texture_base.h"
+#include "utils/qrng/sobol_qrng.h"
 
 class BSDF_lambertian : public BSDF_base
 {
@@ -34,8 +35,9 @@ public:
         // Cosine weighted sample
         onb uvw(rec.normal);
         double r1, r2, z, phi;
-        r1 = tools::random_double();
-        r2 = tools::random_double();
+//        r1 = tools::random_double();
+//        r2 = tools::random_double();
+        std::tie(r1, r2) = sobol_generator::random_double_pair();
         z = std::sqrt(1 - r2);
         phi = 2 * constants::pi * r1;
 

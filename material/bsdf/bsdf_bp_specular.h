@@ -2,6 +2,7 @@
 #define BSDF_BP_SPECULAR_H_INCLUDED
 
 #include "bsdf_base.h"
+#include "utils/qrng/sobol_qrng.h"
 
 // BSDF used for specular term of Blinn-Phong BSDF
 class BSDF_BP_specular : public BSDF_base
@@ -44,8 +45,9 @@ public:
     virtual void sample(const ray & o, ray & spl) const override
     {
         double r1, r2;
-        r1 = tools::random_double();
-        r2 = tools::random_double();
+//        r1 = tools::random_double();
+//        r2 = tools::random_double();
+        std::tie(r1, r2) = sobol_generator::random_double_pair();
         double theta_half, phi_half;
         theta_half = std::acos(std::pow(r1, 1.0 / (power + 1)));
         phi_half = 2 * constants::pi * r2;

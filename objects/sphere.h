@@ -22,8 +22,9 @@ public:
     static vec3 random_to_sphere(double radius, double distance_sq)
     {
         double r1, r2, z, phi, x, y;
-        r1 = tools::random_double();
-        r2 = tools::random_double();
+//        r1 = tools::random_double();
+//        r2 = tools::random_double();
+        std::tie(r1, r2) = sobol_generator::random_double_pair();
         z = 1 + r2*(std::sqrt(1-radius*radius/distance_sq) - 1);
         phi = 2 * constants::pi * r1;
         x = std::cos(phi) * std::sqrt(1 - z * z);

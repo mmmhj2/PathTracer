@@ -5,6 +5,7 @@
 #include <atomic>
 #include "utils/vec3d.h"
 #include "utils/defs.h"
+#include "utils/qrng/sobol_qrng.h"
 #include "ray/ray.h"
 #include "objects/objlist_base.h"
 #include "material/material_base.h"
@@ -145,8 +146,9 @@ std::vector <color> trace_block(const block_info & info)
             for(int k = 0; k < constants::sample_per_pixel; k++)
             {
                 double u, v;
-                u = (i + tools::random_double()) / (info.image_width - 1);
-                v = (j + tools::random_double()) / (info.image_height - 1);
+                std::tie(u, v) = sobol_generator::random_double_pair();
+                u = (i + u - 0.5) / (info.image_width - 1);
+                v = (j + v - 0.5) / (info.image_height - 1);
                 ray r = info.cam->get_ray(u, v);
                 result += ray_trace(r, *(info.world), *(info.skybox), info.lights, info.max_depth);
             }

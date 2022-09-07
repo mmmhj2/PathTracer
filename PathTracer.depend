@@ -47,7 +47,7 @@
 	<thread>
 	<cmath>
 
-1662463297 d:\pathtracer\objects\sphere.h
+1662554905 d:\pathtracer\objects\sphere.h
 	"object_base.h"
 	"utils/orthonormal_basis.h"
 
@@ -240,7 +240,7 @@
 	"image/ImageOutputPPM.h"
 	"cornellbox_def.h"
 
-1662463297 d:\pathtracer\objects\triangle_flat.h
+1662554915 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
 	"spatial_structure/mesh.h"
@@ -250,11 +250,12 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662552262 d:\pathtracer\tracer\concurrent_trace.h
+1662554691 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
 	"utils/defs.h"
+	"utils/qrng/sobol_qrng.h"
 	"ray/ray.h"
 	"objects/objlist_base.h"
 	"material/material_base.h"
@@ -312,7 +313,7 @@
 	"objects/object_base.h"
 	"pdf_base.h"
 
-1662467389 source:d:\pathtracer\test\importance_sampling_test.cpp
+1662554642 source:d:\pathtracer\test\importance_sampling_test.cpp
 	"ray/light/light.h"
 	"objects/triangle_flat.h"
 	"objects/spatial_structure/bvh/bvh.h"
@@ -364,10 +365,11 @@
 	"objects/object_base.h"
 	"utils/color.h"
 
-1662308074 d:\pathtracer\material\bsdf\bsdf_lambertian.h
+1662554941 d:\pathtracer\material\bsdf\bsdf_lambertian.h
 	"utils/orthonormal_basis.h"
 	"bsdf_base.h"
 	"../texture/texture_base.h"
+	"utils/qrng/sobol_qrng.h"
 
 1662307416 d:\pathtracer\material\bsdf\bsdf_specular_reflection.h
 	"bsdf_base.h"
@@ -375,8 +377,9 @@
 1662438969 d:\pathtracer\material\bsdf\bsdf_specular_refraction.h
 	"bsdf_base.h"
 
-1662429714 d:\pathtracer\material\bsdf\bsdf_bp_specular.h
+1662554810 d:\pathtracer\material\bsdf\bsdf_bp_specular.h
 	"bsdf_base.h"
+	"utils/qrng/sobol_qrng.h"
 
 1662388822 d:\pathtracer\utils\vec_double_spec.h
 	<valarray>
@@ -427,7 +430,7 @@
 
 1662554051 d:\pathtracer\external\sobol.hpp
 
-1662554277 d:\pathtracer\utils\qrng\sobol_qrng.h
+1662554361 d:\pathtracer\utils\qrng\sobol_qrng.h
 	<algorithm>
 	"external/sobol.hpp"
 

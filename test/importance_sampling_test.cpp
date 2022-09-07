@@ -27,6 +27,7 @@ using namespace std;
 int main()
 {
     using namespace cornell_box;
+    sobol_generator::init_generator();
     camera cam(point3(278,278,1350), point3(278,278,0), vec3(0,1,0), constants::pi / 4.5, 1.0);
     skybox_color sky;
     auto world = make_shared<bvh_tree>();
