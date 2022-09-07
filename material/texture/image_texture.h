@@ -20,7 +20,7 @@ public:
     image_texture(const image_texture &) = delete;
     operator = (const image_texture &) = delete;
 
-    image_texture(const char * filename)
+    explicit image_texture(const char * filename)
     {
         int channels_in_file = bytes_per_pixel;
         data = stbi_load(filename, &width, &height, &channels_in_file, bytes_per_pixel);

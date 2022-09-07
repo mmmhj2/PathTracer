@@ -35,7 +35,7 @@ public:
         std::fill(d, d + sz, 0);
     }
 
-    vec_t(T data[sz])
+    explicit vec_t(T data[sz])
     {
         std::copy(data, data + sz, d);
     }

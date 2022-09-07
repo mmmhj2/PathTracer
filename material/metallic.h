@@ -9,7 +9,7 @@ private:
     std::shared_ptr <uv_texture> albedo;
 
 public:
-    metallic(std::shared_ptr <uv_texture> alb) : albedo(alb)
+    explicit metallic(std::shared_ptr <uv_texture> alb) : albedo(alb)
     {
     }
 

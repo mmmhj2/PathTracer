@@ -8,7 +8,7 @@
 class lambertian : public non_emissive_material
 {
 public:
-    lambertian(std::shared_ptr <uv_texture> clr) : k_L(clr)
+    explicit lambertian(std::shared_ptr <uv_texture> clr) : k_L(clr)
     {
     }
 

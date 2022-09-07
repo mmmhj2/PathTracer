@@ -22,7 +22,7 @@ public:
     {
     }
 
-    skybox_color(color _clr) : sky_color(_clr)
+    explicit skybox_color(color _clr) : sky_color(_clr)
     {
     }
 

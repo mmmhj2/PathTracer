@@ -12,7 +12,7 @@ private:
 
 public:
     emissive_diffuse() = delete;
-    emissive_diffuse(std::shared_ptr <uv_texture> _emit)
+    explicit emissive_diffuse(std::shared_ptr <uv_texture> _emit)
     : emit(_emit) {};
 
     virtual color getAlbedo(const hit_record & rec) const
