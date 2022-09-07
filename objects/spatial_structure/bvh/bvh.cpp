@@ -160,7 +160,7 @@ void bvh_tree::debug()
     else
         root->debug();
 }
-
+#endif
 // Sampling related functions
 double bvh_node::pdf_value(const ray & r, const hit_record & h) const
 {
@@ -193,7 +193,3 @@ vec3 bvh_tree::sample(const point3 & from) const
     int sz = (int)objs.size();
     return objs[tools::random_int(0, sz - 1)];
 }*/
-
-
-
-#endif // BVH_TEST
