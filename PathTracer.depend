@@ -1,20 +1,10 @@
 # depslib dependency file v1.0
-1661826153 source:d:\pathtracer\main.cpp
+1662552328 source:d:\pathtracer\main.cpp
 	<fstream>
 	<iostream>
 	<future>
 	<bitset>
-	"utils/defs.h"
-	"image/ImageOutputPPM.h"
-	"ray/skybox_base.h"
-	"objects/sphere.h"
-	"objects/spatial_structure/bvh/bvh.h"
-	"ray/camera.h"
-	"utils/concurrent_trace.h"
-	"material/lambertian_simple.h"
-	"material/dielectric.h"
-	"material/metallic.h"
-	"material/texture/checker_texture.h"
+	"utils/qrng/sobol_qrng.h"
 
 1661785337 d:\pathtracer\utils\vec3d.h
 	"vec_template.h"
@@ -116,7 +106,7 @@
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
 	"utils/vec3d.h"
 
-1662463297 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
+1662552515 source:d:\pathtracer\objects\spatial_structure\bvh\bvh.cpp
 	"bvh.h"
 	"utils/defs.h"
 	<iostream>
@@ -260,7 +250,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662466904 d:\pathtracer\tracer\concurrent_trace.h
+1662552262 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
@@ -424,4 +414,20 @@
 	<cmath>
 	<memory>
 	<vector>
+
+1662554023 source:d:\pathtracer\external\sobol.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<cmath>
+	<ctime>
+	<cstring>
+	"sobol.hpp"
+
+1662554051 d:\pathtracer\external\sobol.hpp
+
+1662554277 d:\pathtracer\utils\qrng\sobol_qrng.h
+	<algorithm>
+	"external/sobol.hpp"
 

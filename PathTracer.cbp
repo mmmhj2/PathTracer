@@ -181,6 +181,8 @@
 			<Add option="-fexceptions" />
 			<Add directory="../PathTracer" />
 		</Compiler>
+		<Unit filename="external/sobol.cpp" />
+		<Unit filename="external/sobol.hpp" />
 		<Unit filename="external/stb.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
@@ -370,6 +372,9 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="utils/orthonormal_basis.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="utils/qrng/sobol_qrng.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="utils/vec3d.h">
