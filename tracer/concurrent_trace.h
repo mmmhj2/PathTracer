@@ -90,8 +90,8 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
         return emissive;
 
     scatter_bsdf->sample(r, scattered);
-    b_sample = elem_product(scatter_bsdf->eval(r, scattered), ray_trace(scattered, world, skybox, lights, depth-1));
 
+    b_sample = elem_product(scatter_bsdf->eval(r, scattered), ray_trace(scattered, world, skybox, lights, depth-1));
     // No MIS if no lights or scatter BSDF contains delta function
     if(lights == nullptr || scatter_bsdf->is_delta_bsdf())
         return emissive + b_sample;
@@ -104,12 +104,10 @@ color ray_trace(const ray & r, const objlist_base & world, const skybox_base & s
 
     if(smpl.is_occluded)
     {
-        light_color = ray_trace(smpl.shadow_ray, world, skybox, nullptr, depth-1);
+        light_color = ray_trace(smpl.shadow_ray, world, skybox, nullptr, depth-1) / smpl.pdf;
         l_sample = elem_product(scatter_bsdf->eval_raw(r, smpl.shadow_ray), light_color);
-        l_sample /= smpl.pdf;
         return emissive + b_sample / 2 + l_sample / 2;
     }
-
     trace_shadow_ray(smpl, light_color);
     l_sample = elem_product(scatter_bsdf->eval_raw(r, smpl.shadow_ray), light_color);
 
@@ -169,7 +167,7 @@ std::vector <color> albedo_trace_block(const block_info & info)
         for(int i = 0; i < info.image_width; i++)
         {
             color result;
-            for(int k = 0; k < constants::sample_per_pixel; k++)
+            for(int k = 0; k < constants::albedo_sample_per_pixel; k++)
             {
                 double u, v;
                 u = (i + tools::random_double()) / (info.image_width - 1);
@@ -177,7 +175,7 @@ std::vector <color> albedo_trace_block(const block_info & info)
                 ray r = info.cam->get_ray(u, v);
                 result += albedo_trace(r, *(info.world), *(info.skybox));
             }
-            result /= constants::sample_per_pixel;
+            result /= constants::albedo_sample_per_pixel;
             ret.push_back(result);
         }
         info.progress++;

@@ -19,6 +19,7 @@ constexpr int max_depth = 20;
 //constexpr double focal_length = 1.0;
 
 constexpr int sample_per_pixel = 50;
+constexpr int albedo_sample_per_pixel = 5;
 
 const int blocks = std::thread::hardware_concurrency() - 1;
 /*
