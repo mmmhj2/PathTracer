@@ -175,6 +175,25 @@
 					<Add library="ncurses" />
 				</Linker>
 			</Target>
+			<Target title="obj_test">
+				<Option output="bin/obj_test/PathTracer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/obj_test" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-Og" />
+					<Add option="-g" />
+					<Add option="-DBVH_TEST" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add library="ncurses" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -272,6 +291,7 @@
 			<Option target="pbar_test" />
 			<Option target="pdf_test" />
 			<Option target="impsmp_test" />
+			<Option target="obj_test" />
 		</Unit>
 		<Unit filename="objects/spatial_structure/bvh/bvh.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -300,14 +320,40 @@
 		<Unit filename="ray/ray.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="skybox/skybox_base.h" />
+		<Unit filename="skybox/skybox_base.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="vector_test" />
+			<Option target="Profile" />
+			<Option target="bvh_test" />
+			<Option target="image_test" />
+			<Option target="emissive_test" />
+			<Option target="specular_test" />
+			<Option target="triangle_test" />
+			<Option target="pbar_test" />
+			<Option target="pdf_test" />
+			<Option target="impsmp_test" />
+		</Unit>
 		<Unit filename="skybox/skybox_colored.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="test/bvh_test.cpp">
 			<Option target="bvh_test" />
 		</Unit>
-		<Unit filename="test/cornellbox_def.h" />
+		<Unit filename="test/cornellbox_def.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="vector_test" />
+			<Option target="Profile" />
+			<Option target="bvh_test" />
+			<Option target="image_test" />
+			<Option target="emissive_test" />
+			<Option target="specular_test" />
+			<Option target="triangle_test" />
+			<Option target="pbar_test" />
+			<Option target="pdf_test" />
+			<Option target="impsmp_test" />
+		</Unit>
 		<Unit filename="test/emissive_test.cpp">
 			<Option target="emissive_test" />
 		</Unit>
@@ -316,6 +362,9 @@
 		</Unit>
 		<Unit filename="test/importance_sampling_test.cpp">
 			<Option target="impsmp_test" />
+		</Unit>
+		<Unit filename="test/obj_test.cpp">
+			<Option target="obj_test" />
 		</Unit>
 		<Unit filename="test/pbar_test.cpp">
 			<Option target="pbar_test" />

@@ -41,7 +41,7 @@
 	"utils/color.h"
 	"ray.h"
 
-1662466626 d:\pathtracer\utils\defs.h
+1662649171 d:\pathtracer\utils\defs.h
 	"vec3d.h"
 	<random>
 	<thread>
@@ -100,7 +100,7 @@
 1662549950 d:\pathtracer\material\metallic.h
 	"material_base.h"
 
-1662299501 d:\pathtracer\material\dielectric.h
+1662444013 d:\pathtracer\material\dielectric.h
 	"material_base.h"
 
 1661786967 d:\pathtracer\objects\spatial_structure\aabb.h
@@ -240,7 +240,7 @@
 	"image/ImageOutputPPM.h"
 	"cornellbox_def.h"
 
-1662554915 d:\pathtracer\objects\triangle_flat.h
+1662646838 d:\pathtracer\objects\triangle_flat.h
 	"object_base.h"
 	"material/material_base.h"
 	"spatial_structure/mesh.h"
@@ -250,7 +250,7 @@
 	"progress_bar.h"
 	"shadow_ray_trace.h"
 
-1662554691 d:\pathtracer\tracer\concurrent_trace.h
+1662648969 d:\pathtracer\tracer\concurrent_trace.h
 	<vector>
 	<atomic>
 	"utils/vec3d.h"
@@ -313,13 +313,13 @@
 	"objects/object_base.h"
 	"pdf_base.h"
 
-1662554642 source:d:\pathtracer\test\importance_sampling_test.cpp
+1662559337 source:d:\pathtracer\test\importance_sampling_test.cpp
 	"ray/light/light.h"
 	"objects/triangle_flat.h"
 	"objects/spatial_structure/bvh/bvh.h"
 	"material/lambertian_simple.h"
 	"material/emissive_simple.h"
-	"material/metallic.h"
+	"material/dielectric.h"
 	"material/texture/texture_base.h"
 	"material/texture/checker_texture.h"
 	"material/texture/image_texture.h"
@@ -335,7 +335,7 @@
 	<fstream>
 	<future>
 
-1662463976 d:\pathtracer\tracer\shadow_ray_trace.h
+1662558691 d:\pathtracer\tracer\shadow_ray_trace.h
 	"objects/objlist_base.h"
 	"ray/light/light.h"
 
@@ -365,7 +365,7 @@
 	"objects/object_base.h"
 	"utils/color.h"
 
-1662554941 d:\pathtracer\material\bsdf\bsdf_lambertian.h
+1662558657 d:\pathtracer\material\bsdf\bsdf_lambertian.h
 	"utils/orthonormal_basis.h"
 	"bsdf_base.h"
 	"../texture/texture_base.h"
@@ -384,14 +384,14 @@
 1662388822 d:\pathtracer\utils\vec_double_spec.h
 	<valarray>
 
-1662387791 d:\pathtracer\objects\spatial_structure\mesh.h
+1662648577 d:\pathtracer\objects\spatial_structure\mesh.h
 	"utils/vec3d.h"
 
-1662386476 source:d:\pathtracer\external\tol_impl.cpp
+1662643716 source:d:\pathtracer\external\tol_impl.cpp
 	"tol.h"
 
-1662386263 d:\pathtracer\external\tol.h
-	"external/tinyobjloader/tiny_obj_loader.h"
+1662643708 d:\pathtracer\external\tol.h
+	"external/tiny_obj_loader.h"
 
 1662131366 d:\pathtracer\external\tinyobjloader\tiny_obj_loader.h
 	<map>
@@ -433,4 +433,41 @@
 1662554361 d:\pathtracer\utils\qrng\sobol_qrng.h
 	<algorithm>
 	"external/sobol.hpp"
+
+1662649267 source:d:\pathtracer\test\obj_test.cpp
+	"ray/light/light.h"
+	"objects/triangle_flat.h"
+	"material/lambertian_simple.h"
+	"material/emissive_simple.h"
+	"material/dielectric.h"
+	"material/texture/texture_base.h"
+	"material/texture/checker_texture.h"
+	"material/texture/image_texture.h"
+	"objects/triangle_flat.h"
+	"objects/sphere.h"
+	"objects/spatial_structure/bvh/bvh.h"
+	"ray/camera.h"
+	"skybox/skybox_colored.h"
+	"tracer/tracer.h"
+	"image/ImageOutputPPM.h"
+	"cornellbox_def.h"
+	"external/tol.h"
+	<iostream>
+	<fstream>
+	<future>
+	<list>
+
+1662643225 d:\pathtracer\external\tiny_obj_loader.h
+	<map>
+	<string>
+	<vector>
+	<cassert>
+	<cctype>
+	<cmath>
+	<cstddef>
+	<cstdlib>
+	<cstring>
+	<utility>
+	<fstream>
+	<sstream>
 
