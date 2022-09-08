@@ -80,7 +80,7 @@ public:
         rec.p = p;
         rec.set_normal(r, normal.unit());
 
-        if(flag & FLAG_DIRECTIONAL && rec.is_front == false)
+        if((flag & FLAG_DIRECTIONAL) && rec.is_front == false)
             return false;
 
         rec.t = t;
