@@ -10,3 +10,8 @@
 # Code::Blocks project files
 CppProperties.json
 *.layout
+
+# Models
+*.mtl
+*.stl
+*.obj
