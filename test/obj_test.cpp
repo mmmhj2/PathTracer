@@ -4,6 +4,7 @@
 #include "material/lambertian_simple.h"
 #include "material/emissive_simple.h"
 #include "material/dielectric.h"
+#include "material/metallic.h"
 #include "material/texture/texture_base.h"
 #include "material/texture/checker_texture.h"
 #include "material/texture/image_texture.h"
@@ -29,18 +30,20 @@ int main()
 {
     using namespace cornell_box;
     sobol_generator::init_generator();
-    camera cam(point3(0,0,15), point3(0,0,0), vec3(0,1,0), constants::pi / 4.5, 1.0);
+    camera cam(point3(0,1,2.5), point3(0,1,0), vec3(0,1,0), constants::pi / 4.5, 1.0);
     skybox_color_gradient sky;
     auto world = make_shared<bvh_tree>();
     auto red_tex = make_shared<solid_color>(color(.65, .05, .05));
-    auto red_mat = make_shared<lambertian>(red_tex);
+    auto white_tex = make_shared<solid_color>(color(.5, .5, .5));
+    auto image_tex = make_shared<image_texture>("back.jpg");
+    auto white_mat = make_shared<lambertian>(white_tex);
 
     // Load obj
     tinyobj::attrib_t attrib;
     std::vector <tinyobj::shape_t> shapes;
     std::vector <tinyobj::material_t> mats;
     std::string error;
-    bool ret = tinyobj::LoadObj(&attrib, &shapes, &mats, &error, "teapot.obj");
+    bool ret = tinyobj::LoadObj(&attrib, &shapes, &mats, &error, "model.obj");
     if(!ret)
     {
         cout << "Cannot load obj file" << endl ;
@@ -50,6 +53,31 @@ int main()
     std::list <vec3> vecs;
     std::list <vec3> normals;
     std::list <std::pair<double, double>> uvs;
+
+    std::vector <std::shared_ptr<uv_texture>> textures;
+    std::vector <std::shared_ptr<material>> materials;
+
+    textures.push_back(white_tex);
+    materials.push_back(white_mat);
+
+    cout << "Found " << mats.size() << " materials" << endl ;
+    for(size_t m = 0; m < mats.size(); m++)
+    {
+        cout << "Material No. " << m << endl ;
+        if(mats[m].diffuse_texname.empty())
+        {
+            cout << "No diffuse texture found" << endl;
+            cout << "Falling back to color : " << mats[m].diffuse[0] << "," << mats[m].diffuse[1] << "," << mats[m].diffuse[2] << endl ;
+            color diffuse_color(mats[m].diffuse[0], mats[m].diffuse[1], mats[m].diffuse[2]);
+            textures.push_back(std::make_shared<solid_color>(diffuse_color));
+        }
+        else
+        {
+            cout << "Diffuse mapping name : " << mats[m].diffuse_texname.c_str() << endl ;
+            textures.push_back(std::make_shared<image_texture>(mats[m].diffuse_texname.c_str()));
+        }
+        materials.push_back(std::make_shared<lambertian>(*textures.rbegin()));
+    }
 
     for(size_t s = 0; s < shapes.size(); s++)
     {
@@ -103,7 +131,9 @@ int main()
                 uv[v] = &(*uvs.rbegin());
             }
 
-            world->add_object(std::make_shared<triangle_flat>(vert, uv, red_mat));
+            //cout << "face material id:" << shapes[s].mesh.material_ids[f] << endl ;
+
+            world->add_object(std::make_shared<triangle_flat>(vert, uv, materials[shapes[s].mesh.material_ids[f] + 1]));
             index_offset += fv;
         }
     }
@@ -112,7 +142,7 @@ int main()
     std::vector <concurrent::block_info> infos(constants::blocks);
     int image_width = 600;
     int image_height = 600;
-    concurrent::fill_info(infos, image_width, image_height, 1, constants::blocks, &cam, world.get(), &sky, nullptr);
+    concurrent::fill_info(infos, image_width, image_height, 20, constants::blocks, &cam, world.get(), &sky, nullptr);
 
     std::vector <std::future<std::vector<color>>> async_task;
     for(int i = 0; i < constants::blocks; i++)
